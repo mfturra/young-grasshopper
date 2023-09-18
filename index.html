@@ -19,13 +19,13 @@
 <body>
     <main>
         <div class="container">
-            <h1>Budget Calculator</h1>
+            <h1>Partial Calculator</h1>
             <div class="wrapper">
     
                 <p>Total Tuition Cost</p>
-                <input type="text" id="amount" placeholder="Insert Yearly Cost">
+                <input type="text" id="yearly-cost" placeholder="Insert Yearly Cost">
                 <p>Number of Years at University</p>
-                <select id="services">
+                <select id="total-years">
                     <option selected disabled hidden>
                         Select
                     </option>
@@ -36,14 +36,21 @@
                     <option value="1">Certificate</option>
                 </select>
                 <p>Total Hours Working Per Semester</p>
-                <input type="text" id="persons" placeholder="Number of people sharing the bill">
+                <select id="hours-worked">
+                    <option selected disabled hidden>
+                        Select
+                    </option>
+                    <option value="40">Full-Time</option>
+                    <option value="20">Part-Time</option>
+                    <option value="10">Here & There</option>
+                    <option value="0">None</option>
+                </select>
                 <button id="calculate">Calculate</button>
             </div>
     
-            <div class="tip">
-                <p>Tip Amount</p>
+            <div class="outstanding-balance">
+                <p>Amount Due</p>
                 <span id="total">0</span>
-                <span id="each">each</span>
             </div>
         </div>
     </main>
