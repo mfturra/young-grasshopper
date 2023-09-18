@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <header>
@@ -17,35 +17,42 @@
 </header>
 
 <body>
-    <div class="container">
-        <h1>Budget Calculator</h1>
-        <div class="wrapper">
-
-            <p>Total Tuition Cost</p>
-            <input type="text" id="amount" placeholder="Insert Yearly Cost">
-            <p>Number of Years at University</p>
-            <select id="services">
-                <option selected disabled hidden>
-                    Select
-                </option>
-                <option value="5">Undergrad & Masters</option>
-                <option value="4">Undergrad</option>
-                <option value="3">Extended Associates Degree</option>
-                <option value="2">Associates Degree</option>
-                <option value="1">Certificate</option>
-            </select>
-            <p>Total Hours Working Per Semester</p>
-            <input type="text" id="persons" placeholder="Number of people sharing the bill">
-            <button id="calculate">Calculate</button>
+    <main>
+        <div class="container">
+            <h1>Budget Calculator</h1>
+            <div class="wrapper">
+    
+                <p>Total Tuition Cost</p>
+                <input type="text" id="amount" placeholder="Insert Yearly Cost">
+                <p>Number of Years at University</p>
+                <select id="services">
+                    <option selected disabled hidden>
+                        Select
+                    </option>
+                    <option value="5">Undergrad & Masters</option>
+                    <option value="4">Undergrad</option>
+                    <option value="3">Extended Associates Degree</option>
+                    <option value="2">Associates Degree</option>
+                    <option value="1">Certificate</option>
+                </select>
+                <p>Total Hours Working Per Semester</p>
+                <input type="text" id="persons" placeholder="Number of people sharing the bill">
+                <button id="calculate">Calculate</button>
+            </div>
+    
+            <div class="tip">
+                <p>Tip Amount</p>
+                <span id="total">0</span>
+                <span id="each">each</span>
+            </div>
         </div>
-
-        <div class="tip">
-            <p>Tip Amount</p>
-            <span id="total">0</span>₹
-            <span id="each">each</span>
-        </div>
-    </div>
+    </main>
+    <footer>
+        &copy; 2023 MTurra All rights reserved
+    </footer>
+    <script type="module" src="index.js"></script>
 </body>
+
 
 
 </html>
