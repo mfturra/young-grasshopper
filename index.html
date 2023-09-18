@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+    <title>College Expectation Setter</title>
+    <meta name="viwport" content="width-device-width, intial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<header>
+    <img src="./imgs/chameloan.png" alt="Chameleon">
+    <a href="/"><span>College</span>Expectation Setter</a>
+</header>
+
+<body>
+    <div class="container">
+        <h1>Budget Calculator</h1>
+        <div class="wrapper">
+
+            <p>Total Tuition Cost</p>
+            <input type="text" id="amount" placeholder="Insert Yearly Cost">
+            <p>Number of Years at University</p>
+            <select id="services">
+                <option selected disabled hidden>
+                    Select
+                </option>
+                <option value="5">Undergrad & Masters</option>
+                <option value="4">Undergrad</option>
+                <option value="3">Extended Associates Degree</option>
+                <option value="2">Associates Degree</option>
+                <option value="1">Certificate</option>
+            </select>
+            <p>Total Hours Working Per Semester</p>
+            <input type="text" id="persons" placeholder="Number of people sharing the bill">
+            <button id="calculate">Calculate</button>
+        </div>
+
+        <div class="tip">
+            <p>Tip Amount</p>
+            <span id="total">0</span>₹
+            <span id="each">each</span>
+        </div>
+    </div>
+</body>
+
+
+</html>
