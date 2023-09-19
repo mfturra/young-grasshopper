@@ -13,8 +13,8 @@
 </head>
 
 <header>
-    <img src="./imgs/chameloan.png" alt="Chameleon">
-    <a href="/"><span>College</span>Expectation Setter</a>
+    <img src="imgs/chameleon.png" alt="Chameleon">
+    <a href="/"><span>College </span>Expectation Setter</a>
 </header>
 
 <body>
@@ -36,14 +36,25 @@
                     <option value="2">Associates Degree</option>
                     <option value="1">Certificate</option>
                 </select>
-                <p>Total Hours Working Per Semester</p>
+                <p>What's the number of semesters that you're planning on working?</p>
+                <select id="num-semesters">
+                    <option selected disabled hidden>
+                        Select
+                    </option>
+                    <option value="8">All semesters (8)</option>
+                    <option value="4">Half of all semesters (4)</option>
+                    <option value="3">Some semesters (2)</option>
+                    <option value="0">None (0)</option>
+                </select>
+
+                <p>Total Hours Working Per Week Per Semester</p>
                 <select id="hours-worked">
                     <option selected disabled hidden>
                         Select
                     </option>
-                    <option value="40">Full-Time</option>
-                    <option value="20">Part-Time</option>
-                    <option value="10">Here & There</option>
+                    <option value="40">Full-Time (40hrs)</option>
+                    <option value="20">Part-Time (20hrs)</option>
+                    <option value="10">Here & There (10hrs)</option>
                     <option value="0">None</option>
                 </select>
                 <button id="calculate">Calculate</button>
