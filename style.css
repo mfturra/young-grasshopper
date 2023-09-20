@@ -50,7 +50,6 @@ p {
 
 header {
     background-color: var(--light);
-    
     display: flex;
     justify-content: center;
     align-items: center;
@@ -77,7 +76,76 @@ main {
 }
 
 
-.container {
+
+
+/* =================
+      Setup 
+     ================= */
+
+.setup-inner {
+    /* display: grid; */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    /* padding: 1.3em .5em; */
+    /* min-height: 500px; */
+
+}
+
+
+
+.action-steps {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 2em;
+    grid-row-gap: 8em;
+    max-width: 50%;
+
+
+    border: #242526;
+    border-radius: var(--border-rad-lg);
+    margin: 1em;
+}
+
+.tuition-cost {
+    width: 100%;
+    height: 0.5em;
+    text-align: center;
+    /* grid-area: 1 / 2 / 2 / 3; */
+    /* padding-right: 2em; */
+}
+
+.tuition-cost>input {
+    text-align: center;
+}
+
+.total-college-years {
+    width: 100%;
+    height: 0.1em;
+    text-align: center;
+    /* grid-area: 1 / 3 / 2 / 4; */
+}
+
+.total-college-years>option{
+    text-align: center;
+}
+
+.semesters-worked {
+    width: 100%;
+    height: 1em;
+    text-align: center;
+    /* grid-area: 2 / 2 / 3 / 3; */
+}
+
+.weekly-hours-worked {
+    width: 100%;
+    height: 0.1em;
+    text-align: center;
+    /* grid-area: 2 / 3 / 3 / 4; */
+}
+
+/* .container {
     width: 350px;
     height: 500px;
     background-color: #fff;
@@ -86,7 +154,7 @@ main {
     top: 50%;
     transform: translateX(-50%) translateY(-50%);
     border-radius: 20px;
-}
+} */
   
 /* h1 {
     position: absolute;

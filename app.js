@@ -17,7 +17,7 @@ function calculateCost() {
     /*if statement will work when user presses 
           calculate without entering values. */
     //so will display an alert box and return.
-    if (yearly_cost === '' && hours_worked === 'Select') {
+    if (yearly_cost === '' && total_years === 'Select') {
         alert("Please enter valid values");
         return;
     }
