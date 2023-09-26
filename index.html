@@ -24,6 +24,9 @@
             <div class="action-steps">
 
                 <!-- College Tuition Section -->
+                    <!-- <div class="education-cost">
+                        <h1>Cost of Your Education</h1>
+                    </div> -->
                     <div class="tuition-cost">
                         <p>Total Yearly Tuition Cost</p>
                         <input type="text" id="yearly-cost" placeholder="Insert Yearly Cost">
@@ -54,7 +57,6 @@
                         <option value="3">Some semesters (2)</option>
                         <option value="0">None (0)</option>
                     </select>
-
                 </div>
                 <div class="weekly-hours-worked">
                     <p>What are the total number of hours you're planning on working per week</p>
@@ -80,6 +82,61 @@
                         <option value="14">$14/hr</option>
                     </select>
                 </div>
+                <div class="tuition-cost">
+                    <p>Total Yearly Tuition Cost</p>
+                    <input type="text" id="yearly-cost" placeholder="Insert Yearly Cost">
+                </div>
+                <div class="total-college-years">
+                    <p>Number of Years at University</p>
+                    <select id="total-years">
+                        <option selected disabled hidden>
+                            Select
+                        </option>
+                        <option value="5">Undergrad & Masters</option>
+                        <option value="4">Undergrad</option>
+                        <option value="3">Extended Associates Degree</option>
+                        <option value="2">Associates Degree</option>
+                        <option value="1">Certificate</option>
+                    </select>
+                </div>
+                
+            <!-- Working Hours Section -->
+            <div class="semesters-worked">
+                <p>How many semesters are you planning on working?</p>
+                <select id="num-semesters">
+                    <option selected disabled hidden>
+                        Select
+                    </option>
+                    <option value="8">All semesters (8)</option>
+                    <option value="4">Half of all semesters (4)</option>
+                    <option value="3">Some semesters (2)</option>
+                    <option value="0">None (0)</option>
+                </select>
+            </div>
+            <div class="weekly-hours-worked">
+                <p>What are the total number of hours you're planning on working per week</p>
+                <select id="hours-worked">
+                    <option selected disabled hidden>
+                        Select
+                    </option>
+                    <option value="40">Full-Time (40hrs)</option>
+                    <option value="20">Part-Time (20hrs)</option>
+                    <option value="10">Here & There (10hrs)</option>
+                    <option value="0">None</option>
+                </select>
+            </div>
+            <div class="weekly-hourly-rate">
+                <p>What is your expected hourly rate?</p>
+                <select id="hourly-rate">
+                    <option selected disabled hidden>
+                        Select
+                    </option>
+                    <option value="20">$20/hr</option>
+                    <option value="18">$18/hr</option>
+                    <option value="16">$16/hr</option>
+                    <option value="14">$14/hr</option>
+                </select>
+            </div>
                 <!-- <button id="calculate">Calculate</button> -->
             </div>
     

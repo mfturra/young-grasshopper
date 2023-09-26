@@ -13,17 +13,22 @@ html, body {
     margin: 0;
     padding: 0;
     font-size: 16px;
+    height: 100%;
 }
 
 
 body {
     font-family: 'Poppins';
     background-size: cover;
-    background-repeat: repeat-y;
-    background-color: url('imgs/chameleon.jpeg');
     height: 100vh;
     display: flex;
     flex-direction: column;
+}
+
+.page-wrapper {
+    min-height: 100%;
+    position: relative;
+    margin-bottom: .8em;
 }
 
 
@@ -71,9 +76,9 @@ header span {
     font-weight: 700;
 }
 
-main {
+/* main {
     padding: 0 1em;
-}
+} */
 
 
 
@@ -234,8 +239,6 @@ button {
      ================= */
 
 footer {
-    position: absolute;
-    bottom: 0;
     width: 100%;
     padding: .8em;
     background-color: var(--dark);
@@ -243,3 +246,7 @@ footer {
     font-size: .7em;
     text-align: center
 }
+
+/* .content {
+    padding-bottom: 100px;
+}*/
