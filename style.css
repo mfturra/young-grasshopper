@@ -28,7 +28,8 @@ body {
 .page-wrapper {
     min-height: 100%;
     position: relative;
-    margin-bottom: .8em;
+    /* margin-bottom: .8em; */
+    overflow-y: auto;
 }
 
 
@@ -104,11 +105,9 @@ header span {
     grid-column-gap: 2em;
     grid-row-gap: 8em;
     max-width: 50%;
-
-
     border: #242526;
     border-radius: var(--border-rad-lg);
-    margin: 1em;
+    margin-bottom: 15em;
 }
 
 .tuition-cost {
