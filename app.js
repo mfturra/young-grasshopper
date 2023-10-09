@@ -42,7 +42,8 @@ function calculateCost() {
     // let total = yearly_cost - (semester_weeks * hours_worked) / total_years;
     // component that includes scholarships
 
-    total = total.toFixed(2);
+    // Round the value to 2 decimal places
+    // total = total.toFixed(2);
   
     //finally displaying the tip value 
     document.querySelector('.outstanding-balance').style.display = 'block';

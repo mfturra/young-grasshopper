@@ -35,7 +35,7 @@
                         <p>Number of Years at University</p>
                         <select id="total-years">
                             <option selected disabled hidden>
-                                Select
+                                Select Total Years
                             </option>
                             <option value="1">Certificate</option>
                             <option value="2">Associates Degree</option>
@@ -44,13 +44,20 @@
                             <option value="5">Undergrad & Masters</option>
                         </select>
                     </div>
+
+                    <!-- Total Cost of College Tuition -->
+                    <div class="outstanding-balance">
+                        <p>Amount Due</p>
+                        $<span id="total">0</span>
+                        <button id="calculate">Calculate</button>
+                    </div>
                     
                 <!-- Working Hours Section -->
                 <div class="semesters-worked">
                     <p>How many semesters are you planning on working?</p>
                     <select id="num-semesters">
                         <option selected disabled hidden>
-                            Select
+                            Semesters Working
                         </option>
                         <option value="0">None (0)</option>
                         <option value="3">Some semesters (2)</option>
@@ -59,10 +66,10 @@
                     </select>
                 </div>
                 <div class="weekly-hours-worked">
-                    <p>What are the total number of hours you're planning on working per week</p>
+                    <p>What are the total number of hours you're planning on working per week?</p>
                     <select id="hours-worked">
                         <option selected disabled hidden>
-                            Select
+                            Hours Working Per Week
                         </option>
                         <option value="0">None</option>
                         <option value="10">Here & There (10hrs)</option>
@@ -74,7 +81,7 @@
                     <p>What is your expected hourly rate?</p>
                     <select id="hourly-rate">
                         <option selected disabled hidden>
-                            Select
+                            Select Hourly Rate
                         </option>
                         <option value="0">N/A</option>
                         <option value="14">$14/hr</option>
@@ -87,7 +94,7 @@
                     <p>Expected Earnings Per Week</p>
                     <select id="weekly-earnings">
                         <option selected disabled hidden>
-                            Select
+                            Hourly Earnings per Week
                         </option>
                         <option value="0">N/A</option>
                         <option value="14">$160</option>
@@ -96,6 +103,7 @@
                     </select>
                     <!-- <input type="text" id="yearly-cost" placeholder="Insert Yearly Cost"> -->
                 </div>
+
                 <!-- <div class="total-college-years">
                     <p>Number of Years at University</p>
                     <select id="total-years">
@@ -146,13 +154,7 @@
                     <option value="14">$14/hr</option>
                 </select>
             </div> -->
-                <!-- <button id="calculate">Calculate</button> -->
             </div>
-    
-            <!-- <div class="outstanding-balance">
-                <p>Amount Due</p>
-                <span id="total">0</span>
-            </div> -->
         </div>
     </main>
     <footer>
