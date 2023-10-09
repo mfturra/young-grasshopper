@@ -20,17 +20,16 @@ html, body {
 body {
     font-family: 'Poppins';
     background-size: cover;
-    height: 100vh;
+    /* height: 100vh; */
     display: flex;
     flex-direction: column;
 }
 
-.page-wrapper {
+/* .page-wrapper {
     min-height: 100%;
     position: relative;
-    /* margin-bottom: .8em; */
     overflow-y: auto;
-}
+} */
 
 
 /* =================
@@ -88,17 +87,38 @@ header span {
       Setup 
      ================= */
 
-.setup-inner {
+.page-container {
     /* display: grid; */
+    position: relative;
     display: flex;
-    justify-content: space-around;
-    /* align-items: center; */
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* 100% viewport height */
+
     /* padding: 1.3em .5em; */
     /* min-height: 500px; */
-
 }
 
-.action-steps {
+.content-wrap {
+    padding: .8em; /* Footer height */
+}
+
+.scholastic-cost {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+    max-width: 50%; /* Contain content in 50% of webpage */
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 3em;
+    text-align: center; /* Center title block */
+}
+
+.tuition-cost.total-college-years.outstanding-balance>input {
+    text-align: center;
+}
+
+/* .action-steps {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 1fr);
@@ -108,14 +128,12 @@ header span {
     border: #242526;
     border-radius: var(--border-rad-lg);
     margin-bottom: 15em;
-}
+} */
 
-.tuition-cost {
+/* .tuition-cost {
     width: 100%;
     height: 0.5em;
-    text-align: center;
-    /* grid-area: 1 / 2 / 2 / 3; */
-    /* padding-right: 2em; */
+    
 }
 
 .tuition-cost>input {
@@ -126,18 +144,23 @@ header span {
     width: 100%;
     height: 0.1em;
     text-align: center;
-    /* grid-area: 1 / 3 / 2 / 4; */
 }
 
 #total-years {
     text-align: center;
 }
 
-.semesters-worked {
+.outstanding-balance {
+    text-align: center;
+    font-size: 18px;
+} */
+
+/* Income Generated Sectionj */
+/* .semesters-worked {
     width: 100%;
     height: 1em;
     text-align: center;
-    /* grid-area: 2 / 2 / 3 / 3; */
+    grid-area: 2 / 2 / 3 / 3;
 }
 
 #num-semesters {
@@ -148,7 +171,7 @@ header span {
     width: 100%;
     height: 0.1em;
     text-align: center;
-    /* grid-area: 2 / 3 / 3 / 4; */
+    grid-area: 2 / 3 / 3 / 4;
 }
 
 #hours-worked {
@@ -159,12 +182,12 @@ header span {
     width: 100%;
     height: 0.1em;
     text-align: center;
-    /* grid-area: 2 / 3 / 3 / 4; */
+    grid-area: 2 / 3 / 3 / 4;
 }
 
 #hourly-rate {
     text-align: center;
-}
+} */
 
 /* .container {
     width: 350px;
@@ -192,12 +215,12 @@ header span {
     text-align: center;
     padding: 10px;
 } */
-  
-.wrapper {
+
+/* .wrapper {
     padding: 20px;
-}
+} */
   
-input,
+/* input,
 select {
     width: 80%;
     border: none;
@@ -213,7 +236,7 @@ select:focus {
   
 select {
     width: 88% !important;
-}
+} */
   
 button {
     margin: 20px auto;
@@ -226,11 +249,7 @@ button {
     border-radius: 5px;
 }
   
-.outstanding-balance {
-    text-align: center;
-    font-size: 18px;
-    /* display: none; */
-}
+
 
 
 /* =================
@@ -238,14 +257,12 @@ button {
      ================= */
 
 footer {
+    position: absolute;
+    bottom: 0;
     width: 100%;
-    padding: .8em;
+    padding: .8em; /* Footer Height */
     background-color: var(--dark);
     color: var(--light);
     font-size: .7em;
     text-align: center
 }
-
-/* .content {
-    padding-bottom: 100px;
-}*/
