@@ -2,25 +2,41 @@
 window.onload = () =>
     {
         // Calculates the balance due to the student upon finishing their degree
-        document.querySelector('#calculate').onclick = calculateCost;
+        document.querySelector('#yearly-cost').oninput = calculateCost;
+        document.querySelector('#total-years').oninput = calculateCost;
     }
   
 function calculateCost() {
+    var yearly_cost = Number(document.getElementById('yearly-cost').value);
+    var total_years = Number(document.getElementById('total-years').value);
+    var total_cost = yearly_cost * total_years;
+
+    console.log(total_cost)
+
+    // Show Total Cost of Tuition
+    document.getElementById('outstanding-balance').style.display = 'block';
+    document.querySelector('#total').innerHTML = total_cost;
+
     /*assign values of ID : yearly_cost, total_years and hours_worked to 
     variables for further calculations.*/
-    let yearly_cost = document.querySelector('#yearly-cost').value;
-    let total_years = document.querySelector('#total-years').value;
-    let hours_worked = document.querySelector('#hours-worked').value;
+
+
+
+    // let yearly_cost = document.querySelector('#yearly-cost').value;
+    // let total_years = document.querySelector('#total-years').value;
+
+
+    // let hours_worked = document.querySelector('#hours-worked').value;
     // let semester_weeks = 15;
   
-    console.log(hours_worked);
-    /*if statement will work when user presses 
-          calculate without entering values. */
-    //so will display an alert box and return.
-    if (yearly_cost === '' && total_years === 'Select') {
-        alert("Please enter valid values");
-        return;
-    }
+    // console.log(hours_worked);
+    // /*if statement will work when user presses 
+    //       calculate without entering values. */
+    // //so will display an alert box and return.
+    // if (yearly_cost === '' && total_years === 'Select') {
+    //     alert("Please enter valid values");
+    //     return;
+    // }
 
     // if (yearly_cost === '' && hours_worked === 'Select' && hours-worked === 'Select') {
     //     alert("Please enter valid values");
@@ -38,14 +54,12 @@ function calculateCost() {
     /*calculating the tip by multiplying total-bill and number of
      hours_worked; then dividing it by number of total_years.*/
     //fixing the total yearly_cost upto 2 digits of decimal
-    let total = yearly_cost * total_years;
+    
     // let total = yearly_cost - (semester_weeks * hours_worked) / total_years;
     // component that includes scholarships
 
     // Round the value to 2 decimal places
     // total = total.toFixed(2);
   
-    //finally displaying the tip value 
-    document.querySelector('.outstanding-balance').style.display = 'block';
-    document.querySelector('#total').innerHTML = total;
+    
 }

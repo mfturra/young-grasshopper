@@ -98,12 +98,8 @@ header span {
     padding: .8em; /* Footer height */
 }
 
-.education-cost {
 
-}
-
-
-.scholastic-cost {
+#scholastic-cost {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 20px;
@@ -130,14 +126,10 @@ header span {
     margin-bottom: 15em;
 } */
 
-/* .tuition-cost {
+ .tuition-cost {
     width: 100%;
     height: 0.5em;
     
-}
-
-.tuition-cost>input {
-    text-align: center;
 }
 
 .total-college-years {
@@ -146,14 +138,10 @@ header span {
     text-align: center;
 }
 
-#total-years {
-    text-align: center;
-}
-
-.outstanding-balance {
+#outstanding-balance {
     text-align: center;
     font-size: 18px;
-} */
+}
 
 /* Income Generated Sectionj */
 /* .semesters-worked {
@@ -242,7 +230,7 @@ button {
     margin: 20px auto;
     width: 150px;
     height: 50px;
-    background-color: #39cccc;
+    background-color: var(--dark);
     color: #fff;
     font-size: 16px;
     border: none;
