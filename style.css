@@ -37,8 +37,11 @@ body {
      ================= */
 
 h1 {
-font-family: 'Playfair Display SC', serif;
-text-align: center;
+    font-family: 'Playfair Display SC', serif;
+    text-align: center;
+    padding: 20px 0;
+    background-color: var(--dark);
+    margin: 0;
 }
 
 h2 {
@@ -102,6 +105,11 @@ header span {
 .content-wrap {
     padding: .8em; /* Footer height */
 }
+
+.education-cost {
+
+}
+
 
 .scholastic-cost {
     display: grid;
