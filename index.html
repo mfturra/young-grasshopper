@@ -21,7 +21,9 @@
     <main>
         <div class="page-container">
             <div id="content-wrap">
-                <h1>Cost of Your Education</h1>
+                <h1 id="cost_title">Cost of Your Education</h1>
+                <h2>Please use the following tool to help you plan out projected expenses and income for the duration of your college education.</h2>
+
                 <form id="scholastic-cost">
                     <!-- College Tuition Section -->
                     <div class="tuition-cost">
@@ -52,20 +54,9 @@
                 <!-- Insert loan interest slider -->
 
                 <!-- Income Generated Section -->
-                <h1>Income Generation</h1>
+                <h1 id="income_title">Income Generation</h1>
+                <h2>Working while going to school can help you greatly minimize your college payments after leaving college. Use the section below to uncover how much you could earn if you worked during the school year.</h2>
                 <form id="income-generation">
-                    <div class="semesters-worked">
-                        <p>How many semesters are you planning on working?</p>
-                        <select id="num-semesters">
-                            <option selected disabled hidden>
-                                Semesters Working
-                            </option>
-                            <option value="0">None (0)</option>
-                            <option value="2">Some semesters (2)</option>
-                            <option value="4">Half of all semesters (4)</option>
-                            <option value="8">All semesters (8)</option>                        
-                        </select>
-                    </div>
                     <div class="weekly-hours-worked">
                         <p>What are the total number of hours you're expecting to work per week?</p>
                         <select id="hours-worked">
@@ -89,6 +80,18 @@
                             <option value="17">$17/hr</option>
                             <option value="19">$19/hr</option>
                             <option value="20">$20/hr</option>                        
+                        </select>
+                    </div>
+                    <div class="semesters-worked">
+                        <p>How many semesters are you planning on working?</p>
+                        <select id="num-semesters">
+                            <option selected disabled hidden>
+                                Semesters Working
+                            </option>
+                            <option value="0">None (0)</option>
+                            <option value="2">Some semesters (2)</option>
+                            <option value="4">Half of all semesters (4)</option>
+                            <option value="8">All semesters (8)</option>                        
                         </select>
                     </div>
                 </form>            

@@ -15,14 +15,16 @@ function calculateCost() {
     var num_semesters = Number(document.getElementById('num-semesters').value);
     var hours_worked = Number(document.getElementById('hours-worked').value);
     var hourly_rate = Number(document.getElementById('hourly-rate').value);
+    var avg_weeks_in_semesters = 15;
 
     // Calculations
     var total_tuition_cost = yearly_cost * total_years;
     var expected_weekly_earnings = hours_worked * hourly_rate;
-    var expected_semester_earnings = expected_weekly_earnings * 15; // average number of weeks in semester
+    var expected_semester_earnings = expected_weekly_earnings * avg_weeks_in_semesters; // average number of weeks in semester
     var expected_degree_earnings = expected_semester_earnings * num_semesters;
 
 
+    // Log users calculation input to console
     console.log(total_tuition_cost)
     console.log(expected_weekly_earnings)
     console.log(expected_semester_earnings)
@@ -47,14 +49,6 @@ function calculateCost() {
     /*assign values of ID : yearly_cost, total_years and hours_worked to 
     variables for further calculations.*/
 
-
-
-    // let yearly_cost = document.querySelector('#yearly-cost').value;
-    // let total_years = document.querySelector('#total-years').value;
-
-
-    // let hours_worked = document.querySelector('#hours-worked').value;
-    // let semester_weeks = 15;
   
     // console.log(hours_worked);
     // /*if statement will work when user presses 
