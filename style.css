@@ -141,14 +141,21 @@ select {
     margin-left: auto;
     margin-right: auto;
     padding-top: 1em;
-    padding-bottom: 10em;
+    padding-bottom: 4em;
     text-align: center; /* Center title block */
 }
 
-/* .tuition-cost.total-college-years.outstanding-balance>input {
-    text-align: center;
-} */
-
+.earnings {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+    max-width: 75%; /* Contain content in 50% of webpage */
+    margin-left: auto;
+    margin-right: auto;
+    /* padding-top: 1em; */
+    padding-bottom: 10em;
+    text-align: center; /* Center title block */
+}
 /* .action-steps {
     display: grid;
     grid-template-columns: repeat(2, 1fr);

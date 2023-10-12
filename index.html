@@ -34,21 +34,24 @@
                             <option selected disabled hidden>
                                 Select Total Years
                             </option>
-                            <option value="1">Certificate</option>
-                            <option value="2">Associates Degree</option>
-                            <option value="3">Extended Associates Degree</option>
-                            <option value="4">Undergrad</option>
-                            <option value="5">Undergrad & Masters</option>
+                            <option value="1">Certificate (1)</option>
+                            <option value="2">Associates Degree (2)</option>
+                            <option value="3">Extended Associates Degree (3)</option>
+                            <option value="4">Undergrad (4)</option>
+                            <option value="5">Undergrad & Masters (5)</option>
                         </select>
                     </div>
 
                     <!-- Total Cost of College Tuition -->
                     <div id="outstanding-balance">
                         <p>Total Cost of Degree</p>
-                        $<span id="total"></span>
+                        $<span id="total_tuition_cost"></span>
                     </div>
                 </form>
 
+                <!-- Insert loan interest slider -->
+
+                <!-- Income Generated Section -->
                 <h1>Income Generation</h1>
                 <form id="income-generation">
                     <div class="semesters-worked">
@@ -58,16 +61,16 @@
                                 Semesters Working
                             </option>
                             <option value="0">None (0)</option>
-                            <option value="3">Some semesters (2)</option>
+                            <option value="2">Some semesters (2)</option>
                             <option value="4">Half of all semesters (4)</option>
                             <option value="8">All semesters (8)</option>                        
                         </select>
                     </div>
                     <div class="weekly-hours-worked">
-                        <p>What are the total number of hours you're planning on working per week?</p>
+                        <p>What are the total number of hours you're expecting to work per week?</p>
                         <select id="hours-worked">
                             <option selected disabled hidden>
-                                Hours Working Per Week
+                                Select Hours
                             </option>
                             <option value="0">None</option>
                             <option value="10">Here & There (10hrs)</option>
@@ -82,26 +85,30 @@
                                 Select Hourly Rate
                             </option>
                             <option value="0">N/A</option>
-                            <option value="14">$14/hr</option>
-                            <option value="16">$16/hr</option>
-                            <option value="18">$18/hr</option>
+                            <option value="15">$15/hr</option>
+                            <option value="17">$17/hr</option>
+                            <option value="19">$19/hr</option>
                             <option value="20">$20/hr</option>                        
                         </select>
                     </div>
-                </form>
-                <!-- <div class="action-steps">                    
-                    <div class="tuition-cost">
+                </form>            
+
+                <!-- Total Earnings Sections -->
+                <div class="earnings">
+                    <div id="weekly-earnings">
                         <p>Expected Earnings Per Week</p>
-                        <select id="weekly-earnings">
-                            <option selected disabled hidden>
-                                Hourly Earnings per Week
-                            </option>
-                            <option value="0">N/A</option>
-                            <option value="14">$160</option>
-                            <option value="16">$360</option>
-                            <option value="18">$800</option>                   
-                        </select>
-                    </div> -->
+                            $<span id="expected_weekly_earnings"></span>
+                    </div>
+                    <div id="semester-earnings">
+                        <p>Expected Earnings Per Semester</p>
+                        <p>Based on Average Number of Collegiate Semesters</p>
+                            $<span id="expected_semester_earnings"></span>
+                    </div>
+                    <div id="degree-earnings">
+                        <p>Expected Earnings After Completion of Degree</p>
+                            $<span id="expected_degree_earnings"></span>
+                    </div>
+                </div>
 
                     <!-- <div class="total-college-years">
                         <p>Number of Years at University</p>

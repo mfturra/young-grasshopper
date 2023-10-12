@@ -4,18 +4,45 @@ window.onload = () =>
         // Calculates the balance due to the student upon finishing their degree
         document.querySelector('#yearly-cost').oninput = calculateCost;
         document.querySelector('#total-years').oninput = calculateCost;
+        document.querySelector('#num-semesters').oninput = calculateCost;
+        document.querySelector('#hours-worked').oninput = calculateCost;
+        document.querySelector('#hourly-rate').oninput = calculateCost;
     }
   
 function calculateCost() {
     var yearly_cost = Number(document.getElementById('yearly-cost').value);
-    var total_years = Number(document.getElementById('total-years').value);
-    var total_cost = yearly_cost * total_years;
+    var total_years =   Number(document.getElementById('total-years').value);
+    var num_semesters = Number(document.getElementById('num-semesters').value);
+    var hours_worked = Number(document.getElementById('hours-worked').value);
+    var hourly_rate = Number(document.getElementById('hourly-rate').value);
 
-    console.log(total_cost)
+    // Calculations
+    var total_tuition_cost = yearly_cost * total_years;
+    var expected_weekly_earnings = hours_worked * hourly_rate;
+    var expected_semester_earnings = expected_weekly_earnings * 15; // average number of weeks in semester
+    var expected_degree_earnings = expected_semester_earnings * num_semesters;
+
+
+    console.log(total_tuition_cost)
+    console.log(expected_weekly_earnings)
+    console.log(expected_semester_earnings)
+    console.log(expected_degree_earnings)
+
 
     // Show Total Cost of Tuition
     document.getElementById('outstanding-balance').style.display = 'block';
-    document.querySelector('#total').innerHTML = total_cost;
+    document.querySelector('#total_tuition_cost').innerHTML = total_tuition_cost;
+
+    // Show Income Generated
+    document.getElementById('weekly-earnings').style.display = 'block';
+    document.querySelector('#expected_weekly_earnings').innerHTML = expected_weekly_earnings;
+
+    document.getElementById('semester-earnings').style.display = 'block';
+    document.querySelector('#expected_semester_earnings').innerHTML = expected_semester_earnings;
+
+    document.getElementById('degree-earnings').style.display = 'block';
+    document.querySelector('#expected_degree_earnings').innerHTML = expected_degree_earnings;
+
 
     /*assign values of ID : yearly_cost, total_years and hours_worked to 
     variables for further calculations.*/
