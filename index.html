@@ -55,20 +55,27 @@
                 <div class="loan-expenses">
                     <h1 id="loan_title">Loan Expenses</h1>
                     <h2>Due to the high cost of a college education, typically students need to take out a student loan 
-                        to pay for their yearly costs. <br/> Use the following section to calculate the projected cost of your 
-                        loan considered your interest rate.
+                        to pay for their yearly costs. Use the following section to calculate the projected cost of your 
+                        loan considering different interest rates.
                     </h2>
                     <form>
                         <div class="loan-type">
                             <p>What type of loan are you considering?</p>
-                            <select id="loan-type-input" name="loan_select_input" onchange="showDiv('hidden_loan_type_description', this)">
+                            
+                            <!-- <select id="loan-type-input" name="loan_select_input" onchange="showDiv('hidden_loan_type_description', this)">
                                 <option selected disabled hidden>
                                     Select Loan Type
                                 </option>
+                            </select> -->
+                            <select name="hidden_loan_type_description" id="loan_type_selection">
+                                <!-- <option value="hide">Hide</option>
+                                <option value="show">Display</option> -->
+                                <option>None</option>
                                 <option value="0">Undecided</option>
                                 <option value="1">Fixed</option>
                                 <option value="2">Variable</option>
                             </select>
+
                             <div id="hidden_loan_type_description">
                                 <div id="hidden_loan_type_undecided">
                                     <h3>Going to college is a big decision! It's totally understandable that you're undecided. 

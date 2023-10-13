@@ -1,32 +1,60 @@
 // Holistic calculate function
 // window.onload = () =>
 
-document.addEventListener('DOMContentLoaded', () =>
-    {
-        // Calculates the balance due to the student upon finishing their degree
-        document.querySelector('#yearly-cost').oninput = calculateCost;
-        document.querySelector('#total-years').oninput = calculateCost;
-        document.querySelector('#num-semesters').oninput = calculateCost;
-        document.querySelector('#hours-worked').oninput = calculateCost;
-        document.querySelector('#hourly-rate').oninput = calculateCost;
+document.addEventListener('DOMContentLoaded', () => {
+    const loanTypeSelection = document.getElementById('loan_type_selection');
+    const undecidedLoanType = document.getElementById('hidden_loan_type_undecided');
+    const fixedLoanType =     document.getElementById('hidden_loan_type_fixed');
+    const variableLoanType =  document.getElementById('hidden_loan_type_variable')
+
+    loanTypeSelection.addEventListener('change', function handleChange(event) {
+        // Get selected value
+        const selectedValue = event.target.value;
+        
+        // Hide all loan type sections
+        undecidedLoanType.style.visibility =    'hidden';
+        fixedLoanType.style.visibility =        'hidden';
+        variableLoanType.style.visibility =     'hidden';
+
+        // Reveal the selected loan type section
+        if (selectedValue === '0') {
+            undecidedLoanType.style.visibility = 'visible';
+        } else if (selectedValue === '1') {
+            fixedLoanType.style.visibility = 'visible';
+        } else if (selectedValue === '2') {
+            variableLoanType.style.visibility = 'visible';
+        }
+
     });
+
+
+    // Calculates the balance due to the student upon finishing their degree
+    document.querySelector('#yearly-cost').oninput = calculateCost;
+    document.querySelector('#total-years').oninput = calculateCost;
+    document.querySelector('#num-semesters').oninput = calculateCost;
+    document.querySelector('#hours-worked').oninput = calculateCost;
+    document.querySelector('#hourly-rate').oninput = calculateCost;
+});
   
-function showDiv(divID, element) {
-    // Create loan type variables
-    var undecidedLoanType = document.getElementById('hidden_loan_type_undecided');
-    var fixedLoanType =     document.getElementById('hidden_loan_type_fixed');
-    var variableLoanType =  document.getElementById('hidden_loan_type_variable')
 
-    // Hide all sections within #hidden_loan_type_description section
-    document.querySelectorAll('#hidden_loan_type_description > div').forEach(section => {
-        section.style.display = 'none';
-    });
+// function showDiv(divId, element) {
+//     // Create loan type variables
+//     var undecidedLoanType = document.getElementById('hidden_loan_type_undecided');
+//     var fixedLoanType =     document.getElementById('hidden_loan_type_fixed');
 
-    // Show selected section
-    undecidedLoanType.style.display =   element.value == 0 ? 'block' : 'none';
-    fixedLoanType.style.display =       element.value == 1 ? 'block' : 'none';
-    variableLoanType.style.display =    element.value == 2 ? 'block' : 'none';
-}
+
+    
+//     // Hide all sections within #hidden_loan_type_description section
+//     // document.querySelectorAll('#hidden_loan_type_description > div').forEach(section => {
+//     //     section.style.display = 'none';
+//     // });
+
+//     // Show selected section
+//     undecidedLoanType.style.display =   element.value == "0" ? 'block' : 'none';
+//     fixedLoanType.style.display =       element.value == "1" ? 'block' : 'none';
+//     variableLoanType.style.display =    element.value == "2" ? 'block' : 'none';
+// }
+
 
 
 function calculateCost() {

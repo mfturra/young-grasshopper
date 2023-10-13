@@ -47,6 +47,15 @@ h2 {
     text-align: center; /* Center title block */
 }
 
+h3 {
+    font-family: 'Playfair Display SC', serif;
+    font-size: 1.3em;
+    text-align: left;
+    max-width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 p {
     line-height: 1.35em;
 }
@@ -148,10 +157,34 @@ select {
 }
 
 /* Loan Interest Considerations */
-
-#hidden_loan_type_description {
-    display: none;
+#tutorial {
+    visibility: hidden;
+    background-color: #76D7C4;
+    color: black;
+    width: 100px;
+    height: 100px;
 }
+
+#hidden_loan_type_undecided {
+    visibility: hidden;
+    background-color: #76D7C4;
+    color: black;
+    /* width: 100px;
+    height: 100px; */
+}
+
+#hidden_loan_type_fixed {
+    visibility: hidden;
+    /* background-color: #76D7C4; */
+    /* color: black; */
+    /* width: 100px;
+    height: 100px; */
+}
+
+
+/* #hidden_loan_type_description {
+    display: none;
+} */
 
 hr {
     max-width: 75%;
