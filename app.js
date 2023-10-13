@@ -12,10 +12,17 @@ document.addEventListener('DOMContentLoaded', () =>
     });
   
 function showDiv(divID, element) {
+    // Create loan type variables
     var undecidedLoanType = document.getElementById('hidden_loan_type_undecided');
     var fixedLoanType =     document.getElementById('hidden_loan_type_fixed');
     var variableLoanType =  document.getElementById('hidden_loan_type_variable')
 
+    // Hide all sections within #hidden_loan_type_description section
+    document.querySelectorAll('#hidden_loan_type_description > div').forEach(section => {
+        section.style.display = 'none';
+    });
+
+    // Show selected section
     undecidedLoanType.style.display =   element.value == 0 ? 'block' : 'none';
     fixedLoanType.style.display =       element.value == 1 ? 'block' : 'none';
     variableLoanType.style.display =    element.value == 2 ? 'block' : 'none';
