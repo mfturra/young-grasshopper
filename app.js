@@ -1,5 +1,7 @@
 // Holistic calculate function
-window.onload = () =>
+// window.onload = () =>
+
+document.addEventListener('DOMContentLoaded', () =>
     {
         // Calculates the balance due to the student upon finishing their degree
         document.querySelector('#yearly-cost').oninput = calculateCost;
@@ -7,14 +9,25 @@ window.onload = () =>
         document.querySelector('#num-semesters').oninput = calculateCost;
         document.querySelector('#hours-worked').oninput = calculateCost;
         document.querySelector('#hourly-rate').oninput = calculateCost;
-    }
+    });
   
+function showDiv(divID, element) {
+    var undecidedLoanType = document.getElementById('hidden_loan_type_undecided');
+    var fixedLoanType =     document.getElementById('hidden_loan_type_fixed');
+    var variableLoanType =  document.getElementById('hidden_loan_type_variable')
+
+    undecidedLoanType.style.display =   element.value == 0 ? 'block' : 'none';
+    fixedLoanType.style.display =       element.value == 1 ? 'block' : 'none';
+    variableLoanType.style.display =    element.value == 2 ? 'block' : 'none';
+}
+
+
 function calculateCost() {
-    var yearly_cost = Number(document.getElementById('yearly-cost').value);
+    var yearly_cost =   document.getElementById('yearly-cost').value;
     var total_years =   Number(document.getElementById('total-years').value);
     var num_semesters = Number(document.getElementById('num-semesters').value);
-    var hours_worked = Number(document.getElementById('hours-worked').value);
-    var hourly_rate = Number(document.getElementById('hourly-rate').value);
+    var hours_worked =  Number(document.getElementById('hours-worked').value);
+    var hourly_rate =   Number(document.getElementById('hourly-rate').value);
     var avg_weeks_in_semesters = 15;
 
     // Calculations
@@ -45,6 +58,11 @@ function calculateCost() {
     document.getElementById('degree-earnings').style.display = 'block';
     document.querySelector('#expected_degree_earnings').innerHTML = expected_degree_earnings;
 
+}
+
+
+// Insert component that includes scholarships
+
 
     /*assign values of ID : yearly_cost, total_years and hours_worked to 
     variables for further calculations.*/
@@ -71,16 +89,4 @@ function calculateCost() {
     // else
     // //if there are more than one total_years we will display each.  
     //     document.querySelector('#each').style.display = 'block';
-  
-    /*calculating the tip by multiplying total-bill and number of
-     hours_worked; then dividing it by number of total_years.*/
-    //fixing the total yearly_cost upto 2 digits of decimal
     
-    // let total = yearly_cost - (semester_weeks * hours_worked) / total_years;
-    // component that includes scholarships
-
-    // Round the value to 2 decimal places
-    // total = total.toFixed(2);
-  
-    
-}
