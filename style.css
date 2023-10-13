@@ -106,7 +106,7 @@ header span {
     padding: .8em; /* Footer height */
 }
 
-
+/* Tuition Expenses Section */
 #scholastic-cost {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -145,6 +145,15 @@ select {
 
 #total {
     text-align: center;
+}
+
+hr {
+    max-width: 75%;
+}
+
+/* Income Generation Section */
+.income-section {
+    padding-top: 2em;
 }
 
 #income-generation {
