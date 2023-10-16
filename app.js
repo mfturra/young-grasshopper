@@ -12,17 +12,17 @@ document.addEventListener('DOMContentLoaded', () => {
         const selectedValue = event.target.value;
         
         // Hide all loan type sections
-        undecidedLoanType.style.visibility =    'hidden';
-        fixedLoanType.style.visibility =        'hidden';
-        variableLoanType.style.visibility =     'hidden';
+        undecidedLoanType.style.display =    'none';
+        fixedLoanType.style.display =        'none';
+        variableLoanType.style.display =     'none';
 
         // Reveal the selected loan type section
         if (selectedValue === '0') {
-            undecidedLoanType.style.visibility = 'visible';
+            undecidedLoanType.style.display = 'block';
         } else if (selectedValue === '1') {
-            fixedLoanType.style.visibility = 'visible';
+            fixedLoanType.style.display = 'block';
         } else if (selectedValue === '2') {
-            variableLoanType.style.visibility = 'visible';
+            variableLoanType.style.display = 'block';
         }
 
     });
