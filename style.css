@@ -38,7 +38,7 @@ h1 {
 
 h2 {
     font-family: 'Playfair Display SC', serif;
-    font-size: 1.3em;
+    font-size: 1.5em;
     font-weight: normal;
     max-width: 75%;
     margin-left: auto;
@@ -50,6 +50,7 @@ h2 {
 h3 {
     font-family: 'Playfair Display SC', serif;
     font-size: 1.3em;
+    font-weight: medium;
     text-align: left;
     max-width: 75%;
     margin-left: auto;
@@ -57,6 +58,7 @@ h3 {
 }
 
 p {
+    font-size: 18px;
     line-height: 1.35em;
 }
   
@@ -116,7 +118,7 @@ header span {
 }
 
 /* Tuition Expenses Section */
-#scholastic-cost {
+#academic-cost {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 20px;
@@ -146,10 +148,10 @@ select {
     text-align: center;
 }
 
-#outstanding-balance {
+#general-tuition-cost {
     text-align: center;
     font-size: 18px;
-    padding-bottom: 3.5em;
+    padding-bottom: 5em;
 }
 
 #total {
@@ -157,25 +159,32 @@ select {
 }
 
 /* Loan Interest Considerations */
-/* #tutorial {
-    display: none;
-    background-color: #76D7C4;
-    color: black;
-    width: 100px;
-    height: 100px;
-} */
 
-#loan-type {
+
+.loan-descriptions {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 20px;
-    max-width: 75%; /* Contain content in 50% of webpage */
+    /* grid-template-columns: repeat(2, 1fr); */
+    grid-gap: 10px;
+    max-width: 25%; /* Contain content in 50% of webpage */
     margin-left: auto;
     margin-right: auto;
     padding-top: 1em;
     text-align: center; /* Center title block */
 }
 
+#loan-consider {
+    padding-bottom: 5em;
+}
+
+#hidden_loan_type_description {
+    max-width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 1em;
+    /* text-align: center; */
+}
+
+/* Hidden loan descriptions */
 #hidden_loan_type_undecided {
     display: none;
 }
@@ -186,6 +195,22 @@ select {
 
 #hidden_loan_type_variable {
     display: none;
+}
+
+.loan-expenses {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+    max-width: 50%; /* Contain content in 50% of webpage */
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 1em;
+    text-align: center; /* Center title block */
+}
+
+#scholastic-costs {
+    text-align: center;
+    padding-bottom: 3.5em;
 }
 
 
