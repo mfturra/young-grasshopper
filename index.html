@@ -58,15 +58,9 @@
                         to pay for their yearly costs. Use the following section to calculate the projected cost of your 
                         loan considering different interest rates.
                     </h2>
-                    <form>
-                        <div class="loan-type">
+                    <form id="loan-type">
+                        <div class="loan-consider">
                             <p>What type of loan are you considering?</p>
-                            
-                            <!-- <select id="loan-type-input" name="loan_select_input" onchange="showDiv('hidden_loan_type_description', this)">
-                                <option selected disabled hidden>
-                                    Select Loan Type
-                                </option>
-                            </select> -->
                             <select name="hidden_loan_type_description" id="loan_type_selection">
                                 <!-- <option value="hide">Hide</option>
                                 <option value="show">Display</option> -->
@@ -75,38 +69,37 @@
                                 <option value="1">Fixed</option>
                                 <option value="2">Variable</option>
                             </select>
-
-                            <div id="hidden_loan_type_description">
-                                <div id="hidden_loan_type_undecided">
-                                    <h3>Going to college is a big decision! It's totally understandable that you're undecided. 
-                                        Prior to providing you with a loan to pay for your tuition, banks use your families credit score and your own
-                                        to estimate your likelihood to pay the full balance. That's why you'll find a range of values online.<br/><br/>
-
-                                        Typically a variable interest rate means that interest rates and monthly payments will change over time. 
-                                        Meaning that it could be more expensive or less expensive over time depending on the state of the economy. 
-                                        I know! It's crazy that the state of the economy will impact your loan rate. That's why some families
-                                        elect to select a fixed rate so that they aren't caught by surprise by changing monthly payments. 
-                                        Fixed interest rates impact monthly payments by making them unchanged over time. Meaning that your 
-                                        monthly payments don't change throughout the duration of your loan<br/><br/>
-                                    </h3>
-                                </div>
-                                <div id="hidden_loan_type_fixed">
-                                    <h3>It looks like you're considering going with a fixed rate. Just as a friendly reminder, that means that
-                                        your interest rate will stay fixed until you finish paying off your loan. So your monthly payments will
-                                        remain unchange.
-                                    </h3>
-                                </div>
-                                <div id="hidden_loan_type_variable">
-                                    <h3>It looks like you're considering going with a variable rate. Just as a friendly reminder, that means that
-                                        your interest rate will fluctuate, increasing or decreasing your monthly payments until you finish paying 
-                                        off your loan.
-                                    </h3>
-                                </div>
-                            </div>
                         </div>
                         <div id="tuition-interest">
                             <p>What's your projected loan interest?</p>
-                            <input type="number" id="loan-interest-value" placeholder="Interest Percentage ">
+                            <input type="number" id="loan-interest-value" placeholder="Interest Rate (%)">
+                        </div>
+
+                        <!-- Hidden Loan Clarifications -->
+                        <div id="hidden_loan_type_description">
+                            <div id="hidden_loan_type_undecided">
+                                <h3>Going to college is a big decision! It's totally understandable that you're undecided. 
+                                    Prior to providing you with a loan to pay for your tuition, banks use your families credit score and your own
+                                    to estimate your likelihood to pay the full balance. That's why you'll find a range of values online.<br/><br/>
+
+                                    <!-- Typically a variable interest rate means that interest rates and monthly payments will change over time. 
+                                    Meaning that it could be more expensive or less expensive over time depending on the state of the economy. 
+                                    I know! It's crazy that the state of the economy will impact your loan rate. That's why some families
+                                    elect to select a fixed rate so that they aren't caught by surprise by changing monthly payments. 
+                                    Fixed interest rates impact monthly payments by making them unchanged over time. Meaning that your 
+                                    monthly payments don't change throughout the duration of your loan<br/><br/> -->
+                                </h3>
+                            </div>
+                            <div id="hidden_loan_type_fixed">
+                                <h3>Fixed rate means that your interest rate will stay fixed until you finish paying off your loan.
+                                    So your monthly payments will remain unchanged.
+                                </h3>
+                            </div>
+                            <div id="hidden_loan_type_variable">
+                                <h3>Variable rate means that your interest rate will change for any given month. Your monthly payments could increase
+                                    or decrease until you finish paying off your loan.
+                                </h3>
+                            </div>
                         </div>
                     </form>
 
