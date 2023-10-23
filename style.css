@@ -102,15 +102,11 @@ header span {
      ================= */
 
 .page-container {
-    /* display: grid; */
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh; /* 100% viewport height */
-
-    /* padding: 1.3em .5em; */
-    /* min-height: 500px; */
 }
 
 .content-wrap {
@@ -126,6 +122,7 @@ header span {
     margin-left: auto;
     margin-right: auto;
     padding-top: 1em;
+    padding-bottom: 5em;
     text-align: center; /* Center title block */
 }
 
@@ -151,7 +148,6 @@ select {
 #general-tuition-cost {
     text-align: center;
     font-size: 18px;
-    padding-bottom: 5em;
 }
 
 #total {
@@ -159,8 +155,6 @@ select {
 }
 
 /* Loan Interest Considerations */
-
-
 .loan-descriptions {
     display: grid;
     /* grid-template-columns: repeat(2, 1fr); */
@@ -173,7 +167,7 @@ select {
 }
 
 #loan-consider {
-    padding-bottom: 5em;
+    padding-bottom: 1em;
 }
 
 #hidden_loan_type_description {
@@ -197,7 +191,8 @@ select {
     display: none;
 }
 
-.loan-expenses {
+
+#loan-cost {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 20px;
@@ -205,12 +200,17 @@ select {
     margin-left: auto;
     margin-right: auto;
     padding-top: 1em;
+    padding-bottom: 5em;
     text-align: center; /* Center title block */
 }
 
-#scholastic-costs {
+#loan-interest-value {
     text-align: center;
-    padding-bottom: 3.5em;
+}
+
+#tuition-loan-costs {
+    font-size: 18px;
+    text-align: center;
 }
 
 

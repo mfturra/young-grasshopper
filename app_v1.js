@@ -31,6 +31,8 @@ window.onload = () =>
 function calculateCost() {
     var yearly_cost =   Number(document.getElementById('yearly-cost').value);
     var total_years =   Number(document.getElementById('total-years').value);
+    var loan_interest =          Number(document.getElementById('loan-interest-value').value);
+    // var loan_interest =   Number(Document.getElementById('loan-interest-value').value);
     var num_semesters = Number(document.getElementById('num-semesters').value);
     var hours_worked =  Number(document.getElementById('hours-worked').value);
     var hourly_rate =   Number(document.getElementById('hourly-rate').value);
@@ -41,7 +43,7 @@ function calculateCost() {
 
     // Loan Calculations
     // var loan_interest =   Number(Document.getElementById('loan-interest-value').value);
-    var total_loan_expenses = (total_tuition_cost * 0.05) + total_tuition_cost;
+    var total_loan_expenses = (total_tuition_cost * (loan_interest * 0.01)) + total_tuition_cost;
 
     // Expected Earnings Calculations
     var expected_weekly_earnings = hours_worked * hourly_rate;
@@ -65,7 +67,7 @@ function calculateCost() {
 
     // Show Total Cost of Loan
     document.getElementById('tuition-loan-costs').style.display = 'block';
-    document.querySelector('#loan_cost').innerHTML = total_loan_expenses;
+    document.querySelector('#loan_total_cost').innerHTML = total_loan_expenses;
 
     // Show Income Generated
     document.getElementById('weekly-earnings').style.display = 'block';

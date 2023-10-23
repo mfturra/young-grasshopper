@@ -51,7 +51,7 @@
                     </div>
                 </form>
 
-                <!-- Loan Expenses  -->
+                <!-- Loan Considerations  -->
                 <h1 id="loan_title">Loan Expenses</h1>
                 <h2>Due to the high cost of a college education, typically students need to take out a student loan 
                     to pay for their yearly costs. Use the following section to calculate the projected cost of your 
@@ -99,15 +99,17 @@
                         </div>
                     </div>
                     <!-- Generalized Cost of College Tuition -->
+                </form>
+
+                <!-- Loan Expenses -->
+                <form id="loan-cost">
                     <div class="loan-expenses">
-                        <div id="tuition-interest">
-                            <p>What's your projected loan interest?</p>
-                            <input type="number" id="loan-interest-value" placeholder="Interest Rate (%)">
-                        </div>
-                        <div id="tuition-loan-costs">
-                            <p>Scholastic Cost of Degree</p>
-                            $<span id="loan_cost"></span>
-                        </div>
+                        <p>What's your projected loan interest?</p>
+                        <input type="text" id="loan-interest-value" placeholder="Interest Rate %">
+                    </div>
+                    <div id="tuition-loan-costs">
+                        <p>Cost of Degree with Loan Interest</p>
+                        $<span id="loan_total_cost"></span>
                     </div>
                 </form>
 
