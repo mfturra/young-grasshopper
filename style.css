@@ -89,8 +89,12 @@ header span {
     font-weight: 700;
 }
 
-#cost_title {
+#main_title {
     padding-top: 2.5em;
+}
+
+#tuition_title {
+    padding-top: 2em;
 }
 
 #income_title {
@@ -136,8 +140,6 @@ header span {
 }
 
 .total-college-years {
-    width: 100%;
-    height: 0.1em;
     text-align: center;
 }
 
@@ -159,19 +161,14 @@ select {
     display: grid;
     /* grid-template-columns: repeat(2, 1fr); */
     grid-gap: 10px;
-    max-width: 25%; /* Contain content in 50% of webpage */
+    max-width: 30%; /* Contain content in 50% of webpage */
     margin-left: auto;
     margin-right: auto;
-    padding-top: 1em;
     text-align: center; /* Center title block */
 }
 
-#loan-consider {
-    padding-bottom: 1em;
-}
-
 #hidden_loan_type_description {
-    max-width: 60%;
+    max-width: 63%;
     margin-left: auto;
     margin-right: auto;
     padding-top: 1em;
@@ -199,7 +196,7 @@ select {
     max-width: 50%; /* Contain content in 50% of webpage */
     margin-left: auto;
     margin-right: auto;
-    padding-top: 1em;
+    /* padding-top: 1em; */
     padding-bottom: 5em;
     text-align: center; /* Center title block */
 }
@@ -210,7 +207,7 @@ select {
 
 #tuition-loan-costs {
     font-size: 18px;
-    text-align: center;
+    
 }
 
 
@@ -253,99 +250,6 @@ hr {
     padding-bottom: 10em;
     text-align: center; /* Center title block */
 }
-/* .action-steps {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    grid-column-gap: 2em;
-    grid-row-gap: 8em;
-    max-width: 50%;
-    border: #242526;
-    border-radius: var(--border-rad-lg);
-    margin-bottom: 15em;
-} */
-/* Income Generated Sectionj */
-/* .semesters-worked {
-    width: 100%;
-    height: 1em;
-    text-align: center;
-    grid-area: 2 / 2 / 3 / 3;
-}
-
-#num-semesters {
-    text-align: center;
-}
-
-.weekly-hours-worked {
-    width: 100%;
-    height: 0.1em;
-    text-align: center;
-    grid-area: 2 / 3 / 3 / 4;
-}
-
-#hours-worked {
-    text-align: center;
-}
-
-.weekly-hourly-rate {
-    width: 100%;
-    height: 0.1em;
-    text-align: center;
-    grid-area: 2 / 3 / 3 / 4;
-}
-
-#hourly-rate {
-    text-align: center;
-} */
-
-/* .container {
-    width: 350px;
-    height: 500px;
-    background-color: #fff;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translateX(-50%) translateY(-50%);
-    border-radius: 20px;
-} */
-  
-/* h1 {
-    position: absolute;
-    left: 50%;
-    top: -60px;
-    width: 300px;
-    transform: translateX(-50%);
-    background-color: #ff851b;
-    color: #fff;
-    font-weight: 100;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    font-size: 18px;
-    text-align: center;
-    padding: 10px;
-} */
-
-/* .wrapper {
-    padding: 20px;
-} */
-  
-/* input,
-select {
-    width: 80%;
-    border: none;
-    border-bottom: 1px solid #0074d9;
-    padding: 10px;
-}
-  
-input:focus,
-select:focus {
-    border: 1px solid #0074d9;
-    outline: none;
-}
-  
-select {
-    width: 88% !important;
-} */
   
 button {
     margin: 20px auto;
@@ -372,6 +276,6 @@ footer {
     padding: .8em; /* Footer Height */
     background-color: var(--dark);
     color: var(--light);
-    font-size: .7em;
+    font-size: 13.5px;
     text-align: center
 }
