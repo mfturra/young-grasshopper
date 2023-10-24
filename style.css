@@ -205,18 +205,9 @@ select {
     text-align: center;
 }
 
-#tuition-loan-costs {
+#tuition-loan1 {
     font-size: 18px;
-    
 }
-
-
-/* #hidden_loan_type_description {
-    display: none;
-} */
-
-
-
 
 hr {
     max-width: 75%;
@@ -251,7 +242,7 @@ hr {
     text-align: center; /* Center title block */
 }
   
-button {
+/* button {
     margin: 20px auto;
     width: 150px;
     height: 50px;
@@ -260,8 +251,20 @@ button {
     font-size: 16px;
     border: none;
     border-radius: 5px;
+} */
+
+/* Final Outstanding Balance */
+#projected-balance {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+    max-width: 75%; /* Contain content in 50% of webpage */
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 1em;
+    padding-bottom: 5em;
+    text-align: center; /* Center title block */
 }
-  
 
 
 

@@ -53,16 +53,15 @@ function calculateCost() {
     var total_tuition_cost = yearly_cost * total_years;
 
     // Loan Calculations
-    // var loan_interest =   Number(Document.getElementById('loan-interest-value').value);
     var total_loan_expenses = (total_tuition_cost * (loan_interest * 0.01)) + total_tuition_cost;
 
     // Expected Earnings Calculations
     var expected_weekly_earnings = hours_worked * hourly_rate;
-
-    // var loan_interest =   Number(Document.getElementById('loan-interest-value').value);
-
     var expected_semester_earnings = expected_weekly_earnings * avg_weeks_in_semesters; // average number of weeks in semester
     var expected_degree_earnings = expected_semester_earnings * num_semesters;
+
+    // Final Outstanding Degree Balance
+    var final_degree_cost = total_loan_expenses - expected_degree_earnings;
 
 
     // Output values to console
@@ -71,6 +70,7 @@ function calculateCost() {
     console.log(expected_weekly_earnings)
     console.log(expected_semester_earnings)
     console.log(expected_degree_earnings)
+    console.log(final_degree_cost)
 
 
     // Show Total Cost of Tuition
@@ -78,7 +78,7 @@ function calculateCost() {
     document.querySelector('#total_tuition_cost').innerHTML = total_tuition_cost;
 
     // Show Total Cost of Loan
-    document.getElementById('tuition-loan-costs').style.display = 'block';
+    document.getElementById('tuition-loan1').style.display = 'block';
     document.querySelector('#loan_total_cost').innerHTML = total_loan_expenses;
 
     // Show Income Generated
@@ -90,4 +90,14 @@ function calculateCost() {
 
     document.getElementById('degree-earnings').style.display = 'block';
     document.querySelector('#expected_degree_earnings').innerHTML = expected_degree_earnings;    
+
+    // Final Loan Cost minus Earnings
+    document.getElementById('tuition-loan2').style.display = 'block';
+    document.querySelector('#loan_total_cost2').innerHTML = total_loan_expenses;
+
+    document.getElementById('degree-earnings2').style.display = 'block';
+    document.querySelector('#expected_degree_earnings2').innerHTML = expected_degree_earnings;   
+
+    document.getElementById('final-outstanding-balance').style.display = 'block';
+    document.querySelector('#loan-minus-earnings').innerHTML = final_degree_cost;    
 }
