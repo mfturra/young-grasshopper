@@ -238,7 +238,7 @@ hr {
     margin-left: auto;
     margin-right: auto;
     /* padding-top: 1em; */
-    padding-bottom: 10em;
+    padding-bottom: 5em;
     text-align: center; /* Center title block */
 }
   
@@ -266,7 +266,11 @@ hr {
     text-align: center; /* Center title block */
 }
 
-
+#start-wage-research {
+    padding-bottom: 5em;
+    text-align: center;
+    font-size: 1.3em;
+}
 
 /* =================
       Footer 
