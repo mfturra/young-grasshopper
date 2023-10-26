@@ -21,198 +21,210 @@
     <main>
         <div class="page-container">
             <div id="content-wrap">
-                <!-- Introduction -->
-                <h1 id="main_title">General Cost of Your Education</h1>
-                <h2>Please use the following tool to help you plan out projected expenses and income for the duration of your college education.</h2>
-
-                <!-- College Tuition Section -->
-                <h1 id="tuition_title">Tuition Projected Costs</h1>
-                <form id="academic-cost">
-                    <div class="tuition-cost">
-                        <p>Total Yearly Cost</p>
-                        <input type="text" id="yearly-cost" placeholder="Insert Cost">
-                    </div>
-                    <div class="total-college-years">
-                        <p>Number of Years at University</p>
-                        <select id="total-years">
-                            <option selected disabled hidden>
-                                Select Total Years
-                            </option>
-                            <option value="1">Certificate (1)</option>
-                            <option value="2">Associates Degree (2)</option>
-                            <option value="3">Extended Associates Degree (3)</option>
-                            <option value="4">Undergrad (4)</option>
-                            <option value="5">Undergrad & Masters (5)</option>
-                        </select>
-                    </div>
-
-                    <!-- Generalized Cost of College Tuition -->
-                    <div id="general-tuition-cost">
-                        <p>General Cost of Degree</p>
-                        $<span id="total_tuition_cost"></span>
-                    </div>
-                </form>
-
-                <!-- Loan Considerations  -->
-                <h1 id="loan_title">Loan Expenses</h1>
-                <h2>Due to the high cost of a college education, typically students need to take out a student loan 
-                    to pay for their yearly costs. Use the following section to calculate the projected cost of your 
-                    loan considering different interest rates.
-                </h2>
-                <form id="loan-consider">
-                    <div class="loan-descriptions">
-                        <p>What type of loan are you considering?</p>
-                        <select name="hidden_loan_type_description" id="loan_type_selection">
-                            <!-- <option value="hide">Hide</option>
-                            <option value="show">Display</option> -->
-                            <option selected disabled hidden>
-                                Select Loan Type
-                            </option>
-                            <option value="0">Undecided</option>
-                            <option value="1">Fixed</option>
-                            <option value="2">Variable</option>
-                        </select>
-                    </div>
-                    
-                    <!-- Hidden Loan Clarifications -->
-                    <div id="hidden_loan_type_description">
-                        <div id="hidden_loan_type_undecided">
-                            <h3>Going to college is a big decision! It's totally understandable that you're undecided. 
-                                Prior to providing you with a loan to pay for your tuition, banks use your families credit score and your own
-                                to estimate your likelihood to pay the full balance. That's why you'll find a range of values online.<br/><br/>
-
-                                <!-- Typically a variable interest rate means that interest rates and monthly payments will change over time. 
-                                Meaning that it could be more expensive or less expensive over time depending on the state of the economy. 
-                                I know! It's crazy that the state of the economy will impact your loan rate. That's why some families
-                                elect to select a fixed rate so that they aren't caught by surprise by changing monthly payments. 
-                                Fixed interest rates impact monthly payments by making them unchanged over time. Meaning that your 
-                                monthly payments don't change throughout the duration of your loan<br/><br/> -->
-                            </h3>
-                        </div>
-                        <div id="hidden_loan_type_fixed">
-                            <h3>Fixed rate means that your interest rate will stay fixed until you finish paying off your loan.
-                                So your monthly payments will remain unchanged.
-                            </h3>
-                        </div>
-                        <div id="hidden_loan_type_variable">
-                            <h3>Variable rate means that your interest rate will change for any given month. Your monthly payments could increase
-                                or decrease until you finish paying off your loan.
-                            </h3>
-                        </div>
-                    </div>
-                    <!-- Generalized Cost of College Tuition -->
-                </form>
-
-                <!-- Loan Expenses -->
-                <form id="loan-cost">
-                    <div class="loan-expenses">
-                        <p>What's your projected loan interest?</p>
-                        <input type="text" id="loan-interest-value" placeholder="Interest Rate %">
-                    </div>
-                    <div id="tuition-loan1">
-                        <p>Cost of Degree with Loan Interest</p>
-                        $<span id="loan_total_cost"></span>
-                    </div>
-                </form>
-
-                <hr>
-
-                <!-- Income Generated Section -->
-                <div class="income-section">
-                    <h1 id="income_title">Income Generation</h1>
-                    <h2>Working while going to school can help you greatly minimize your college payments after leaving college. Use the section below to uncover how much you could earn if you worked during the school year.</h2>
-                    <form id="income-generation">
-                        <div class="weekly-hours-worked">
-                            <p>What are the total number of hours you're expecting to work per week?</p>
-                            <select id="hours-worked">
-                                <option selected disabled hidden>
-                                    Select Hours
-                                </option>
-                                <option value="0">None</option>
-                                <option value="10">Here & There (10hrs)</option>
-                                <option value="20">Part-Time (20hrs)</option>
-                                <option value="40">Full-Time (40hrs)</option>                       
-                            </select>
-                        </div>
-                        <div class="weekly-hourly-rate">
-                            <p>What is your expected hourly rate?</p>
-                            <select id="hourly-rate">
-                                <option selected disabled hidden>
-                                    Select Hourly Rate
-                                </option>
-                                <option value="0">N/A</option>
-                                <option value="15">$15/hr</option>
-                                <option value="17">$17/hr</option>
-                                <option value="19">$19/hr</option>
-                                <option value="20">$20/hr</option>                        
-                            </select>
-                        </div>
-                        <div class="semesters-worked">
-                            <p>How many semesters are you planning on working?</p>
-                            <select id="num-semesters">
-                                <option selected disabled hidden>
-                                    Semesters Working
-                                </option>
-                                <option value="0">None (0)</option>
-                                <option value="2">Some semesters (2)</option>
-                                <option value="4">Half of all semesters (4)</option>
-                                <option value="8">All semesters (8)</option>                        
-                            </select>
-                        </div>
-                    </form> 
-                </div>           
-
-                <!-- Total Earnings Sections -->
-                <div class="earnings">
-                    <div id="weekly-earnings">
-                        <p>Expected Earnings Per Week</p>
-                            $<span id="expected_weekly_earnings"></span>
-                    </div>
-                    <div id="semester-earnings">
-                        <p>Expected Earnings Per Semester</p>
-                        <p>Based on Average Number of Collegiate Semesters</p>
-                            $<span id="expected_semester_earnings"></span>
-                    </div>
-                    <div id="degree-earnings">
-                        <p>Expected Earnings After Completion of Degree</p>
-                            $<span id="expected_degree_earnings"></span>
-                    </div>
+                <!-- Tab Link Workflow -->
+                <div class="tab">
+                    <button class="tablinks" onclick="openTab(event, 'education_cost_calc')">Calculate Education Cost</button>
+                    <button class="tablinks" onclick="openTab(event, 'occupation_proj_research')">Research Occupation Projections</button>
                 </div>
 
-                <!-- Calculate Remaining Costs Minus Earnings -->
-                <h1>Final Outstanding Balance</h1>
-                <h2>Considering your total loan cost and income that you're hoping to accumulate, let's use 
-                    the following to estimate how much you could reduce your loan by when working while going 
-                    to school.</h2>
-                <div id="projected-balance">
-                    <div id="tuition-loan2">
-                        <p>Cost of Degree with Loan Interest</p>
-                        $<span id="loan_total_cost2"></span>
-                    </div>
-                    <div id="degree-earnings2">
-                        <p>Expected Earnings After Completion of Degree</p>
-                            $<span id="expected_degree_earnings2"></span>
-                    </div>
-                    <div class="total-expected-cost">
-                        <div id="final-outstanding-balance">
-                            <p>Total Expected Cost of College Education</p>
-                            $<span id="loan-minus-earnings"></span>
+
+
+
+                <div id="education_cost_calc" class="tabcontent">
+                    <!-- Introduction -->
+                    <h1 id="main_title">General Cost of Your Education</h1>
+                    <h2>Please use the following tool to help you plan out projected expenses and income for the duration of your college education.</h2>
+
+                    <!-- College Tuition Section -->
+                    <h1 id="tuition_title">Tuition Projected Costs</h1>
+                    <form id="academic-cost">
+                        <div class="tuition-cost">
+                            <p>Total Yearly Cost</p>
+                            <input type="text" id="yearly-cost" placeholder="Insert Cost">
+                        </div>
+                        <div class="total-college-years">
+                            <p>Number of Years at University</p>
+                            <select id="total-years">
+                                <option selected disabled hidden>
+                                    Select Total Years
+                                </option>
+                                <option value="1">Certificate (1)</option>
+                                <option value="2">Associates Degree (2)</option>
+                                <option value="3">Extended Associates Degree (3)</option>
+                                <option value="4">Undergrad (4)</option>
+                                <option value="5">Undergrad & Masters (5)</option>
+                            </select>
+                        </div>
+
+                        <!-- Generalized Cost of College Tuition -->
+                        <div id="general-tuition-cost">
+                            <p>General Cost of Degree</p>
+                            $<span id="total_tuition_cost"></span>
+                        </div>
+                    </form>
+
+                    <!-- Loan Considerations  -->
+                    <h1 id="loan_title">Loan Expenses</h1>
+                    <h2>Due to the high cost of a college education, typically students need to take out a student loan 
+                        to pay for their yearly costs. Use the following section to calculate the projected cost of your 
+                        loan considering different interest rates.
+                    </h2>
+                    <form id="loan-consider">
+                        <div class="loan-descriptions">
+                            <p>What type of loan are you considering?</p>
+                            <select name="hidden_loan_type_description" id="loan_type_selection">
+                                <!-- <option value="hide">Hide</option>
+                                <option value="show">Display</option> -->
+                                <option selected disabled hidden>
+                                    Select Loan Type
+                                </option>
+                                <option value="0">Undecided</option>
+                                <option value="1">Fixed</option>
+                                <option value="2">Variable</option>
+                            </select>
+                        </div>
+                        
+                        <!-- Hidden Loan Clarifications -->
+                        <div id="hidden_loan_type_description">
+                            <div id="hidden_loan_type_undecided">
+                                <h3>Going to college is a big decision! It's totally understandable that you're undecided. 
+                                    Prior to providing you with a loan to pay for your tuition, banks use your families credit score and your own
+                                    to estimate your likelihood to pay the full balance. That's why you'll find a range of values online.<br/><br/>
+
+                                    <!-- Typically a variable interest rate means that interest rates and monthly payments will change over time. 
+                                    Meaning that it could be more expensive or less expensive over time depending on the state of the economy. 
+                                    I know! It's crazy that the state of the economy will impact your loan rate. That's why some families
+                                    elect to select a fixed rate so that they aren't caught by surprise by changing monthly payments. 
+                                    Fixed interest rates impact monthly payments by making them unchanged over time. Meaning that your 
+                                    monthly payments don't change throughout the duration of your loan<br/><br/> -->
+                                </h3>
+                            </div>
+                            <div id="hidden_loan_type_fixed">
+                                <h3>Fixed rate means that your interest rate will stay fixed until you finish paying off your loan.
+                                    So your monthly payments will remain unchanged.
+                                </h3>
+                            </div>
+                            <div id="hidden_loan_type_variable">
+                                <h3>Variable rate means that your interest rate will change for any given month. Your monthly payments could increase
+                                    or decrease until you finish paying off your loan.
+                                </h3>
+                            </div>
+                        </div>
+                        <!-- Generalized Cost of College Tuition -->
+                    </form>
+
+                    <!-- Loan Expenses -->
+                    <form id="loan-cost">
+                        <div class="loan-expenses">
+                            <p>What's your projected loan interest?</p>
+                            <input type="text" id="loan-interest-value" placeholder="Interest Rate %">
+                        </div>
+                        <div id="tuition-loan1">
+                            <p>Cost of Degree with Loan Interest</p>
+                            $<span id="loan_total_cost"></span>
+                        </div>
+                    </form>
+
+                    <hr>
+
+                    <!-- Income Generated Section -->
+                    <div class="income-section">
+                        <h1 id="income_title">Income Generation</h1>
+                        <h2>Working while going to school can help you greatly minimize your college payments after leaving college. Use the section below to uncover how much you could earn if you worked during the school year.</h2>
+                        <form id="income-generation">
+                            <div class="weekly-hours-worked">
+                                <p>What are the total number of hours you're expecting to work per week?</p>
+                                <select id="hours-worked">
+                                    <option selected disabled hidden>
+                                        Select Hours
+                                    </option>
+                                    <option value="0">None</option>
+                                    <option value="10">Here & There (10hrs)</option>
+                                    <option value="20">Part-Time (20hrs)</option>
+                                    <option value="40">Full-Time (40hrs)</option>                       
+                                </select>
+                            </div>
+                            <div class="weekly-hourly-rate">
+                                <p>What is your expected hourly rate?</p>
+                                <select id="hourly-rate">
+                                    <option selected disabled hidden>
+                                        Select Hourly Rate
+                                    </option>
+                                    <option value="0">N/A</option>
+                                    <option value="15">$15/hr</option>
+                                    <option value="17">$17/hr</option>
+                                    <option value="19">$19/hr</option>
+                                    <option value="20">$20/hr</option>                        
+                                </select>
+                            </div>
+                            <div class="semesters-worked">
+                                <p>How many semesters are you planning on working?</p>
+                                <select id="num-semesters">
+                                    <option selected disabled hidden>
+                                        Semesters Working
+                                    </option>
+                                    <option value="0">None (0)</option>
+                                    <option value="2">Some semesters (2)</option>
+                                    <option value="4">Half of all semesters (4)</option>
+                                    <option value="8">All semesters (8)</option>                        
+                                </select>
+                            </div>
+                        </form> 
+                    </div>           
+
+                    <!-- Total Earnings Sections -->
+                    <div class="earnings">
+                        <div id="weekly-earnings">
+                            <p>Expected Earnings Per Week</p>
+                                $<span id="expected_weekly_earnings"></span>
+                        </div>
+                        <div id="semester-earnings">
+                            <p>Expected Earnings Per Semester</p>
+                            <p>Based on Average Number of Collegiate Semesters</p>
+                                $<span id="expected_semester_earnings"></span>
+                        </div>
+                        <div id="degree-earnings">
+                            <p>Expected Earnings After Completion of Degree</p>
+                                $<span id="expected_degree_earnings"></span>
                         </div>
                     </div>
 
-                </div>
+                    <!-- Calculate Remaining Costs Minus Earnings -->
+                    <h1>Final Outstanding Balance</h1>
+                    <h2>Considering your total loan cost and income that you're hoping to accumulate, let's use 
+                        the following to estimate how much you could reduce your loan by when working while going 
+                        to school.</h2>
+                    <div id="projected-balance">
+                        <div id="tuition-loan2">
+                            <p>Cost of Degree with Loan Interest</p>
+                            $<span id="loan_total_cost2"></span>
+                        </div>
+                        <div id="degree-earnings2">
+                            <p>Expected Earnings After Completion of Degree</p>
+                                $<span id="expected_degree_earnings2"></span>
+                        </div>
+                        <div class="total-expected-cost">
+                            <div id="final-outstanding-balance">
+                                <p>Total Expected Cost of College Education</p>
+                                $<span id="loan-minus-earnings"></span>
+                            </div>
+                        </div>
 
+                    </div>
+
+                </div>
                 <!-- Researching Wage Statistics -->
-                <h1>Researching Expected Wage Based on Occupation</h1>
-                <h2>Prior to starting your career, it can be helpful to get a general
-                    understanding of how much you could be getting paid to work in a 
-                    specific occupation. Use the following link and steps to calculate
-                    your projected income.
-                </h2>
-                <div id="start-wage-research">
-                    <a href="https://www.bls.gov/oes/current/oes_stru.htm">U.S. Bureau of Labor Statistics</a>
+                <div id="occupation_proj_research" class="tabcontent">
+                    <h1 id="wage_research_title">Researching Expected Wage Based on Occupation</h1>
+                    <h2>Prior to starting your career, it can be helpful to get a general
+                        understanding of how much you could be getting paid to work in a 
+                        specific occupation. Use the following link and steps to calculate
+                        your projected income.
+                    </h2>
+                    <div id="start-wage-research">
+                        <a href="https://www.bls.gov/oes/current/oes_stru.htm">U.S. Bureau of Labor Statistics</a>
+                    </div>
                 </div>
-
             </div>    
                 
         </div>
