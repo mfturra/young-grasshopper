@@ -13,14 +13,14 @@ html, body {
     margin: 0;
     padding: 0;
     font-size: 16px;
-    height: 100%;
+    /* height: 100%; */
 }
 
 
 body {
     font-family: 'Poppins';
     background-size: cover;
-    /* height: 100vh; */
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
 }
@@ -44,7 +44,11 @@ h2 {
     margin-left: auto;
     margin-right: auto;
     padding-top: 0.5em;
-    text-align: center; /* Center title block */
+    text-align: center;
+}
+
+#main_page_subtitle {
+    padding-bottom: 1em;
 }
 
 h3 {
@@ -89,51 +93,15 @@ header span {
     font-weight: 700;
 }
 
-/* Tab Config */
-.tab {
+#main_page_title {
     display: flex;
-    overflow: hidden;
-    border: 1px solid #F5F5F5;
-    background-color: #fafafa;
-}
-
-.tab button {
-    background-color: inherit;
-    float: center;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    padding: 14px 16px;
-    transition: 0.3s;
-}
-
-.tab button:hover {
-    background-color: #ddd;
-}
-
-.tab button.active {
-    background-color: #C2C7E2;
-    color: #4338e5;
-}
-
-.tabcontent {
-    display: none;
-    padding: 6px 12px;
-    border: 1px solid #ccc;
-    border-top: none;
     justify-content: center;
-    text-align: center;
-    width: 100%;
-    /* align-items: center; */
-    animation: fadeEffect 1s;
-}   
+    padding-top: 2.5em;
+    /* align-items: flex-start; */
 
-@keyframes fadeEffect {
-    from {opacity: 0;}
-    to {opacity: 1;}
 }
 
-#main_title {
+#education_main_title {
     padding-top: 2.5em;
 }
 
@@ -157,12 +125,63 @@ header span {
     position: relative;
     display: flex;
     justify-content: center;
-    align-items: center;
+    /* align-items: center; */
     min-height: 100vh; /* 100% viewport height */
 }
 
 .content-wrap {
     padding: .8em; /* Footer height */
+}
+
+#education_cost_calc {
+    display: flex;
+}
+
+/* Tab Config */
+.tab {
+    text-align: center;
+    overflow: hidden;
+    padding: 5px 5px;
+}
+
+.tab button {
+    background-color: inherit;
+
+    /* top: 50%; */
+    /* position: fixed; */
+    /* margin-left: auto;
+    margin-right: auto; */
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+}
+
+.tab button:hover {
+    background-color: #ddd;
+}
+
+.tab button.active {
+    background-color: #C2C7E2;
+    color: #4338e5;
+}
+
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+    /* justify-content: center;
+    text-align: center; */
+    width: 100%;
+    /* align-items: center; */
+    animation: fadeEffect 1s;
+}   
+
+@keyframes fadeEffect {
+    from {opacity: 0;}
+    to {opacity: 1;}
 }
 
 /* Tuition Expenses Section */
