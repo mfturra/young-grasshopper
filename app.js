@@ -42,6 +42,8 @@ document.addEventListener('DOMContentLoaded', () => {
 function openTab (event, tabName) {
     var i, tabcontent, tablinks;
 
+    document.getElementById("defaultOpen").click();
+    
     // Hide all element with class='tabcontent'
     tabcontent = document.getElementsByClassName("tabcontent");
     for (i = 0; i < tabcontent.length; i++) {

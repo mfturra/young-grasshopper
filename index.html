@@ -27,6 +27,7 @@
 
                 <!-- Tab Link Workflow -->
                 <div class="tab">
+                    <button class="tablinks" onclick="openTab(event, 'main_page')" id="defaultOpen">Home</button>
                     <button class="tablinks" onclick="openTab(event, 'education_cost_calc')">Calculate Education Cost</button>
                     <button class="tablinks" onclick="openTab(event, 'occupation_proj_research')">Research Occupation Projections</button>
                 </div>
@@ -39,7 +40,7 @@
                     <!-- College Tuition Section -->
                     <h1 id="tuition_title">Tuition Projected Costs</h1>
                     <form id="academic-cost">
-                        <!-- <div class="tuition-cost">
+                        <div class="tuition-cost">
                             <p>Total Yearly Cost</p>
                             <input type="text" id="yearly-cost" placeholder="Insert Cost">
                         </div>
@@ -55,23 +56,23 @@
                                 <option value="4">Undergrad (4)</option>
                                 <option value="5">Undergrad & Masters (5)</option>
                             </select>
-                        </div> -->
+                        </div>
 
                         <!-- Generalized Cost of College Tuition -->
-                        <!-- <div id="general-tuition-cost">
+                        <div id="general-tuition-cost">
                             <p>General Cost of Degree</p>
                             $<span id="total_tuition_cost"></span>
-                        </div> -->
+                        </div>
                     </form>
 
                     <!-- Loan Considerations  -->
-                    <!-- <h1 id="loan_title">Loan Expenses</h1>
+                    <h1 id="loan_title">Loan Expenses</h1>
                     <h2>Due to the high cost of a college education, typically students need to take out a student loan 
                         to pay for their yearly costs. Use the following section to calculate the projected cost of your 
                         loan considering different interest rates.
-                    </h2> -->
+                    </h2>
                     <form id="loan-consider">
-                        <!-- <div class="loan-descriptions">
+                        <div class="loan-descriptions">
                             <p>What type of loan are you considering?</p>
                             <select name="hidden_loan_type_description" id="loan_type_selection">
                                 <option selected disabled hidden>
@@ -81,10 +82,10 @@
                                 <option value="1">Fixed</option>
                                 <option value="2">Variable</option>
                             </select>
-                        </div> -->
+                        </div>
                         
                         <!-- Hidden Loan Clarifications -->
-                        <!-- <div id="hidden_loan_type_description">
+                        <div id="hidden_loan_type_description">
                             <div id="hidden_loan_type_undecided">
                                 <h3>Going to college is a big decision! It's totally understandable that you're undecided. 
                                     Prior to providing you with a loan to pay for your tuition, banks use your families credit score and your own
@@ -101,11 +102,11 @@
                                     or decrease until you finish paying off your loan.
                                 </h3>
                             </div>
-                        </div> -->
+                        </div>
                     </form>
 
                     <!-- Loan Expenses -->
-                    <!-- <form id="loan-cost">
+                    <form id="loan-cost">
                         <div class="loan-expenses">
                             <p>What's your projected loan interest?</p>
                             <input type="text" id="loan-interest-value" placeholder="Interest Rate %">
@@ -116,10 +117,10 @@
                         </div>
                     </form>
 
-                    <hr> -->
+                    <hr>
 
                     <!-- Income Generated Section -->
-                    <!-- <div class="income-section">
+                    <div class="income-section">
                         <h1 id="income_title">Income Generation</h1>
                         <h2>Working while going to school can help you greatly minimize your college payments after leaving college. Use the section below to uncover how much you could earn if you worked during the school year.</h2>
                         <form id="income-generation">
@@ -161,10 +162,10 @@
                                 </select>
                             </div>
                         </form> 
-                    </div>            -->
+                    </div>
 
                     <!-- Total Earnings Sections -->
-                    <!-- <div class="earnings">
+                    <div class="earnings">
                         <div id="weekly-earnings">
                             <p>Expected Earnings Per Week</p>
                                 $<span id="expected_weekly_earnings"></span>
@@ -178,10 +179,10 @@
                             <p>Expected Earnings After Completion of Degree</p>
                                 $<span id="expected_degree_earnings"></span>
                         </div>
-                    </div> -->
+                    </div>
 
                     <!-- Calculate Remaining Costs Minus Earnings -->
-                    <!-- <h1>Final Outstanding Balance</h1>
+                    <h1>Final Outstanding Balance</h1>
                     <h2>Considering your total loan cost and income that you're hoping to accumulate, let's use 
                         the following to estimate how much you could reduce your loan by when working while going 
                         to school.</h2>
@@ -201,20 +202,20 @@
                             </div>
                         </div>
 
-                    </div> -->
+                    </div>
 
                 </div>
                 <!-- Researching Wage Statistics -->
                 <div id="occupation_proj_research" class="tabcontent">
                     <h1 id="wage_research_title">Researching Expected Wage Based on Occupation</h1>
-                    <!-- <h2>Prior to starting your career, it can be helpful to get a general
+                    <h2>Prior to starting your career, it can be helpful to get a general
                         understanding of how much you could be getting paid to work in a 
                         specific occupation. Use the following link and steps to calculate
                         your projected income.
                     </h2>
                     <div id="start-wage-research">
                         <a href="https://www.bls.gov/oes/current/oes_stru.htm">U.S. Bureau of Labor Statistics</a>
-                    </div> -->
+                    </div>
                 </div>
             </div>    
                 
