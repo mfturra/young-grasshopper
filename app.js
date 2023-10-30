@@ -1,6 +1,9 @@
 // Holistic calculate function
 window.onload = () =>
     {
+        // Activate tab onload
+        document.getElementById("defaultOpen").click();
+
         // Acquire users general tuition cost
         document.querySelector('#yearly-cost').oninput = calculateCost;
         document.querySelector('#total-years').oninput = calculateCost;
@@ -41,8 +44,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function openTab (event, tabName) {
     var i, tabcontent, tablinks;
-
-    document.getElementById("defaultOpen").click();
     
     // Hide all element with class='tabcontent'
     tabcontent = document.getElementsByClassName("tabcontent");
