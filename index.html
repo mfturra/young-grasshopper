@@ -124,7 +124,7 @@
 
                     <!-- Income Generated Section -->
                     <div class="income-section">
-                        <h1 id="income_title">Income Generation</h1>
+                        <h1 id="income-title">Income Generation</h1>
                         <h2>Working while going to school can help you greatly minimize your college payments after leaving college. Use the section below to uncover how much you could earn if you worked during the school year.</h2>
                         <form id="income-generation">
                             <div class="weekly-hours-worked">
@@ -224,40 +224,110 @@
                             <input type="text" id="exp-occupation-title" placeholder="Occupation Name">
                         </div>
                         <div class="expected-occupation-salary">
-                            <p>Annual Expected Salary</p>
+                            <p>Expected Annual Salary</p>
                             <input type="text" id="exp-occupation-sal" placeholder="Annual Salary">
                         </div>
-                </div>
-                <div id="wage-research-reality">
-                    <p></p>
-                    <div class="research-instructions">
-                        <h2>Time for you to do your own research. Use the U.S. Bureau of Labor Statistics (BLS) website to uncover how much you'd be making 
-                            if you were pursuing a specific occupation. We're going to walk you through a couple of examples.
-                            <i>Having two tabs open are going to be helpful for you to follow the next steps.</i> 
-                        </h2>
-                        <br>
-                        <h2>For first example we'll be getting information on a <b>Market Research Analyst</b>. According to the BLS, they help companies
-                            understand what products people want, who will buy them, and at what price. This market is set to grow at 15% over the next 10
-                            years, which is much faster than average.<br><br>
-                            
-                            For the second example we'll get information on a <b>Software Developer</b>. According to the BLS, they create computer applications that
-                            allow users to do specific tasks and the underlying systems that run the devices and control networks. This market is set to grow at 25%
-                            over the next 10 years, which is much faster than average.
-                        </h2>
-                        <ul>
-                            <li>If you were pursuing a Business Administrative degree, a occupation that you could pursue is a 
-                                <b>Market Research Analyst</b>. Click on the link to the <a href="https://www.bls.gov/oes/current/oes_stru.htm" id="outbound-occupation-url" target="_blank" rel="noopener noreferrer">U.S. Bureau of Labor Statistics website.</a></li>
-                            <li>Click on the <b>Business and Financial Operations Occupations</b> category. Now you'll see that the major category is broken up into smaller 
-                                sub-categories. Scroll down to <b>13-1160 Market Research Analysts and Marketing Specialists</b>.                                
-                            </li>
-                            <li>Scroll down to the first table. Jot down the mean annual wage. This is the occupations national average annual salary.</li>
-                            <li>Now we're going to review the areas with the highest employment level in this occuption. Use <b>Ctl+F</b> or <b>Command+F</b> 
-                                option to search for <i>"Metropolitan areas with the highest employment level in Market Research Analysts and Marketing Specialists".</i></li>
-                            <li>Jot down the regional mean annual wage for this occupation in the closest Metropolitan Area to your location.</li>
-                        </ul>
-                        
                     </div>
-                </div>
+
+                    <hr id="start-research">
+
+                    <div id="wage-research-reality">
+                        <div class="research-instructions">
+                            <h1>Choose Your Own Journey</h1>
+                            <div class="research-tab">
+                                <button class="tablinks" id="defaultOpen" onclick="openTab(event, 'research-journey1')">Software Developer</button>
+                                <button class="tablinks" onclick="openTab(event, 'research-journey2')">Market Research Analyst</button>
+                                <button class="tablinks" onclick="openTab(event, 'research-journey3')" id="defaultOpen">Removing Training Wheels</button>
+                            </div>
+                            <div class="research-journey1">
+                                <h2 id="research-journey1-title">For this example we'll get information on a <b>Software Developer</b>. According to the BLS, they create computer applications that
+                                    allow users to do specific tasks and the underlying systems that run the devices and control networks. This market is set to grow at 25%
+                                    over the next 10 years, which is much faster than the national average.
+                                </h2>
+                                <h2>Use the elements below to store the values that you find during your research.</h2>
+                                <div id="wage-research-ex-p1">
+                                    <div id="occupation-title-ex-p1">
+                                        <p>Occupation Title</p>
+                                        <input type="text" id="occupation-title-ex-p1" placeholder="Occupation Name">
+                                    </div>
+                                    <div class="occupation-salary-ex-p1">
+                                        <p>National Annual Salary</p>
+                                        <input type="text" id="occupation-nat-ex-p1" placeholder="Mean Annual Salary">
+                                    </div>
+                                    <div class="occupation-salary-ex-p1">
+                                        <p>Regional Annual Salary</p>
+                                        <input type="text" id="occupation-reg-ex-p1" placeholder="Mean Annual Salary">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="research-journey2">
+                                <h2 id="research-journey2-title">For this example we'll be getting information on a <b>Market Research Analyst</b>. According to the BLS, they help companies
+                                    understand what products people want, who will buy them, and at what price. This market is set to grow at 15% over the next 10
+                                    years, which is much faster than the national average.
+                                </h2>
+                                <h2>Use the elements below to store the values that you find during your research.</h2>
+                                <div id="wage-research-ex-p1">
+                                    <div id="occupation-title-ex-p1">
+                                        <p>Occupation Title</p>
+                                        <input type="text" id="occupation-title-ex-p1" placeholder="Occupation Name">
+                                    </div>
+                                    <div class="occupation-salary-ex-p1">
+                                        <p>National Annual Salary</p>
+                                        <input type="text" id="occupation-nat-ex-p1" placeholder="Mean Annual Salary">
+                                    </div>
+                                    <div class="occupation-salary-ex-p1">
+                                        <p>Regional Annual Salary</p>
+                                        <input type="text" id="occupation-reg-ex-p1" placeholder="Mean Annual Salary">
+                                    </div>
+                                </div>
+                                <ul id="research-journey2-instructions">
+                                    <li>If you were pursuing a Business Administrative degree, a occupation that you could pursue is a 
+                                        <b>Market Research Analyst</b>. Click on the link to the <a href="https://www.bls.gov/oes/current/oes_stru.htm" id="outbound-occupation-url" target="_blank" rel="noopener noreferrer">U.S. Bureau of Labor Statistics website.</a></li>
+                                    <li>Click on the <b>Business and Financial Operations Occupations</b> major group category. The major group are then broken up into sub-categories. Scroll down to 
+                                        <b>13-1161 Market Research Analysts and Marketing Specialists</b> and click the corresponding link.                                
+                                    </li>
+                                    <li>Scroll down to the first table. Jot down the <b>Mean Annual Wage</b> in the table above. This is the occupations national average annual salary.</li>
+                                    <li>Now we're going to review the areas with the highest employment level in this occuption. Use <b>Ctl+F</b> or <b>Command+F</b> 
+                                        option to search for <i>"Metropolitan areas with the highest employment level in Market Research Analysts and Marketing Specialists".</i></li>
+                                    <li>Jot down the <b>Regional Mean Annual Wage</b> for this occupation using the closest Metropolitan Area to your location in the table above.</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="research-journey3">
+                                <h2 id="research-instructions-subtitle-p1">Time for you to do your own research. Use the U.S. Bureau of Labor Statistics (BLS) website to uncover how much you'd be making 
+                                    if you were pursuing a specific occupation. We're going to walk you through a couple of examples.
+                                    <i>Having two tabs open are going to be helpful for you to follow the next steps.</i> 
+                                </h2>
+                                <h2>Use the elements below to store the values that you find during your research.</h2>
+                                <div id="wage-research-ex-p1">
+                                    <div id="occupation-title-ex-p1">
+                                        <p>Occupation Title</p>
+                                        <input type="text" id="occupation-title-ex-p1" placeholder="Occupation Name">
+                                    </div>
+                                    <div class="occupation-salary-ex-p1">
+                                        <p>National Annual Salary</p>
+                                        <input type="text" id="occupation-nat-ex-p1" placeholder="Mean Annual Salary">
+                                    </div>
+                                    <div class="occupation-salary-ex-p1">
+                                        <p>Regional Annual Salary</p>
+                                        <input type="text" id="occupation-reg-ex-p1" placeholder="Mean Annual Salary">
+                                    </div>
+                                </div>
+                            </div>
+                            <ul id="research-journey1-instructions">
+                                <li>If you were pursuing a Business Administrative degree, a occupation that you could pursue is a 
+                                    <b>Market Research Analyst</b>. Click on the link to the <a href="https://www.bls.gov/oes/current/oes_stru.htm" id="outbound-occupation-url" target="_blank" rel="noopener noreferrer">U.S. Bureau of Labor Statistics website.</a></li>
+                                <li>Click on the <b>Business and Financial Operations Occupations</b> major group category. The major group are then broken up into sub-categories. Scroll down to 
+                                    <b>13-1161 Market Research Analysts and Marketing Specialists</b> and click the corresponding link.                                
+                                </li>
+                                <li>Scroll down to the first table. Jot down the <b>Mean Annual Wage</b> in the table above. This is the occupations national average annual salary.</li>
+                                <li>Now we're going to review the areas with the highest employment level in this occuption. Use <b>Ctl+F</b> or <b>Command+F</b> 
+                                    option to search for <i>"Metropolitan areas with the highest employment level in Market Research Analysts and Marketing Specialists".</i></li>
+                                <li>Jot down the <b>Regional Mean Annual Wage</b> for this occupation using the closest Metropolitan Area to your location in the table above.</li>
+                            </ul>
+                            
+                        </div>
+                    </div>
                 </div>
             </div>    
                 

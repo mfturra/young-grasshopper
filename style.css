@@ -126,7 +126,7 @@ header span {
     padding-top: 2em;
 }
 
-#income_title {
+#income-title {
     padding-top: 1em;
 }
 
@@ -233,7 +233,7 @@ select {
 
 #general-tuition-cost {
     text-align: center;
-    font-size: 18px;
+    /* font-size: 18px; */
 }
 
 #total {
@@ -339,17 +339,20 @@ hr {
     text-align: center; /* Center title block */
 }
 
+/* Research Occupation Tab */
+#research-link-explained {
+    padding-bottom: 0.5em;
+}
+
 #wage-research-expectations {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-gap: 20px;
+    grid-gap: 4em;
     max-width: 40%; /* Contain content in 50% of webpage */
     margin-left: auto;
     margin-right: auto;
-    /* padding-top: 0em; */
-    padding-bottom: 2em;
+    padding-bottom: 3.5em;
     text-align: center;
-    font-size: 1.3em;
 }
 
 #exp-occupation-title {
@@ -360,12 +363,46 @@ hr {
     text-align: center;
 }
 
-#research-link-explained {
-    padding-bottom: 1em;
+#start-research-break {
+    padding-top: 2.5em;
+    padding-bottom: 2.5em;
 }
 
 #wage-research-reality {
+    padding-top: 2.5em;
     padding-bottom: 3em;
+}
+
+#research-instructions-subtitle-p1 {
+    padding-top: 0em;
+}
+
+#research-instructions-subtitle-p2 {
+    /* padding-top: 0em; */
+}
+
+#wage-research-ex-p1{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 2em;
+    max-width: 50%; /* Contain content in 50% of webpage */
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 2.5em;
+    text-align: center;
+    font-size: 1.1em;
+}
+
+#occupation-title-ex-p1 > input {
+    text-align: center;
+}
+
+#occupation-nat-ex-p1 > input {
+    text-align: center;
+}
+
+#occupation-reg-ex-p1 > input {
+    text-align: center;
 }
 
 .research-instructions ul{
