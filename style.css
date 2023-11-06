@@ -61,6 +61,21 @@ h3 {
     margin-right: auto;
 }
 
+ul {
+    font-family: 'Playfair Display SC', serif;
+    font-size: 1.5em;
+    font-weight: normal;
+    max-width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    /* padding-top: 0.5em; */
+    text-align: left;
+}
+
+#research-link-explained {
+    font-weight: 200;
+}
+
 p {
     font-size: 18px;
     line-height: 1.35em;
@@ -97,8 +112,10 @@ header span {
     display: flex;
     justify-content: center;
     padding-top: 2.5em;
-    /* align-items: flex-start; */
+}
 
+#main_page_break {
+    margin-bottom: 2.5em;
 }
 
 #education_main_title {
@@ -308,17 +325,6 @@ hr {
     padding-bottom: 5em;
     text-align: center; /* Center title block */
 }
-  
-/* button {
-    margin: 20px auto;
-    width: 150px;
-    height: 50px;
-    background-color: var(--dark);
-    color: #fff;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-} */
 
 /* Final Outstanding Balance */
 #projected-balance {
@@ -333,15 +339,48 @@ hr {
     text-align: center; /* Center title block */
 }
 
-/* #wage_research_title {
-    padding
-} */
-
-#start-wage-research {
-    padding-top: 1.5em;
-    padding-bottom: 5em;
+#wage-research-expectations {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+    max-width: 40%; /* Contain content in 50% of webpage */
+    margin-left: auto;
+    margin-right: auto;
+    /* padding-top: 0em; */
+    padding-bottom: 2em;
     text-align: center;
     font-size: 1.3em;
+}
+
+#exp-occupation-title {
+    text-align: center;
+}
+
+#exp-occupation-sal {
+    text-align: center;
+}
+
+#research-link-explained {
+    padding-bottom: 1em;
+}
+
+#wage-research-reality {
+    padding-bottom: 3em;
+}
+
+.research-instructions ul{
+    /* width: 40%; */
+    /* margin-left: auto;
+    margin-right: auto; */
+}
+
+.research-instructions li {
+    float:center;
+}
+
+#outbound-occupation-url {
+    padding-top: 5em;
+    padding-bottom: 5em;
 }
 
 /* =================
