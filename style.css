@@ -9,7 +9,8 @@
 }
 
 
-html, body {
+html,
+body {
     margin: 0;
     padding: 0;
     font-size: 16px;
@@ -80,7 +81,7 @@ p {
     font-size: 18px;
     line-height: 1.35em;
 }
-  
+
 /* =================
       Sections 
      ================= */
@@ -90,9 +91,10 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: .3em; /* Gap from image */
+    gap: .3em;
+    /* Gap from image */
 }
-    
+
 header>img {
     height: 50px;
 }
@@ -126,7 +128,7 @@ header span {
     padding-top: 2em;
 }
 
-#income_title {
+#income-title {
     padding-top: 1em;
 }
 
@@ -143,25 +145,27 @@ header span {
     display: flex;
     justify-content: center;
     /* align-items: center; */
-    min-height: 100vh; /* 100% viewport height */
+    min-height: 100vh;
+    /* 100% viewport height */
 }
 
 .content-wrap {
-    padding: .8em; /* Footer height */
+    padding: .8em;
+    /* Footer height */
 }
 
 #education_cost_calc {
     display: flex;
 }
 
-/* Tab Config */
-.tab {
+/* Main Tab Config */
+.main-tab {
     text-align: center;
     overflow: hidden;
     padding: 5px 5px;
 }
 
-.tab button {
+.main-tab button {
     background-color: inherit;
 
     /* top: 50%; */
@@ -175,11 +179,11 @@ header span {
     transition: 0.3s;
 }
 
-.tab button:hover {
+.main-tab button:hover {
     background-color: #ddd;
 }
 
-.tab button.active {
+.main-tab button.active {
     background-color: #C2C7E2;
     color: #4338e5;
 }
@@ -194,11 +198,16 @@ header span {
     width: 100%;
     /* align-items: center; */
     animation: fadeEffect 1s;
-}   
+}
 
 @keyframes fadeEffect {
-    from {opacity: 0;}
-    to {opacity: 1;}
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 /* Tuition Expenses Section */
@@ -206,12 +215,14 @@ header span {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 20px;
-    max-width: 75%; /* Contain content in 50% of webpage */
+    max-width: 75%;
+    /* Contain content in 50% of webpage */
     margin-left: auto;
     margin-right: auto;
     padding-top: 1em;
     padding-bottom: 5em;
-    text-align: center; /* Center title block */
+    text-align: center;
+    /* Center title block */
 }
 
 .tuition-cost {
@@ -219,7 +230,7 @@ header span {
     height: 0.5em;
 }
 
-.tuition-cost > input {
+.tuition-cost>input {
     text-align: center;
 }
 
@@ -233,7 +244,7 @@ select {
 
 #general-tuition-cost {
     text-align: center;
-    font-size: 18px;
+    /* font-size: 18px; */
 }
 
 #total {
@@ -245,10 +256,12 @@ select {
     display: grid;
     /* grid-template-columns: repeat(2, 1fr); */
     grid-gap: 10px;
-    max-width: 30%; /* Contain content in 50% of webpage */
+    max-width: 30%;
+    /* Contain content in 50% of webpage */
     margin-left: auto;
     margin-right: auto;
-    text-align: center; /* Center title block */
+    text-align: center;
+    /* Center title block */
 }
 
 #hidden_loan_type_description {
@@ -277,12 +290,14 @@ select {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 20px;
-    max-width: 50%; /* Contain content in 50% of webpage */
+    max-width: 50%;
+    /* Contain content in 50% of webpage */
     margin-left: auto;
     margin-right: auto;
     /* padding-top: 1em; */
     padding-bottom: 5em;
-    text-align: center; /* Center title block */
+    text-align: center;
+    /* Center title block */
 }
 
 #loan-interest-value {
@@ -306,24 +321,28 @@ hr {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 20px;
-    max-width: 75%; /* Contain content in 50% of webpage */
+    max-width: 75%;
+    /* Contain content in 50% of webpage */
     margin-left: auto;
     margin-right: auto;
     padding-top: 1em;
     padding-bottom: 4em;
-    text-align: center; /* Center title block */
+    text-align: center;
+    /* Center title block */
 }
 
 .earnings {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 20px;
-    max-width: 75%; /* Contain content in 50% of webpage */
+    max-width: 75%;
+    /* Contain content in 50% of webpage */
     margin-left: auto;
     margin-right: auto;
     /* padding-top: 1em; */
     padding-bottom: 5em;
-    text-align: center; /* Center title block */
+    text-align: center;
+    /* Center title block */
 }
 
 /* Final Outstanding Balance */
@@ -331,25 +350,31 @@ hr {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 20px;
-    max-width: 75%; /* Contain content in 50% of webpage */
+    max-width: 75%;
+    /* Contain content in 50% of webpage */
     margin-left: auto;
     margin-right: auto;
     padding-top: 1em;
     padding-bottom: 5em;
-    text-align: center; /* Center title block */
+    text-align: center;
+    /* Center title block */
+}
+
+/* Research Occupation Tab */
+#research-link-explained {
+    padding-bottom: 0.5em;
 }
 
 #wage-research-expectations {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-gap: 20px;
-    max-width: 40%; /* Contain content in 50% of webpage */
+    grid-gap: 4em;
+    max-width: 40%;
+    /* Contain content in 50% of webpage */
     margin-left: auto;
     margin-right: auto;
-    /* padding-top: 0em; */
-    padding-bottom: 2em;
+    padding-bottom: 3.5em;
     text-align: center;
-    font-size: 1.3em;
 }
 
 #exp-occupation-title {
@@ -360,28 +385,87 @@ hr {
     text-align: center;
 }
 
-#research-link-explained {
-    padding-bottom: 1em;
+#start-research-break {
+    padding-top: 2.5em;
+    padding-bottom: 2.5em;
 }
 
 #wage-research-reality {
-    padding-bottom: 3em;
-}
-
-.research-instructions ul{
-    /* width: 40%; */
-    /* margin-left: auto;
-    margin-right: auto; */
-}
-
-.research-instructions li {
-    float:center;
-}
-
-#outbound-occupation-url {
-    padding-top: 5em;
+    padding-top: 2.5em;
     padding-bottom: 5em;
 }
+
+/* Research Tab Config */
+.research-tab {
+    text-align: center;
+    overflow: hidden;
+    /* padding: 5px 5px; */
+    padding-top: 2em;
+}
+
+.research-tab button {
+    background-color: inherit;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+}
+
+.research-tab button:hover {
+    background-color: #ddd;
+}
+
+.research-tab button.active {
+    background-color: #C2C7E2;
+    color: #4338e5;
+}
+
+.research-content {
+    display: none;
+    padding: 6px 12px;
+    border-top: none;
+    width: 100%;
+    animation: fadeEffect 1s;
+}
+
+.wage-research-inputs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 2em;
+    max-width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 2.5em;
+    text-align: center;
+    font-size: 1.1em;
+}
+
+.wage-research-subinputs {
+    text-align: center;
+}
+
+/* #occupation-title-ex-p1>input {
+    text-align: center;
+}
+
+#occupation-nat-ex-p1>input {
+    text-align: center;
+}
+
+#occupation-reg-ex-p1>input {
+    text-align: center;
+} */
+
+#research-journey3 {
+    padding-bottom: 2em;
+}
+
+
+/* .research-instructions li {
+    float:center;
+} */
+
 
 /* =================
       Footer 
@@ -391,7 +475,8 @@ footer {
     position: relative;
     bottom: 0;
     width: 100%;
-    padding: .8em; /* Footer Height */
+    padding: .8em;
+    /* Footer Height */
     background-color: var(--dark);
     color: var(--light);
     font-size: 13.5px;
