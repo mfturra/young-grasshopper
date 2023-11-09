@@ -9,7 +9,8 @@
 }
 
 
-html, body {
+html,
+body {
     margin: 0;
     padding: 0;
     font-size: 16px;
@@ -80,7 +81,7 @@ p {
     font-size: 18px;
     line-height: 1.35em;
 }
-  
+
 /* =================
       Sections 
      ================= */
@@ -90,9 +91,10 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: .3em; /* Gap from image */
+    gap: .3em;
+    /* Gap from image */
 }
-    
+
 header>img {
     height: 50px;
 }
@@ -143,11 +145,13 @@ header span {
     display: flex;
     justify-content: center;
     /* align-items: center; */
-    min-height: 100vh; /* 100% viewport height */
+    min-height: 100vh;
+    /* 100% viewport height */
 }
 
 .content-wrap {
-    padding: .8em; /* Footer height */
+    padding: .8em;
+    /* Footer height */
 }
 
 #education_cost_calc {
@@ -194,11 +198,16 @@ header span {
     width: 100%;
     /* align-items: center; */
     animation: fadeEffect 1s;
-}   
+}
 
 @keyframes fadeEffect {
-    from {opacity: 0;}
-    to {opacity: 1;}
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 /* Tuition Expenses Section */
@@ -206,12 +215,14 @@ header span {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 20px;
-    max-width: 75%; /* Contain content in 50% of webpage */
+    max-width: 75%;
+    /* Contain content in 50% of webpage */
     margin-left: auto;
     margin-right: auto;
     padding-top: 1em;
     padding-bottom: 5em;
-    text-align: center; /* Center title block */
+    text-align: center;
+    /* Center title block */
 }
 
 .tuition-cost {
@@ -219,7 +230,7 @@ header span {
     height: 0.5em;
 }
 
-.tuition-cost > input {
+.tuition-cost>input {
     text-align: center;
 }
 
@@ -245,10 +256,12 @@ select {
     display: grid;
     /* grid-template-columns: repeat(2, 1fr); */
     grid-gap: 10px;
-    max-width: 30%; /* Contain content in 50% of webpage */
+    max-width: 30%;
+    /* Contain content in 50% of webpage */
     margin-left: auto;
     margin-right: auto;
-    text-align: center; /* Center title block */
+    text-align: center;
+    /* Center title block */
 }
 
 #hidden_loan_type_description {
@@ -277,12 +290,14 @@ select {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 20px;
-    max-width: 50%; /* Contain content in 50% of webpage */
+    max-width: 50%;
+    /* Contain content in 50% of webpage */
     margin-left: auto;
     margin-right: auto;
     /* padding-top: 1em; */
     padding-bottom: 5em;
-    text-align: center; /* Center title block */
+    text-align: center;
+    /* Center title block */
 }
 
 #loan-interest-value {
@@ -306,24 +321,28 @@ hr {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 20px;
-    max-width: 75%; /* Contain content in 50% of webpage */
+    max-width: 75%;
+    /* Contain content in 50% of webpage */
     margin-left: auto;
     margin-right: auto;
     padding-top: 1em;
     padding-bottom: 4em;
-    text-align: center; /* Center title block */
+    text-align: center;
+    /* Center title block */
 }
 
 .earnings {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 20px;
-    max-width: 75%; /* Contain content in 50% of webpage */
+    max-width: 75%;
+    /* Contain content in 50% of webpage */
     margin-left: auto;
     margin-right: auto;
     /* padding-top: 1em; */
     padding-bottom: 5em;
-    text-align: center; /* Center title block */
+    text-align: center;
+    /* Center title block */
 }
 
 /* Final Outstanding Balance */
@@ -331,12 +350,14 @@ hr {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 20px;
-    max-width: 75%; /* Contain content in 50% of webpage */
+    max-width: 75%;
+    /* Contain content in 50% of webpage */
     margin-left: auto;
     margin-right: auto;
     padding-top: 1em;
     padding-bottom: 5em;
-    text-align: center; /* Center title block */
+    text-align: center;
+    /* Center title block */
 }
 
 /* Research Occupation Tab */
@@ -348,7 +369,8 @@ hr {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 4em;
-    max-width: 40%; /* Contain content in 50% of webpage */
+    max-width: 40%;
+    /* Contain content in 50% of webpage */
     margin-left: auto;
     margin-right: auto;
     padding-bottom: 3.5em;
@@ -373,28 +395,16 @@ hr {
     padding-bottom: 5em;
 }
 
-#research-instructions-subtitle-p1 {
-    padding-top: 0em;
-}
-
-#research-instructions-subtitle-p2 {
-    /* padding-top: 0em; */
-}
-
 /* Research Tab Config */
 .research-tab {
     text-align: center;
     overflow: hidden;
-    padding: 5px 5px;
+    /* padding: 5px 5px; */
+    padding-top: 2em;
 }
 
 .research-tab button {
     background-color: inherit;
-
-    /* top: 50%; */
-    /* position: fixed; */
-    /* margin-left: auto;
-    margin-right: auto; */
     border: none;
     outline: none;
     cursor: pointer;
@@ -419,7 +429,7 @@ hr {
     animation: fadeEffect 1s;
 }
 
-#wage-research-ex-p1{
+.wage-research-inputs {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 2em;
@@ -431,21 +441,30 @@ hr {
     font-size: 1.1em;
 }
 
-#occupation-title-ex-p1 > input {
+.wage-research-subinputs {
     text-align: center;
 }
 
-#occupation-nat-ex-p1 > input {
+/* #occupation-title-ex-p1>input {
     text-align: center;
 }
 
-#occupation-reg-ex-p1 > input {
+#occupation-nat-ex-p1>input {
     text-align: center;
 }
 
-.research-instructions li {
+#occupation-reg-ex-p1>input {
+    text-align: center;
+} */
+
+#research-journey3 {
+    padding-bottom: 2em;
+}
+
+
+/* .research-instructions li {
     float:center;
-}
+} */
 
 
 /* =================
@@ -456,7 +475,8 @@ footer {
     position: relative;
     bottom: 0;
     width: 100%;
-    padding: .8em; /* Footer Height */
+    padding: .8em;
+    /* Footer Height */
     background-color: var(--dark);
     color: var(--light);
     font-size: 13.5px;
