@@ -482,3 +482,73 @@ footer {
     font-size: 13.5px;
     text-align: center
 }
+
+/* =================
+      Media Config 
+     ================= */
+@media (max-width: 600px) {
+    #academic-cost {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 20px;
+        max-width: 75%;
+        margin-left: auto;
+        margin-right: auto;
+        padding-top: 1em;
+        padding-bottom: 5em;
+        text-align: center;
+        /* Center title block */
+    }
+
+    #income-generation {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        /* grid-gap: 5px; */
+        max-width: 80%;
+        /* Contain content in 50% of webpage */
+        margin-left: auto;
+        margin-right: auto;
+        padding-top: 1em;
+        padding-bottom: 4em;
+        text-align: center;
+        /* Center title block */
+    }
+
+    .earnings {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 20px;
+        max-width: 90%;
+        /* Contain content in 50% of webpage */
+        margin-left: auto;
+        margin-right: auto;
+        /* padding-top: 1em; */
+        padding-bottom: 5em;
+        text-align: center;
+        /* Center title block */
+    }
+
+    #wage-research-expectations {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 4em;
+        max-width: 70%;
+        /* Contain content in 50% of webpage */
+        margin-left: auto;
+        margin-right: auto;
+        padding-bottom: 3.5em;
+        text-align: center;
+    }
+
+    .wage-research-inputs {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 2em;
+        max-width: 70%;
+        margin-left: auto;
+        margin-right: auto;
+        padding-bottom: 2.5em;
+        text-align: center;
+        font-size: 1.1em;
+    }
+}
