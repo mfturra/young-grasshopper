@@ -4,11 +4,12 @@
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
     <title>College Expectation Setter</title>
-    <meta name="viewport" content="width=device-width" intial-scale=1.0 />
+    <meta name="viewport" content="width=device-width" , intial-scale=1.0 />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style_media_queries.css">
     <script type="text/javascript" src="app.js"></script>
 </head>
 
@@ -22,7 +23,7 @@
         <div class="page-container">
             <div id="content-wrap">
                 <!-- Home Page Intro -->
-                <h1 id="main_page_title">Welcome</h1>
+                <h1 id="main_page_title" class="section-title">Welcome</h1>
                 <h2 id="main_page_subtitle">The purpose of the following tools is to help high school students gain a
                     better understanding of the costs
                     associated with pursuing a college education. Please click one of the tabs below to start your
@@ -31,28 +32,29 @@
 
                 <!-- Tab Link Workflow -->
                 <div class="main-tab">
-                    <button class="tablinks" onclick="openTab(event, 'education_cost_calc')">Calculate Education
+                    <button class="tablinks" id="defaultOpen" onclick="openTab(event, 'education_cost_calc')">Calculate
+                        Education
                         Cost</button>
-                    <button class="tablinks" id="defaultOpen"
-                        onclick="openTab(event, 'occupation_proj_research')">Research Occupation Projections</button>
+                    <button class="tablinks" onclick="openTab(event, 'occupation_proj_research')">Research Occupation
+                        Projections</button>
                 </div>
 
                 <div id="education_cost_calc" class="tabcontent">
                     <!-- Introduction -->
-                    <h1 id="education_main_title">General Cost of Your Education</h1>
+                    <h1 id="education_main_title" class="section-title">General Cost of Your Education</h1>
                     <h2>Please use the following tool to help you plan out projected expenses and income for the
                         duration of your college education.</h2>
 
                     <!-- College Tuition Section -->
-                    <h1 id="tuition_title">Tuition Projected Costs</h1>
+                    <h1 id="tuition_title" class="section-title">Tuition Projected Costs</h1>
                     <form id="academic-cost">
                         <div class="tuition-cost">
                             <p>Total Yearly Cost</p>
-                            <input type="text" id="yearly-cost" placeholder="Insert Cost">
+                            <input type="text" id="yearly-cost" class="text-input" placeholder="Insert Cost">
                         </div>
                         <div class="total-college-years">
                             <p>Number of Years at University</p>
-                            <select id="total-years">
+                            <select id="total-years" class="select-input">
                                 <option selected disabled hidden>
                                     Select Total Years
                                 </option>
@@ -67,12 +69,12 @@
                         <!-- Generalized Cost of College Tuition -->
                         <div id="general-tuition-cost">
                             <p>General Cost of Degree</p>
-                            $<span id="total_tuition_cost"></span>
+                            $<span id="total_tuition_cost" class="span-input"></span>
                         </div>
                     </form>
 
                     <!-- Loan Considerations  -->
-                    <h1 id="loan_title">Loan Expenses</h1>
+                    <h1 id="loan_title" class="section-title">Loan Expenses</h1>
                     <h2>Due to the high cost of a college education, typically students need to take out a student loan
                         to pay for their yearly costs. Use the following section to calculate the projected cost of your
                         loan considering different interest rates.
@@ -80,7 +82,7 @@
                     <form id="loan-consider">
                         <div class="loan-descriptions">
                             <p>What type of loan are you considering?</p>
-                            <select name="hidden_loan_type_description" id="loan_type_selection">
+                            <select name="hidden_loan_type_description" id="loan_type_selection" class="select-input">
                                 <option selected disabled hidden>
                                     Select Loan Type
                                 </option>
@@ -98,7 +100,7 @@
                                     Prior to providing you with a loan to pay for your tuition, banks use your families
                                     credit score and your own
                                     to estimate your likelihood to pay the full balance. That's why you'll find a range
-                                    of values online.<br /><br />
+                                    of values online.
                                 </h3>
                             </div>
                             <div id="hidden_loan_type_fixed">
@@ -120,11 +122,12 @@
                     <form id="loan-cost">
                         <div class="loan-expenses">
                             <p>What's your projected loan interest?</p>
-                            <input type="text" id="loan-interest-value" placeholder="Interest Rate %">
+                            <input type="text" id="loan-interest-value" class="text-input"
+                                placeholder="Interest Rate %">
                         </div>
                         <div id="tuition-loan1">
                             <p>Cost of Degree with Loan Interest</p>
-                            $<span id="loan_total_cost"></span>
+                            $<span id="loan_total_cost" class="span-input"></span>
                         </div>
                     </form>
 
@@ -132,14 +135,14 @@
 
                     <!-- Income Generated Section -->
                     <div class="income-section">
-                        <h1 id="income-title">Income Generation</h1>
+                        <h1 id="income-title" class="section-title">Income Generation</h1>
                         <h2>Working while going to school can help you greatly minimize your college payments after
                             leaving college. Use the section below to uncover how much you could earn if you worked
                             during the school year.</h2>
                         <form id="income-generation">
                             <div class="weekly-hours-worked">
                                 <p>What are the total number of hours you're expecting to work per week?</p>
-                                <select id="hours-worked">
+                                <select id="hours-worked" class="select-input">
                                     <option selected disabled hidden>
                                         Select Hours
                                     </option>
@@ -151,7 +154,7 @@
                             </div>
                             <div class="weekly-hourly-rate">
                                 <p>What is your expected hourly rate?</p>
-                                <select id="hourly-rate">
+                                <select id="hourly-rate" class="select-input">
                                     <option selected disabled hidden>
                                         Select Hourly Rate
                                     </option>
@@ -164,7 +167,7 @@
                             </div>
                             <div class="semesters-worked">
                                 <p>How many semesters are you planning on working?</p>
-                                <select id="num-semesters">
+                                <select id="num-semesters" class="select-input">
                                     <option selected disabled hidden>
                                         Semesters Working
                                     </option>
@@ -179,48 +182,48 @@
 
                     <!-- Total Earnings Sections -->
                     <div class="earnings">
-                        <div id="weekly-earnings">
+                        <div id="weekly-earnings" class="calc-output">
                             <p>Expected Earnings Per Week</p>
-                            $<span id="expected_weekly_earnings"></span>
+                            $<span id="expected_weekly_earnings" class="span-input"></span>
                         </div>
-                        <div id="semester-earnings">
+                        <div id="semester-earnings" class="calc-output">
                             <p>Expected Earnings Per Semester</p>
                             <p>Based on Average Number of Collegiate Semesters</p>
-                            $<span id="expected_semester_earnings"></span>
+                            $<span id="expected_semester_earnings" class="span-input"></span>
                         </div>
-                        <div id="degree-earnings">
+                        <div id="degree-earnings" class="calc-output">
                             <p>Expected Earnings After Completion of Degree</p>
-                            $<span id="expected_degree_earnings"></span>
+                            $<span id="expected_degree_earnings" class="span-input"></span>
                         </div>
                     </div>
 
                     <!-- Calculate Remaining Costs Minus Earnings -->
-                    <h1>Final Outstanding Balance</h1>
+                    <h1 class="section-title">Final Outstanding Balance</h1>
                     <h2>Considering your total loan cost and income that you're hoping to accumulate, let's use
                         the following to estimate how much you could reduce your loan by when working while going
                         to school.</h2>
                     <div id="projected-balance">
-                        <div id="tuition-loan2">
+                        <div id="tuition-loan2" class="calc-output">
                             <p>Cost of Degree with Loan Interest</p>
-                            $<span id="loan_total_cost2"></span>
+                            $<span id="loan_total_cost2" class="span-input"></span>
                         </div>
-                        <div id="degree-earnings2">
+                        <div id="degree-earnings2" class="calc-output">
                             <p>Expected Earnings After Completion of Degree</p>
-                            $<span id="expected_degree_earnings2"></span>
+                            $<span id="expected_degree_earnings2" class="span-input"></span>
                         </div>
                         <div class="total-expected-cost">
-                            <div id="final-outstanding-balance">
+                            <div id="final-outstanding-balance" class="calc-output">
                                 <p>Total Expected Cost of College Education</p>
-                                $<span id="loan-minus-earnings"></span>
+                                $<span id="loan-minus-earnings" class="span-input"></span>
                             </div>
                         </div>
-
                     </div>
 
                 </div>
                 <!-- Researching Wage Statistics -->
                 <div id="occupation_proj_research" class="tabcontent">
-                    <h1 id="wage_research_title">Researching Expected Wage Based on Occupation</h1>
+                    <h1 id="wage_research_title" class="section-title">Researching Expected Wage Based on Occupation
+                    </h1>
                     <h2>Prior to starting your occupation, you can actually find out how much you could expect to get
                         paid. Use the following steps to calculate your projected annual income.
                     </h2>
@@ -231,11 +234,12 @@
                     <div id="wage-research-expectations">
                         <div id="expected-occupation-title">
                             <p>Occupation Title</p>
-                            <input type="text" id="exp-occupation-title" placeholder="Occupation Name">
+                            <input type="text" id="exp-occupation-title" class="text-input"
+                                placeholder="Occupation Name">
                         </div>
                         <div class="expected-occupation-salary">
                             <p>Expected Annual Salary</p>
-                            <input type="text" id="exp-occupation-sal" placeholder="Annual Salary">
+                            <input type="text" id="exp-occupation-sal" class="text-input" placeholder="Annual Salary">
                         </div>
                     </div>
 
@@ -243,7 +247,7 @@
 
                     <div id="wage-research-reality">
                         <div class="research-instructions">
-                            <h1>Navigating Occupation Website</h1>
+                            <h1 class="section-title">Navigating Occupation Website</h1>
                             <h2 id="desc-research-instructions1">Below you'll find two paths. The first is a white
                                 collar occupation, the second is a blue collar occupation. Click on either path to
                                 better understand how much your occupation could make per hour and annually in the
@@ -267,15 +271,18 @@
                                 <div class="wage-research-inputs" id="wage-research-ex-p1">
                                     <div id="occupation-title-ex-p1">
                                         <p>Occupation Title</p>
-                                        <input type="text" id="occupation-title-ex-p1" placeholder="Occupation Name">
+                                        <input type="text" id="occupation-title-ex-p1" class="text-input"
+                                            placeholder="Occupation Name">
                                     </div>
                                     <div class="occupation-salary-ex-p1">
                                         <p>National Annual Salary</p>
-                                        <input type="text" id="occupation-nat-ex-p1" placeholder="Mean Annual Salary">
+                                        <input type="text" id="occupation-nat-ex-p1" class="text-input"
+                                            placeholder="Mean Annual Salary">
                                     </div>
                                     <div class="occupation-salary-ex-p1">
                                         <p>Regional Annual Salary</p>
-                                        <input type="text" id="occupation-reg-ex-p1" placeholder="Mean Annual Salary">
+                                        <input type="text" id="occupation-reg-ex-p1" class="text-input"
+                                            placeholder="Mean Annual Salary">
                                     </div>
                                 </div>
                                 <ul id="research-journey1-instructions">
@@ -309,15 +316,18 @@
                                 <div class="wage-research-inputs" id="wage-research-ex-p2">
                                     <div id="occupation-title-ex-p2">
                                         <p>Occupation Title</p>
-                                        <input type="text" id="occupation-title-ex-p2" placeholder="Occupation Name">
+                                        <input type="text" id="occupation-title-ex-p2" class="text-input"
+                                            placeholder="Occupation Name">
                                     </div>
                                     <div class="occupation-salary-ex-p2">
                                         <p>National Annual Salary</p>
-                                        <input type="text" id="occupation-nat-ex-p2" placeholder="Mean Annual Salary">
+                                        <input type="text" id="occupation-nat-ex-p2" class="text-input"
+                                            placeholder="Mean Annual Salary">
                                     </div>
                                     <div class="occupation-salary-ex-p2">
                                         <p>Regional Annual Salary</p>
-                                        <input type="text" id="occupation-reg-ex-p2" placeholder="Mean Annual Salary">
+                                        <input type="text" id="occupation-reg-ex-p2" class="text-input"
+                                            placeholder="Mean Annual Salary">
                                     </div>
                                 </div>
                                 <ul id="research-journey2-instructions">
@@ -352,18 +362,18 @@
                                 <div class="wage-research-inputs" id="wage-research-ex-p3">
                                     <div id="occupation-title-ex-p3">
                                         <p>Occupation Title</p>
-                                        <input type="text" class="wage-research-subinputs" id="occupation-title-ex-p3"
-                                            placeholder="Occupation Name">
+                                        <input type="text" class="wage-research-subinputs" class="text-input"
+                                            id="occupation-title-ex-p3" placeholder="Occupation Name">
                                     </div>
                                     <div class="occupation-salary-ex-p3">
                                         <p>National Annual Salary</p>
-                                        <input type="text" class="wage-research-subinputs" id="occupation-nat-ex-p3"
-                                            placeholder="Mean Annual Salary">
+                                        <input type="text" class="wage-research-subinputs" class="text-input"
+                                            id="occupation-nat-ex-p3" placeholder="Mean Annual Salary">
                                     </div>
                                     <div class="occupation-salary-ex-p3">
                                         <p>Regional Annual Salary</p>
-                                        <input type="text" class="wage-research-subinputs" id="occupation-reg-ex-p3"
-                                            placeholder="Mean Annual Salary">
+                                        <input type="text" class="wage-research-subinputs" class="text-input"
+                                            id="occupation-reg-ex-p3" placeholder="Mean Annual Salary">
                                     </div>
                                 </div>
 
