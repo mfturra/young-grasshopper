@@ -104,6 +104,9 @@ header>a {
     font-size: 1.5em;
     text-decoration: none;
     padding: 1em 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 header span {
@@ -481,128 +484,4 @@ footer {
     color: var(--light);
     font-size: 13.5px;
     text-align: center
-}
-
-/* =================
-      Media Config 
-     ================= */
-@media screen and (max-width: 450px) {
-    /* screen and */
-
-    header {
-        background-color: #4338e5;
-    }
-
-    /* General Font Size Config */
-    h1 {
-        font-family: 'Playfair Display SC', serif;
-        text-align: center;
-        margin: 0;
-
-    }
-
-    h2 {
-        font-family: 'Playfair Display SC', serif;
-        font-size: 20px;
-        font-weight: normal;
-        max-width: 75%;
-        margin-left: auto;
-        margin-right: auto;
-        padding-top: 0.5em;
-        text-align: center;
-    }
-
-    #main_page_subtitle {
-        padding-bottom: 1em;
-    }
-
-    h3 {
-        font-family: 'Playfair Display SC', serif;
-        font-size: 1.3em;
-        font-weight: medium;
-        text-align: left;
-        max-width: 75%;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    ul {
-        font-family: 'Playfair Display SC', serif;
-        font-size: 1.5em;
-        font-weight: normal;
-        max-width: 60%;
-        margin-left: auto;
-        margin-right: auto;
-        text-align: left;
-    }
-
-    #research-link-explained {
-        font-weight: 200;
-    }
-
-    p {
-        font-size: 18px;
-        line-height: 1.35em;
-    }
-
-
-
-    /* Section Configs */
-
-    #academic-cost {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        grid-gap: 20px;
-        max-width: 75%;
-        margin-left: auto;
-        margin-right: auto;
-        padding-top: 1em;
-        padding-bottom: 5em;
-        text-align: center;
-    }
-
-    #income-generation {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        max-width: 80%;
-        margin-left: auto;
-        margin-right: auto;
-        padding-top: 1em;
-        padding-bottom: 4em;
-        text-align: center;
-    }
-
-    .earnings {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-gap: 20px;
-        max-width: 90%;
-        margin-left: auto;
-        margin-right: auto;
-        padding-bottom: 5em;
-        text-align: center;
-    }
-
-    #wage-research-expectations {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        grid-gap: 4em;
-        max-width: 70%;
-        margin-left: auto;
-        margin-right: auto;
-        padding-bottom: 3.5em;
-        text-align: center;
-    }
-
-    .wage-research-inputs {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        grid-gap: 2em;
-        max-width: 70%;
-        margin-left: auto;
-        margin-right: auto;
-        padding-bottom: 2.5em;
-        text-align: center;
-        font-size: 1.1em;
-    }
 }
