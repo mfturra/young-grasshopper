@@ -1,0 +1,18 @@
+{
+  "name": "young-grasshopper",
+  "version": "1.0.0",
+  "description": "Due to the yearly increasing costs associated with pursuing a higher education, along with little comprehensive content around the costs of college or university the following webpages were created. HTML, CSS, and Javascript were used to build local webpages to provide High School students with informational content around the hidden costs associated with going to university in the U.S. A detailed workflow was also outlined on the second webpage to provide high school students with a deeper understanding of how much a specific occupation could earn them based on the closest Metropolitan estimates from the U.S. Bureau of Labor Statistics website.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "pixi.js": "^8.5.1"
+  },
+  "devDependencies": {
+    "vite": "^5.4.9"
+  }
+}
