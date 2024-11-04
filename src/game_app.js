@@ -1,168 +1,155 @@
-// import { 
-//     Application,
-//     Assets,
-//     Container,
-//     Text,
-//     Graphics,
-//     Sprite } from "pixi.js";
-
 (async function() {
+    const app = new PIXI.Application({
+        width: 500,
+        height: 500,
+        backgroundColor: "#55a341",
+        antialias: true
+    });
+    app.view.style.position = 'absolute';
+    app.view.style.top = '50%';
+    app.view.style.left = '50%';
+    app.view.style.transform = 'translate(-50%, -50%)';
+    document.body.appendChild(app.view);
 
-const app = new PIXI.Application({
-    width: 500,
-    height: 500,
-    backgroundColor: "rgb(249, 238, 217)",
-    antialias: true
-});
-
-// Center app into view
-app.view.style.position = 'absolute';
-app.view.style.top = '50%';
-app.view.style.left = '50%';
-app.view.style.transform = 'translate(-50%, -50%)';
-document.body.appendChild(app.view);
-
-// counter text element
-let counterValue = 0; //initialize counter
-const counterText = new PIXI.Text(`Counter: ${counterValue}`, {
-    fontFamily: 'Arial',
-    fontSize: 24,
-    fill: 0xffffff,
-    align: 'right'
-});
-
-counterText.anchor.set(1, 0); // anchor text to top-right corner of canvas
-counterText.x = app.screen.width - 10;
-counterText.y = 10;
-
-app.stage.addChild(counterText);
-
-
-// Load rocket
-const rocketTexture = await PIXI.Assets.load('assets/sample_rocket.png');
-const rocketship = PIXI.Sprite.from(rocketTexture);
-
-// set sprite size relative to original size
-rocketship.scale.set(0.25, 0.25);
-
-// Set rocket position
-rocketship.x = app.screen.width/2 - rocketship.width/2;
-rocketship.y = app.screen.height/2 - rocketship.height/2;
-rocketship.vx = 0;
-rocketship.vy = 0;
-
-
-// const text = new PIXI.Text('Welcome to App', {
-//     fontFamily: 'Arial',
-//     fontSize: 24,
-//     fill: 0x333333,
-//     align: 'center'
-// });
-
-// text.anchor.set(0.5);
-// text.x = app.screen.width / 2;
-// text.y = app.screen.height / 2;
-
-// Add canvas to HTML doc
-// app.stage.addChild(text);
-
-// bottom left rectangle configs
-const bottomLeftRect = new PIXI.Graphics();
-bottomLeftRect.beginFill(0x333333);
-bottomLeftRect.drawRect(0, 0, 80, 60);
-bottomLeftRect.endFill();
-bottomLeftRect.x = 80;
-bottomLeftRect.y = app.screen.height - 200;
-
-// bottom right rectangle configs
-const bottomRightRect = new PIXI.Graphics();
-bottomRightRect.beginFill(0x333333);
-bottomRightRect.drawRect(0, 0, 60, 60);
-bottomRightRect.endFill();
-bottomRightRect.x = app.screen.width - 120;
-bottomRightRect.y = app.screen.height - 200;
-
-// stage the assets for canvas
-app.stage.addChild(rocketship);
-app.stage.addChild(bottomLeftRect);
-app.stage.addChild(bottomRightRect);
-
-const boxes = [bottomLeftRect, bottomRightRect];
-
-// key event handlers
-const keys = {};
-
-window.addEventListener("keydown", (e) => { keys[e.key] = true; });
-window.addEventListener("keyup", (e) => { keys[e.key] = false; });
-
-// game functions
-function updateCounter(value) {
-    counterValue =+ value; // update counter value
-    counterText.text = `Counter: ${counterValue}`;
-}
-
-function gameLoop() {
-    // reset velocity
+    const rocketTexture = await PIXI.Assets.load('assets/sample_rocket.png');
+    const rocketship = new PIXI.Sprite(rocketTexture);
+    // set sprite size relative to original size
+    rocketship.scale.set(0.25, 0.25);
+    
+    rocketship.x = app.screen.width / 2 - rocketship.width / 2;
+    rocketship.y = app.screen.height / 2 - rocketship.height / 2;
     rocketship.vx = 0;
     rocketship.vy = 0;
 
-    // check for key inputs
-    if (keys["ArrowUp"] || keys["w"]) rocketship.vy = -5;
-    if (keys["ArrowDown"] || keys["s"]) rocketship.vy = 5;
-    if (keys["ArrowLeft"] || keys["a"]) rocketship.vx = -5;
-    if (keys["ArrowRight"] || keys["d"]) rocketship.vx = 5;
+    const bottomLeftRect = new PIXI.Graphics();
+    bottomLeftRect.beginFill(0x333333);
+    bottomLeftRect.drawRect(0, 0, 80, 60);
+    bottomLeftRect.endFill();
+    bottomLeftRect.x = 80;
+    bottomLeftRect.y = app.screen.height - 200;
 
-    const newX = rocketship.x + rocketship.vx;
-    const newY = rocketship.y + rocketship.vy;
+    const bottomRightRect = new PIXI.Graphics();
+    bottomRightRect.beginFill(0x333333);
+    bottomRightRect.drawRect(0, 0, 60, 60);
+    bottomRightRect.endFill();
+    bottomRightRect.x = app.screen.width - 120;
+    bottomRightRect.y = app.screen.height - 200;
 
-    // Check for collisions with boxes
-    let collisionDetected = false;
-    for (const box of boxes) {
-        if (checkCollision(newX, newY, rocketship, box, 5)){
-            collisionDetected = true;
-            updateCounter(50);
-            break;
-        }
+    app.stage.addChild(rocketship);
+    app.stage.addChild(bottomLeftRect);
+    app.stage.addChild(bottomRightRect);
+
+    const boxes = [bottomLeftRect, bottomRightRect];
+
+    // Create a counter text element
+    let counterValue = 0;
+    const counterText = new PIXI.Text(`Counter: ${counterValue}`, {
+        fontFamily: 'Arial',
+        fontSize: 24,
+        fill: 0xffffff,
+        align: 'right'
+    });
+    counterText.anchor.set(1, 0);
+    counterText.x = app.screen.width - 10;
+    counterText.y = 10;
+    app.stage.addChild(counterText);
+
+    // Function to update the counter value and display
+    function updateCounter(value) {
+        counterValue += value;
+        counterText.text = `Counter: ${counterValue}`;
     }
 
-    if (!collisionDetected) {
+    // Add references to the dialogue box and buttons
+    const questDialog = document.getElementById("quest-dialog");
+    const yesButton = document.getElementById("yes-btn");
+    const noButton = document.getElementById("no-btn");
+
+    let dialogueOpen = false;
+
+
+    // Store collision states for each box to track if the rocket is currently colliding
+    const collisionStates = boxes.map(() => false);
+    
+
+    const keys = {};
+    window.addEventListener("keydown", (e) => { keys[e.key] = true; });
+    window.addEventListener("keyup", (e) => { keys[e.key] = false; });
+
+    function gameLoop() {
+        rocketship.vx = 0;
+        rocketship.vy = 0;
+
+        if (keys["ArrowUp"] || keys["w"]) rocketship.vy = -5;
+        if (keys["ArrowDown"] || keys["s"]) rocketship.vy = 5;
+        if (keys["ArrowLeft"] || keys["a"]) rocketship.vx = -5;
+        if (keys["ArrowRight"] || keys["d"]) rocketship.vx = 5;
+
+        const newX = rocketship.x + rocketship.vx;
+        const newY = rocketship.y + rocketship.vy;
+
+        // Track if a collision is detected and handle each box separately
+        for (let i = 0; i < boxes.length; i++) {
+            const box = boxes[i];
+            const isColliding = checkCollision(newX, newY, rocketship, box);
+
+            if (isColliding && !collisionStates[i] && !dialogueOpen) {
+                 // Show dialogue box on collision
+                questDialog.style.display = "block";
+                dialogueOpen = true;
+                
+                // Set event listeners for buttons
+                yesButton.onclick = () => {
+                    updateCounter(50);  // Increase counter if "Yes" is clicked
+                    closeDialogue();
+                };
+                noButton.onclick = closeDialogue;
+
+                collisionStates[i] = true;
+            } else if (!isColliding) {
+                // Reset collision state when rocket exits collision
+                collisionStates[i] = false;
+            }
+        }
+
+        // Only update position if no collision detected
         rocketship.x = newX;
         rocketship.y = newY;
+
+        requestAnimationFrame(gameLoop);
     }
 
-    // Request next frame
-    requestAnimationFrame(gameLoop);
-}
+    function checkCollision(x, y, sprite, box, buffer = 1) {
+        const spriteBounds = {
+            left: x + buffer,
+            right: x + sprite.width - buffer,
+            top: y + buffer,
+            bottom: y + sprite.height - buffer
+        };
+        const boxBounds = {
+            left: box.x + buffer,
+            right: box.x + box.width - buffer,
+            top: box.y + buffer,
+            bottom: box.y + box.height - buffer
+        };
 
-// collision detection function
-function checkCollision(x, y, sprite, box, buffer) {
-    const spriteBounds = {
-        left: x + buffer,
-        right: x + sprite.width - buffer,
-        top: y + buffer,
-        bottom: y + sprite.height - buffer
-    };
-    const boxBounds = {
-        left: box.x + buffer,
-        right: box.x + box.width - buffer,
-        top: box.y + buffer,
-        bottom: box.y + box.height - buffer,
-    };
+        return (
+            spriteBounds.right > boxBounds.left &&
+            spriteBounds.left < boxBounds.right &&
+            spriteBounds.bottom > boxBounds.top &&
+            spriteBounds.top < boxBounds.bottom
+        );
+    }
 
-    //Check for overlap between rocket and boxes
-    return (
-        spriteBounds.right > boxBounds.left &&
-        spriteBounds.left < boxBounds.right &&
-        spriteBounds.bottom > boxBounds.top &&
-        spriteBounds.top < boxBounds.bottom 
-    );
-}
+    gameLoop();
 
-// start game loop
-gameLoop();
-
-
+    // Function to close the dialogue box
+    function closeDialogue() {
+        questDialog.style.display = "none";
+        dialogueOpen = false;
+    }
 })();
+
 
 
 // // canvas properties

@@ -1,52 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
-        <!-- <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet"> -->
-        <title>Pixi Tutorial</title>
-        <style>
-            body {
-                margin: 0;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                height: 100vh;
-                background-color: #f0f0f0;
-            }
-        </style>
-    </head>
-    <body>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/7.2.0/pixi.min.js"></script>
-        <script src="./src/game_app.js"></script>
-        
-        <!-- <script type="module">
-            // initialize the application
-            const app = new PIXI.Application();
-            await app.init({width: 640, height: 360 }); 
-            document.body.appendChild(app.canvas)
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet"> -->
+    <title>Pixi Tutorial</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
 
-            // load the sample image texture
-            const texture = await Assets.load('/Users/matheusturra/Documents/dev-ops/young-grasshopper/sample_rocket.png');
+        /* Dialogue box style */
+        #quest-dialog {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 18px;
+            z-index: 10;
+        }
 
-            // create a new Sprite from an image path
-            const rocketship = new Sprite(texture);
+        #quest-dialog button {
+            margin: 2px;
+            padding: 8px 16px;
+            font-size: 15px;
+        }
+    </style>
+</head>
 
-            // add to stage
-            app.stage.addChild(rocketship);
-            
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/7.2.0/pixi.min.js"></script>
+    <script src="./src/game_app.js"></script>
 
+    <div id="quest-dialog" style="display: none;">
+        <p>Would you like to start this quest? Yes or No.</p>
+        <button id="yes-btn">Yes</button>
+        <button id="no-btn">No</button>
+    </div>
+</body>
 
-            // load the PNG asynchronously
-            // await PIXI.Assets.load('./assets/sample_rocket.png');
-            // let sprite = PIXI.Sprite.from('sample_rocket.png');
-
-            // add sprite to stage
-            // app.stage.addChild(sprite);
-
-        </script> -->
-        <!-- <script src="src/game_app.js"></script> -->
-    </body>
 </html>
