@@ -21,25 +21,62 @@
     rocketship.vx = 0;
     rocketship.vy = 0;
 
-    const bottomLeftRect = new PIXI.Graphics();
-    bottomLeftRect.beginFill(0x333333);
-    bottomLeftRect.drawRect(0, 0, 80, 60);
-    bottomLeftRect.endFill();
-    bottomLeftRect.x = 80;
-    bottomLeftRect.y = app.screen.height - 200;
+    // Function to create box with specific configs
+    function createBox(x, y, width, height, color, textContent) {
+        // box dimensions and color config
+        const box = new PIXI.Graphics();
+        box.beginFill(color);
+        box.drawRect(0, 0, width, height);
+        box.endFill();
 
-    const bottomRightRect = new PIXI.Graphics();
-    bottomRightRect.beginFill(0x333333);
-    bottomRightRect.drawRect(0, 0, 60, 60);
-    bottomRightRect.endFill();
-    bottomRightRect.x = app.screen.width - 120;
-    bottomRightRect.y = app.screen.height - 200;
+        // box position
+        box.x = x;
+        box.y = y;
+
+        const text = new PIXI.Text(textContent, {
+            fontFamily: 'Arial',
+            fontSize: 16,
+            fill: 0xffffff, // White text
+            align: 'center',
+            wordWrap: true,
+            wordWrapWidth: width - 10 // create slight padding inside box
+        });
+
+        // Position the text at the center of the box
+        text.x = x + width / 2 - text.width / 2;
+        text.y = y + height / 2 - text.height / 2;
+
+        // Add both the box and the text to a container
+        const container = new PIXI.Container();
+        container.addChild(box);
+        container.addChild(text);
+
+        return container;
+    }
+
+    const bottomLeftBox = createBox (
+        80,
+        app.screen.height - 200,
+        80,
+        60,
+        0x333333,
+        "Private School"
+    );
+
+    const bottomRightBox = createBox (
+        app.screen.width - 120,
+        app.screen.height - 200,
+        60,
+        60,
+        0x333333,
+        "Public School"
+    );
 
     app.stage.addChild(rocketship);
-    app.stage.addChild(bottomLeftRect);
-    app.stage.addChild(bottomRightRect);
+    app.stage.addChild(bottomLeftBox);
+    app.stage.addChild(bottomRightBox);
 
-    const boxes = [bottomLeftRect, bottomRightRect];
+    const boxes = [bottomLeftBox, bottomRightBox];
 
     // Create a counter text element
     let counterValue = 0;
@@ -54,6 +91,7 @@
     counterText.y = 10;
     app.stage.addChild(counterText);
 
+    
     // Function to update the counter value and display
     function updateCounter(value) {
         counterValue += value;
@@ -62,7 +100,9 @@
 
     // Add references to the dialogue box and buttons
     const questDialog = document.getElementById("quest-dialog");
-    const yesButton = document.getElementById("yes-btn");
+    const career1Button = document.getElementById("career1-btn");
+    const career2Button = document.getElementById("career2-btn");
+    const career3Button = document.getElementById("career3-btn");
     const noButton = document.getElementById("no-btn");
 
     let dialogueOpen = false;
@@ -99,18 +139,33 @@
                 dialogueOpen = true;
                 
                 // Set event listeners for buttons
-                yesButton.onclick = () => {
-                    updateCounter(50);  // Increase counter if "Yes" is clicked
-                    closeDialogue();
-                };
+                // career1Button.onclick = () => {
+                //     updateCounter(50);  // Increase counter if "Yes" is clicked
+                //     closeDialogue();
+                // };
+
+
+                if (box === bottomLeftBox) {
+                    career1Button.onclick = () => {
+                        updateCounter(-100);
+                        closeDialogue();
+                    };
+                } else if (box === bottomRightBox) {
+                    career1Button.onclick = () => {
+                        updateCounter(-50);
+                        closeDialogue();
+                    };
+                }
+
                 noButton.onclick = closeDialogue;
 
                 collisionStates[i] = true;
+
             } else if (!isColliding) {
                 // Reset collision state when rocket exits collision
                 collisionStates[i] = false;
             }
-        }
+        };
 
         // Only update position if no collision detected
         rocketship.x = newX;
