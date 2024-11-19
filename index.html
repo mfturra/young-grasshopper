@@ -38,6 +38,19 @@
             padding: 8px 16px;
             font-size: 15px;
         }
+        #quest-dialog button:hover {
+            background-color: #04AA6D;
+            /* color: white; */
+            }
+
+        #dialog-text-container {
+            width: 100%; /* Adjust to fit your dialog box's width */
+            max-height: 100px; /* Limit the height of the text container */
+            overflow-y: auto; /* Enable vertical scrolling when text overflows */
+            padding: 5px;
+            box-sizing: border-box;
+            /* border: 1px solid #ccc; Optional: To visually separate the text */
+        }
     </style>
 </head>
 
@@ -46,11 +59,13 @@
     <script src="./src/game_app.js"></script>
 
     <div id="quest-dialog" style="display: none;">
-        <p>Which quest would you like to start?</p>
-        <button id="career1-btn">Business</button>
-        <button id="career2-btn">Technology</button>
-        <button id="career3-btn">Social Sciences</button>
-        <button id="no-btn">None</button>
+        <div id="dialog-text-container">
+            <p id="dialog-text"></p>
+            <button id="career1-btn">Option 1</button>
+            <button id="career2-btn">Option 2</button>
+            <button id="career3-btn">Option 3</button>
+            <button id="no-btn">None</button>
+        </div>
     </div>
 </body>
 

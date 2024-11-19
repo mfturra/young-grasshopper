@@ -1,3 +1,12 @@
+let entrydialogScript = {}
+
+fetch('dialog_scripts/entry_dialog.json')
+    .then(response => response.json())
+    .then(data => {
+        entrydialogScript = data;
+    })
+    .catch(error => console.error("Error loading dialog data:", error));
+
 (async function() {
     const app = new PIXI.Application({
         width: 500,
@@ -20,7 +29,7 @@
     rocketship.width = 100;
     
     rocketship.x = app.screen.width / 2 - rocketship.width / 2;
-    rocketship.y = app.screen.height / 2 - rocketship.height / 2;
+    rocketship.y = 150 - rocketship.height / 2;
     rocketship.vx = 0;
     rocketship.vy = 0;
 
@@ -65,18 +74,18 @@
         return container;
     }
 
-    const bottomLeftBox = createBox (
+    const privateUniversity = createBox (
         80,
-        app.screen.height - 200,
+        app.screen.height - 175,
         80,
         60,
         0x333333,
         "Private School"
     );
 
-    const bottomRightBox = createBox (
-        app.screen.width - 120,
-        app.screen.height - 200,
+    const publicUniversity = createBox (
+        app.screen.width - 180,
+        app.screen.height - 220,
         60,
         60,
         0x333333,
@@ -84,14 +93,14 @@
     );
 
     app.stage.addChild(rocketship);
-    app.stage.addChild(bottomLeftBox);
-    app.stage.addChild(bottomRightBox);
+    app.stage.addChild(privateUniversity);
+    app.stage.addChild(publicUniversity);
 
-    const boxes = [bottomLeftBox, bottomRightBox];
+    const boxes = [privateUniversity, publicUniversity];
 
     // Create a counter text element
     let counterValue = 0;
-    const counterText = new PIXI.Text(`Counter: ${counterValue}`, {
+    const counterText = new PIXI.Text(`Debt Owed: ${counterValue}`, {
         fontFamily: 'Arial',
         fontSize: 24,
         fill: 0xffffff,
@@ -105,11 +114,34 @@
     
     // Function to update the counter value and display
     function updateCounter(value) {
-        counterValue += value;
-        counterText.text = `Counter: ${counterValue}`;
+        const incrementDuration = 1000;
+        const startValue = counterValue;
+        const endValue = counterValue + value;
+        const startTime = performance.now();
+
+        function animateCounter(currentTime) {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / incrementDuration, 1); // Cap at 1 (100%)
+    
+            // Interpolate the counter value
+            const currentDisplayValue = Math.round(startValue + (endValue - startValue) * progress);
+    
+            // Update the counter text
+            counterText.text = `Debt Owed: ${currentDisplayValue}`;
+    
+            // Continue animating if not yet complete
+            if (progress < 1) {
+                requestAnimationFrame(animateCounter);
+            } else {
+                // Finalize the counter value
+                counterValue = endValue;
+            }
+        }
+    
+        requestAnimationFrame(animateCounter);
     }
 
-    // Add references to the dialogue box and buttons
+    // Add references to the dialog box and buttons
     const questDialog = document.getElementById("quest-dialog");
     const career1Button = document.getElementById("career1-btn");
     const career2Button = document.getElementById("career2-btn");
@@ -118,7 +150,7 @@
 
     // console.log(questDialog, career1Button, career2Button, career3Button, noButton);
 
-    let dialogueOpen = false;
+    let dialogOpen = false;
 
     // Store collision states for each box to track if the rocket is currently colliding
     const collisionStates = boxes.map(() => false);
@@ -140,57 +172,61 @@
         const newX = rocketship.x + rocketship.vx;
         const newY = rocketship.y + rocketship.vy;
 
-        // console.log("Rocket:", rocketship.x, rocketship.y, rocketship);
-        // console.log("Left Box:", boxes[0].x, boxes[0].y, boxes[0].width, boxes[0].height);
-        // console.log("Right Box:", boxes[1].x, boxes[1].y, boxes[1].width, boxes[1].height);
-
-
         // Track if a collision is detected and handle each box separately
         for (let i = 0; i < boxes.length; i++) {
             const box = boxes[i];
-            // console.log(`Checking collision with box ${i}`);
-
             
             const isColliding = checkCollision(newX, newY, rocketship, box);            
 
-            if (isColliding && !collisionStates[i] && !dialogueOpen) {
-                // Show dialogue box on collision
-
+            if (isColliding && !collisionStates[i] && !dialogOpen) {
+                if (box === privateUniversity) {
+                    document.getElementById('dialog-text').textContent = entrydialogScript.privateUniversity.welcomeText;
+                    document.getElementById('career1-btn').textContent = entrydialogScript.privateUniversity.career1.name;
+                    document.getElementById('career2-btn').textContent = entrydialogScript.privateUniversity.career2.name;
+                    document.getElementById('career3-btn').textContent = entrydialogScript.privateUniversity.career3.name;
+                } else if (box === publicUniversity) {
+                    document.getElementById('dialog-text').textContent = entrydialogScript.publicUniversity.welcomeText;
+                    document.getElementById('career1-btn').textContent = entrydialogScript.publicUniversity.career1.name;
+                    document.getElementById('career2-btn').textContent = entrydialogScript.publicUniversity.career2.name;
+                    document.getElementById('career3-btn').textContent = entrydialogScript.publicUniversity.career3.name;
+                }
+                
+                // Show dialog box on collision
                 questDialog.style.display = "block";
-                dialogueOpen = true;
+                dialogOpen = true;
 
                 const activeBox = box;
 
                 // cost of pursuing career1 track
                 career1Button.onclick = () => {
-                    if (activeBox === bottomLeftBox) { //private college
+                    if (activeBox === privateUniversity) { //private college
                         updateCounter(-40000);
-                    } else if (activeBox === bottomRightBox) { // public college
-                        updateCounter(-35000);
+                    } else if (activeBox === publicUniversity) { // public college
+                        updateCounter(-30000);
                     }
-                    closeDialogue();
+                    closedialog();
                 };
 
                 // cost of pursuing career2 track
                 career2Button.onclick = () => {
-                    if (activeBox === bottomLeftBox) {
+                    if (activeBox === privateUniversity) {
                         updateCounter(-40000);
-                    } else if (activeBox === bottomRightBox) {
+                    } else if (activeBox === publicUniversity) {
                         updateCounter(-30000);
                     }
-                    closeDialogue();
+                    closedialog();
                 };
 
                 // cost of pursuing career3 track
                 career3Button.onclick = () => {
-                    if (activeBox === bottomLeftBox) {
-                        updateCounter(35000);
-                    } else if (activeBox === bottomRightBox) {
-                        updateCounter(300000);
+                    if (activeBox === privateUniversity) {
+                        updateCounter(40000);
+                    } else if (activeBox === publicUniversity) {
+                        updateCounter(30000);
                     }
                 };
 
-                noButton.onclick = closeDialogue;
+                noButton.onclick = closedialog;
 
                 collisionStates[i] = true;
 
@@ -232,10 +268,10 @@
 
     gameLoop();
 
-    // Function to close the dialogue box
-    function closeDialogue() {
+    // Function to close the dialog box
+    function closedialog() {
         questDialog.style.display = "none";
-        dialogueOpen = false;
+        dialogOpen = false;
     }
 })();
 
