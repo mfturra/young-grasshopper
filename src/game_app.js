@@ -28,9 +28,6 @@ fetch('dialog_scripts/entry_dialog.json')
     // rocketship.scale.set(0.25, 0.25);
     rocketship.height = 100;
     rocketship.width = 100;
-    // rocketship.scale.set(0.25, 0.25);
-    rocketship.height = 100;
-    rocketship.width = 100;
     
     rocketship.x = app.screen.width / 2 - rocketship.width / 2;
     rocketship.y = 150 - rocketship.height / 2;
@@ -39,12 +36,6 @@ fetch('dialog_scripts/entry_dialog.json')
 
     // Function to create box with specific configs
     function createBox(x, y, width, height, color, textContent) {
-        const container = new PIXI.Container();
-        
-        // container should be located in specific location
-        container.x = x;
-        container.y = y;
-        
         const container = new PIXI.Container();
         
         // container should be located in specific location
@@ -60,8 +51,6 @@ fetch('dialog_scripts/entry_dialog.json')
         // box position
         box.x = 0;
         box.y = 0;
-        box.x = 0;
-        box.y = 0;
 
         const text = new PIXI.Text(textContent, {
             fontFamily: 'Arial',
@@ -75,15 +64,10 @@ fetch('dialog_scripts/entry_dialog.json')
         // Position the text at the center of the box
         text.x = width / 2 - text.width / 2;
         text.y = height / 2 - text.height / 2;
-        text.x = width / 2 - text.width / 2;
-        text.y = height / 2 - text.height / 2;
 
         // Add both the box and the text to a container
         container.addChild(box);
         container.addChild(text);
-
-        container.height = height;
-        container.width = width;
 
         container.height = height;
         container.width = width;
@@ -165,13 +149,10 @@ fetch('dialog_scripts/entry_dialog.json')
     const career3Button = document.getElementById("career3-btn");
     const noButton = document.getElementById("no-btn");
 
-    // console.log(questDialog, career1Button, career2Button, career3Button, noButton);
-
     let dialogOpen = false;
 
     // Store collision states for each box to track if the rocket is currently colliding
     const collisionStates = boxes.map(() => false);
-    
 
     const keys = {};
     window.addEventListener("keydown", (e) => { keys[e.key] = true; });
@@ -268,7 +249,6 @@ fetch('dialog_scripts/entry_dialog.json')
         requestAnimationFrame(gameLoop);
     }
 
-    function checkCollision(x, y, sprite, box, buffer = 0) {
     function checkCollision(x, y, sprite, box, buffer = 0) {
         const spriteBounds = {
             left: x + buffer,
