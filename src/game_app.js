@@ -23,7 +23,11 @@ fetch('dialog_scripts/entry_dialog.json')
     const rocketTexture = await PIXI.Assets.load('assets/sample_rocket.png');
     const rocketship = new PIXI.Sprite(rocketTexture);
     
+    
     // set sprite size relative to original size
+    // rocketship.scale.set(0.25, 0.25);
+    rocketship.height = 100;
+    rocketship.width = 100;
     // rocketship.scale.set(0.25, 0.25);
     rocketship.height = 100;
     rocketship.width = 100;
@@ -41,6 +45,12 @@ fetch('dialog_scripts/entry_dialog.json')
         container.x = x;
         container.y = y;
         
+        const container = new PIXI.Container();
+        
+        // container should be located in specific location
+        container.x = x;
+        container.y = y;
+        
         // box dimensions and color config
         const box = new PIXI.Graphics();
         box.beginFill(color);
@@ -48,6 +58,8 @@ fetch('dialog_scripts/entry_dialog.json')
         box.endFill();
 
         // box position
+        box.x = 0;
+        box.y = 0;
         box.x = 0;
         box.y = 0;
 
@@ -63,10 +75,15 @@ fetch('dialog_scripts/entry_dialog.json')
         // Position the text at the center of the box
         text.x = width / 2 - text.width / 2;
         text.y = height / 2 - text.height / 2;
+        text.x = width / 2 - text.width / 2;
+        text.y = height / 2 - text.height / 2;
 
         // Add both the box and the text to a container
         container.addChild(box);
         container.addChild(text);
+
+        container.height = height;
+        container.width = width;
 
         container.height = height;
         container.width = width;
@@ -172,11 +189,19 @@ fetch('dialog_scripts/entry_dialog.json')
         const newX = rocketship.x + rocketship.vx;
         const newY = rocketship.y + rocketship.vy;
 
+        // console.log("Rocket:", rocketship.x, rocketship.y, rocketship);
+        // console.log("Left Box:", boxes[0].x, boxes[0].y, boxes[0].width, boxes[0].height);
+        // console.log("Right Box:", boxes[1].x, boxes[1].y, boxes[1].width, boxes[1].height);
+
+
         // Track if a collision is detected and handle each box separately
         for (let i = 0; i < boxes.length; i++) {
             const box = boxes[i];
+            // console.log(`Checking collision with box ${i}`);
+
             
-            const isColliding = checkCollision(newX, newY, rocketship, box);            
+            
+            const isColliding = checkCollision(newX, newY, rocketship, box);                        
 
             if (isColliding && !collisionStates[i] && !dialogOpen) {
                 if (box === privateUniversity) {
@@ -244,6 +269,7 @@ fetch('dialog_scripts/entry_dialog.json')
     }
 
     function checkCollision(x, y, sprite, box, buffer = 0) {
+    function checkCollision(x, y, sprite, box, buffer = 0) {
         const spriteBounds = {
             left: x + buffer,
             right: x + sprite.width - buffer,
@@ -263,6 +289,7 @@ fetch('dialog_scripts/entry_dialog.json')
             spriteBounds.bottom > boxBounds.top &&
             spriteBounds.top < boxBounds.bottom
         );
+        
         
     }
 
