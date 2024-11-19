@@ -13,8 +13,11 @@
 
     const rocketTexture = await PIXI.Assets.load('assets/sample_rocket.png');
     const rocketship = new PIXI.Sprite(rocketTexture);
+    
     // set sprite size relative to original size
-    rocketship.scale.set(0.25, 0.25);
+    // rocketship.scale.set(0.25, 0.25);
+    rocketship.height = 100;
+    rocketship.width = 100;
     
     rocketship.x = app.screen.width / 2 - rocketship.width / 2;
     rocketship.y = app.screen.height / 2 - rocketship.height / 2;
@@ -23,6 +26,12 @@
 
     // Function to create box with specific configs
     function createBox(x, y, width, height, color, textContent) {
+        const container = new PIXI.Container();
+        
+        // container should be located in specific location
+        container.x = x;
+        container.y = y;
+        
         // box dimensions and color config
         const box = new PIXI.Graphics();
         box.beginFill(color);
@@ -30,8 +39,8 @@
         box.endFill();
 
         // box position
-        box.x = x;
-        box.y = y;
+        box.x = 0;
+        box.y = 0;
 
         const text = new PIXI.Text(textContent, {
             fontFamily: 'Arial',
@@ -43,13 +52,15 @@
         });
 
         // Position the text at the center of the box
-        text.x = x + width / 2 - text.width / 2;
-        text.y = y + height / 2 - text.height / 2;
+        text.x = width / 2 - text.width / 2;
+        text.y = height / 2 - text.height / 2;
 
         // Add both the box and the text to a container
-        const container = new PIXI.Container();
         container.addChild(box);
         container.addChild(text);
+
+        container.height = height;
+        container.width = width;
 
         return container;
     }
@@ -105,8 +116,9 @@
     const career3Button = document.getElementById("career3-btn");
     const noButton = document.getElementById("no-btn");
 
-    let dialogueOpen = false;
+    // console.log(questDialog, career1Button, career2Button, career3Button, noButton);
 
+    let dialogueOpen = false;
 
     // Store collision states for each box to track if the rocket is currently colliding
     const collisionStates = boxes.map(() => false);
@@ -128,34 +140,55 @@
         const newX = rocketship.x + rocketship.vx;
         const newY = rocketship.y + rocketship.vy;
 
+        // console.log("Rocket:", rocketship.x, rocketship.y, rocketship);
+        // console.log("Left Box:", boxes[0].x, boxes[0].y, boxes[0].width, boxes[0].height);
+        // console.log("Right Box:", boxes[1].x, boxes[1].y, boxes[1].width, boxes[1].height);
+
+
         // Track if a collision is detected and handle each box separately
         for (let i = 0; i < boxes.length; i++) {
             const box = boxes[i];
-            const isColliding = checkCollision(newX, newY, rocketship, box);
+            // console.log(`Checking collision with box ${i}`);
+
+            
+            const isColliding = checkCollision(newX, newY, rocketship, box);            
 
             if (isColliding && !collisionStates[i] && !dialogueOpen) {
-                 // Show dialogue box on collision
+                // Show dialogue box on collision
+
                 questDialog.style.display = "block";
                 dialogueOpen = true;
-                
-                // Set event listeners for buttons
-                // career1Button.onclick = () => {
-                //     updateCounter(50);  // Increase counter if "Yes" is clicked
-                //     closeDialogue();
-                // };
 
+                const activeBox = box;
 
-                if (box === bottomLeftBox) {
-                    career1Button.onclick = () => {
-                        updateCounter(-100);
-                        closeDialogue();
-                    };
-                } else if (box === bottomRightBox) {
-                    career1Button.onclick = () => {
-                        updateCounter(-50);
-                        closeDialogue();
-                    };
-                }
+                // cost of pursuing career1 track
+                career1Button.onclick = () => {
+                    if (activeBox === bottomLeftBox) { //private college
+                        updateCounter(-40000);
+                    } else if (activeBox === bottomRightBox) { // public college
+                        updateCounter(-35000);
+                    }
+                    closeDialogue();
+                };
+
+                // cost of pursuing career2 track
+                career2Button.onclick = () => {
+                    if (activeBox === bottomLeftBox) {
+                        updateCounter(-40000);
+                    } else if (activeBox === bottomRightBox) {
+                        updateCounter(-30000);
+                    }
+                    closeDialogue();
+                };
+
+                // cost of pursuing career3 track
+                career3Button.onclick = () => {
+                    if (activeBox === bottomLeftBox) {
+                        updateCounter(35000);
+                    } else if (activeBox === bottomRightBox) {
+                        updateCounter(300000);
+                    }
+                };
 
                 noButton.onclick = closeDialogue;
 
@@ -174,7 +207,7 @@
         requestAnimationFrame(gameLoop);
     }
 
-    function checkCollision(x, y, sprite, box, buffer = 1) {
+    function checkCollision(x, y, sprite, box, buffer = 0) {
         const spriteBounds = {
             left: x + buffer,
             right: x + sprite.width - buffer,
@@ -194,6 +227,7 @@
             spriteBounds.bottom > boxBounds.top &&
             spriteBounds.top < boxBounds.bottom
         );
+        
     }
 
     gameLoop();
