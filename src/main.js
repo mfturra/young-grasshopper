@@ -1,3 +1,6 @@
+import * as Config from './config/config.js';
+import * as Utils from './utils/index.js';
+
 let entrydialogScript = {}
 
 fetch('dialog_scripts/entry_dialog.json')
@@ -8,92 +11,56 @@ fetch('dialog_scripts/entry_dialog.json')
     .catch(error => console.error("Error loading dialog data:", error));
 
 (async function() {
-    const app = new PIXI.Application({
-        width: 500,
-        height: 500,
-        backgroundColor: "#55a341",
-        antialias: true
-    });
-    app.view.style.position = 'absolute';
-    app.view.style.top = '50%';
-    app.view.style.left = '50%';
-    app.view.style.transform = 'translate(-50%, -50%)';
+    // App config
+    const app = new PIXI.Application(Config.appConfig);
+    
+    // Apply styles to the canvas
+    Object.assign(app.view.style, Config.appStyles);
+
+    // Append the canvas to the document body
     document.body.appendChild(app.view);
 
-    const rocketTexture = await PIXI.Assets.load('assets/sample_rocket.png');
+    // Create the rocket sprite
+    const rocketTexture = await PIXI.Assets.load(Config.characterConfig.texturePath);
     const rocketship = new PIXI.Sprite(rocketTexture);
     
-    
-    // set sprite size relative to original size
-    // rocketship.scale.set(0.25, 0.25);
-    rocketship.height = 100;
-    rocketship.width = 100;
-    
-    rocketship.x = app.screen.width / 2 - rocketship.width / 2;
-    rocketship.y = 150 - rocketship.height / 2;
-    rocketship.vx = 0;
-    rocketship.vy = 0;
+    // Apply dimensions
+    rocketship.width = Config.characterConfig.width;
+    rocketship.height = Config.characterConfig.height;
 
-    // Function to create box with specific configs
-    function createBox(x, y, width, height, color, textContent) {
-        const container = new PIXI.Container();
-        
-        // container should be located in specific location
-        container.x = x;
-        container.y = y;
-        
-        // box dimensions and color config
-        const box = new PIXI.Graphics();
-        box.beginFill(color);
-        box.drawRect(0, 0, width, height);
-        box.endFill();
+    // Set initial position
+    rocketship.x = Config.characterConfig.initialX(app.screen.width);
+    rocketship.y = Config.characterConfig.initialY;
 
-        // box position
-        box.x = 0;
-        box.y = 0;
+    // Set initial velocity
+    rocketship.vx = Config.characterConfig.initialVel.vx;
+    rocketship.vy = Config.characterConfig.initialVel.vy;
 
-        const text = new PIXI.Text(textContent, {
-            fontFamily: 'Arial',
-            fontSize: 16,
-            fill: 0xffffff, // White text
-            align: 'center',
-            wordWrap: true,
-            wordWrapWidth: width - 10 // create slight padding inside box
-        });
-
-        // Position the text at the center of the box
-        text.x = width / 2 - text.width / 2;
-        text.y = height / 2 - text.height / 2;
-
-        // Add both the box and the text to a container
-        container.addChild(box);
-        container.addChild(text);
-
-        container.height = height;
-        container.width = width;
-
-        return container;
-    }
-
-    const privateUniversity = createBox (
-        80,
-        app.screen.height - 175,
-        80,
-        60,
-        0x333333,
-        "Private School"
-    );
-
-    const publicUniversity = createBox (
-        app.screen.width - 180,
-        app.screen.height - 220,
-        60,
-        60,
-        0x333333,
-        "Public School"
-    );
-
+    // Add rocket to the stage
     app.stage.addChild(rocketship);
+
+    // config for privateUniversity
+    const privateUniversity = Utils.createBox(
+        Config.universityBoxConfig.private.x,
+        Config.universityBoxConfig.private.y,
+        Config.universityBoxConfig.private.width,
+        Config.universityBoxConfig.private.height,
+        Config.universityBoxConfig.private.color,
+        Config.universityBoxConfig.private.text
+    );
+
+    // config for privateUniversity
+    const publicUniversity = Utils.createBox(
+        Config.universityBoxConfig.public.x,
+        Config.universityBoxConfig.public.y,
+        Config.universityBoxConfig.public.width,
+        Config.universityBoxConfig.public.height,
+        Config.universityBoxConfig.public.color,
+        Config.universityBoxConfig.public.text
+    );
+    
+
+    // stage universities
     app.stage.addChild(privateUniversity);
     app.stage.addChild(publicUniversity);
 
@@ -111,36 +78,6 @@ fetch('dialog_scripts/entry_dialog.json')
     counterText.x = app.screen.width - 10;
     counterText.y = 10;
     app.stage.addChild(counterText);
-
-    
-    // Function to update the counter value and display
-    function updateCounter(value) {
-        const incrementDuration = 1000;
-        const startValue = counterValue;
-        const endValue = counterValue + value;
-        const startTime = performance.now();
-
-        function animateCounter(currentTime) {
-            const elapsed = currentTime - startTime;
-            const progress = Math.min(elapsed / incrementDuration, 1); // Cap at 1 (100%)
-    
-            // Interpolate the counter value
-            const currentDisplayValue = Math.round(startValue + (endValue - startValue) * progress);
-    
-            // Update the counter text
-            counterText.text = `Debt Owed: ${currentDisplayValue}`;
-    
-            // Continue animating if not yet complete
-            if (progress < 1) {
-                requestAnimationFrame(animateCounter);
-            } else {
-                // Finalize the counter value
-                counterValue = endValue;
-            }
-        }
-    
-        requestAnimationFrame(animateCounter);
-    }
 
     // Add references to the dialog box and buttons
     const questDialog = document.getElementById("quest-dialog");
@@ -170,19 +107,12 @@ fetch('dialog_scripts/entry_dialog.json')
         const newX = rocketship.x + rocketship.vx;
         const newY = rocketship.y + rocketship.vy;
 
-        // console.log("Rocket:", rocketship.x, rocketship.y, rocketship);
-        // console.log("Left Box:", boxes[0].x, boxes[0].y, boxes[0].width, boxes[0].height);
-        // console.log("Right Box:", boxes[1].x, boxes[1].y, boxes[1].width, boxes[1].height);
-
 
         // Track if a collision is detected and handle each box separately
         for (let i = 0; i < boxes.length; i++) {
-            const box = boxes[i];
-            // console.log(`Checking collision with box ${i}`);
-
+            const box = boxes[i];           
             
-            
-            const isColliding = checkCollision(newX, newY, rocketship, box);                        
+            const isColliding = Utils.checkCollision(newX, newY, rocketship, box);                        
 
             if (isColliding && !collisionStates[i] && !dialogOpen) {
                 if (box === privateUniversity) {
@@ -249,29 +179,7 @@ fetch('dialog_scripts/entry_dialog.json')
         requestAnimationFrame(gameLoop);
     }
 
-    function checkCollision(x, y, sprite, box, buffer = 0) {
-        const spriteBounds = {
-            left: x + buffer,
-            right: x + sprite.width - buffer,
-            top: y + buffer,
-            bottom: y + sprite.height - buffer
-        };
-        const boxBounds = {
-            left: box.x + buffer,
-            right: box.x + box.width - buffer,
-            top: box.y + buffer,
-            bottom: box.y + box.height - buffer
-        };
-
-        return (
-            spriteBounds.right > boxBounds.left &&
-            spriteBounds.left < boxBounds.right &&
-            spriteBounds.bottom > boxBounds.top &&
-            spriteBounds.top < boxBounds.bottom
-        );
-        
-        
-    }
+    // collision func
 
     gameLoop();
 
