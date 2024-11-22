@@ -1,5 +1,9 @@
 import * as Config from './config/config.js';
-import * as Utils from './utils/index.js';
+// import * as Utils from './utils/index.js';
+import * as Scenes from './utils/scenes/scenes.js';
+import { switchScene } from './utils/scenes/sceneSwitcher.js';
+import mainScene from './utils/scenes/mainScene.js';
+src/utils/scenes/mainScene.js
 
 let entrydialogScript = {}
 
@@ -20,49 +24,51 @@ fetch('dialog_scripts/entry_dialog.json')
     // Append the canvas to the document body
     document.body.appendChild(app.view);
 
-    // Create the rocket sprite
-    const rocketTexture = await PIXI.Assets.load(Config.characterConfig.texturePath);
-    const rocketship = new PIXI.Sprite(rocketTexture);
+    // Add the main scene to the app stage (this makes it the starting scene)
+    app.stage.addChild(mainScene);
+
+    // // Create the rocket sprite
+    // const rocketTexture = await PIXI.Assets.load(Config.characterConfig.texturePath);
+    // const rocketship = new PIXI.Sprite(rocketTexture);
     
-    // Apply dimensions
-    rocketship.width = Config.characterConfig.width;
-    rocketship.height = Config.characterConfig.height;
+    // // Apply dimensions
+    // rocketship.width = Config.characterConfig.width;
+    // rocketship.height = Config.characterConfig.height;
 
-    // Set initial position
-    rocketship.x = Config.characterConfig.initialX(app.screen.width);
-    rocketship.y = Config.characterConfig.initialY;
+    // // Set initial position
+    // rocketship.x = Config.characterConfig.initialX(app.screen.width);
+    // rocketship.y = Config.characterConfig.initialY;
 
-    // Set initial velocity
-    rocketship.vx = Config.characterConfig.initialVel.vx;
-    rocketship.vy = Config.characterConfig.initialVel.vy;
+    // // Set initial velocity
+    // rocketship.vx = Config.characterConfig.initialVel.vx;
+    // rocketship.vy = Config.characterConfig.initialVel.vy;
 
     // Add rocket to the stage
     app.stage.addChild(rocketship);
 
-    // config for privateUniversity
-    const privateUniversity = Utils.createBox(
-        Config.universityBoxConfig.private.x,
-        Config.universityBoxConfig.private.y,
-        Config.universityBoxConfig.private.width,
-        Config.universityBoxConfig.private.height,
-        Config.universityBoxConfig.private.color,
-        Config.universityBoxConfig.private.text
-    );
+    // // config for privateUniversity
+    // const privateUniversity = Utils.createBox(
+    //     Config.universityBoxConfig.private.x,
+    //     Config.universityBoxConfig.private.y,
+    //     Config.universityBoxConfig.private.width,
+    //     Config.universityBoxConfig.private.height,
+    //     Config.universityBoxConfig.private.color,
+    //     Config.universityBoxConfig.private.text
+    // );
 
-    // config for privateUniversity
-    const publicUniversity = Utils.createBox(
-        Config.universityBoxConfig.public.x,
-        Config.universityBoxConfig.public.y,
-        Config.universityBoxConfig.public.width,
-        Config.universityBoxConfig.public.height,
-        Config.universityBoxConfig.public.color,
-        Config.universityBoxConfig.public.text
-    );
-    
+    // // config for privateUniversity
+    // const publicUniversity = Utils.createBox(
+    //     Config.universityBoxConfig.public.x,
+    //     Config.universityBoxConfig.public.y,
+    //     Config.universityBoxConfig.public.width,
+    //     Config.universityBoxConfig.public.height,
+    //     Config.universityBoxConfig.public.color,
+    //     Config.universityBoxConfig.public.text
+    // );
 
-    // stage universities
-    app.stage.addChild(privateUniversity);
-    app.stage.addChild(publicUniversity);
+   // Create the main scene (default screen)
+   Scenes.mainScene.addChild(privateUniversity);
+   Scenes.mainScene.addChild(publicUniversity);
 
     const boxes = [privateUniversity, publicUniversity];
 
@@ -96,99 +102,55 @@ fetch('dialog_scripts/entry_dialog.json')
     window.addEventListener("keyup", (e) => { keys[e.key] = false; });
 
     function gameLoop() {
+        // Reset velocity
         rocketship.vx = 0;
         rocketship.vy = 0;
-
+    
+        // Handle movement based on keys pressed
         if (keys["ArrowUp"] || keys["w"]) rocketship.vy = -5;
         if (keys["ArrowDown"] || keys["s"]) rocketship.vy = 5;
         if (keys["ArrowLeft"] || keys["a"]) rocketship.vx = -5;
         if (keys["ArrowRight"] || keys["d"]) rocketship.vx = 5;
-
+    
+        // Calculate new position
         const newX = rocketship.x + rocketship.vx;
         const newY = rocketship.y + rocketship.vy;
-
-
-        // Track if a collision is detected and handle each box separately
-        for (let i = 0; i < boxes.length; i++) {
-            const box = boxes[i];           
-            
-            const isColliding = Utils.checkCollision(newX, newY, rocketship, box);                        
-
-            if (isColliding && !collisionStates[i] && !dialogOpen) {
-                if (box === privateUniversity) {
-                    document.getElementById('dialog-text').textContent = entrydialogScript.privateUniversity.welcomeText;
-                    document.getElementById('career1-btn').textContent = entrydialogScript.privateUniversity.career1.name;
-                    document.getElementById('career2-btn').textContent = entrydialogScript.privateUniversity.career2.name;
-                    document.getElementById('career3-btn').textContent = entrydialogScript.privateUniversity.career3.name;
-                } else if (box === publicUniversity) {
-                    document.getElementById('dialog-text').textContent = entrydialogScript.publicUniversity.welcomeText;
-                    document.getElementById('career1-btn').textContent = entrydialogScript.publicUniversity.career1.name;
-                    document.getElementById('career2-btn').textContent = entrydialogScript.publicUniversity.career2.name;
-                    document.getElementById('career3-btn').textContent = entrydialogScript.publicUniversity.career3.name;
-                }
-                
-                // Show dialog box on collision
-                questDialog.style.display = "block";
-                dialogOpen = true;
-
-                const activeBox = box;
-
-                // cost of pursuing career1 track
-                career1Button.onclick = () => {
-                    if (activeBox === privateUniversity) { //private college
-                        updateCounter(-40000);
-                    } else if (activeBox === publicUniversity) { // public college
-                        updateCounter(-30000);
-                    }
-                    closedialog();
-                };
-
-                // cost of pursuing career2 track
-                career2Button.onclick = () => {
-                    if (activeBox === privateUniversity) {
-                        updateCounter(-40000);
-                    } else if (activeBox === publicUniversity) {
-                        updateCounter(-30000);
-                    }
-                    closedialog();
-                };
-
-                // cost of pursuing career3 track
-                career3Button.onclick = () => {
-                    if (activeBox === privateUniversity) {
-                        updateCounter(40000);
-                    } else if (activeBox === publicUniversity) {
-                        updateCounter(30000);
-                    }
-                };
-
-                noButton.onclick = closedialog;
-
-                collisionStates[i] = true;
-
-            } else if (!isColliding) {
-                // Reset collision state when rocket exits collision
-                collisionStates[i] = false;
-            }
-        };
-
-        // Only update position if no collision detected
-        rocketship.x = newX;
-        rocketship.y = newY;
-
+    
+        // Check for collisions
+        const collisionResult = checkCollisions(newX, newY, rocketship, boxes);
+    
+        if (collisionResult === "private") {
+            console.log(Scenes.privateUniversityScene);
+            switchScene(Scenes.privateUniversityScene);
+        } else if (collisionResult === "public") {
+            console.log(Scenes.publicUniversityScene);  // Log the scene
+            switchScene(Scenes.publicUniversityScene);
+        } else {
+            // Move the rocketship if no collision happens
+            rocketship.x = newX;
+            rocketship.y = newY;
+        }
         requestAnimationFrame(gameLoop);
+
+        function checkCollisions(newX, newY, sprite, boxes) {
+            for (let box of boxes) {
+                if (Utils.checkCollision(newX, newY, sprite, box)) {
+                    if (box === privateUniversity) return "private";
+                    if (box === publicUniversity) return "public";
+                }
+            }
+            return null; // No collision
+        }
+        
     }
 
     // collision func
 
     gameLoop();
-
-    // Function to close the dialog box
-    function closedialog() {
-        questDialog.style.display = "none";
-        dialogOpen = false;
-    }
 })();
+
+
+
 
 
 
