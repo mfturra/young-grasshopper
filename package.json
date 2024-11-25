@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "Matheus Turra",
   "license": "ISC",
   "dependencies": {
     "pixi.js": "^8.5.2"
