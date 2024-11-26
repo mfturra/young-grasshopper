@@ -24,6 +24,16 @@ document.addEventListener("DOMContentLoaded", function () {
                     careerElement.querySelector(".career-name").innerText = career.name;
                     careerElement.querySelector(".career-description").innerText = career.description;
                     careerElement.querySelector(".career-cost").innerText = `Cost: ${career.cost}`;
+                    
+                    // Add event listener to the select button
+                    const button = careerElement.querySelector(".career-choice-btn");
+                    button.addEventListener("click", function () {
+                        // Store selected career details in sessionStorage
+                        sessionStorage.setItem("selectedCareer", JSON.stringify(career));
+
+                        // Navigate to the careerSelected page
+                        window.location.href = "careerSelected.html";
+                    });
                 }
             }
         })

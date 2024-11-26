@@ -1,0 +1,53 @@
+{
+    "curriculum": {
+      "Business": {
+        "coreCourses": [
+          "Principles of Management",
+          "Introduction to Finance",
+          "Accounting Fundamentals",
+          "Marketing Strategies",
+          "Business Ethics"
+        ],
+        "electives": [
+          "Entrepreneurship 101",
+          "Investment Analysis",
+          "International Business",
+          "Supply Chain Management",
+          "Leadership Development"
+        ]
+      },
+      "Technology": {
+        "coreCourses": [
+          "Introduction to Programming",
+          "Data Structures and Algorithms",
+          "Database Management Systems",
+          "Operating Systems",
+          "Computer Networks"
+        ],
+        "electives": [
+          "Artificial Intelligence Fundamentals",
+          "Cybersecurity Basics",
+          "Cloud Computing",
+          "Big Data Analytics",
+          "Mobile App Development"
+        ]
+      },
+      "Social Sciences": {
+        "coreCourses": [
+          "Introduction to Sociology",
+          "Psychological Theories and Applications",
+          "Research Methods in Social Sciences",
+          "Principles of Economics",
+          "Cultural Anthropology"
+        ],
+        "electives": [
+          "Social Policy Analysis",
+          "Human Development and Behavior",
+          "Conflict Resolution",
+          "Globalization and Society",
+          "Criminology"
+        ]
+      }
+    }
+  }
+  
