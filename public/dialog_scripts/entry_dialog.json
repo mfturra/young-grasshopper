@@ -3,36 +3,42 @@
       "welcomeText": "Welcome to Private University! You're at a pivotal point in your journey where you need to choose wisely. Depending on your selection you'll leave college with more or less dept. Which career track would you like to pursue?",
       "career1": {
         "name": "Business",
-        "description": "Generally a business degree would specialize in Finance, Accounting, or Business Management. Does this sound like something that you'd be interested in?",
-        "cost": "$40k"
+        "description": "Generally a business degree would specialize in Finance, Accounting, or Business Management.",
+        "cost": "$40k",
+        "call-to-action": "Does this sound like something that you'd be interested in?"
       },
       "career2": {
         "name": "Technology",
-        "description": "Typically a Technology degree would specialize in Computer Science, Data Science, or Information Technology. Does this sound like something that you'd be interested in?",
-        "cost": "$40k"
+        "description": "Typically a Technology degree would specialize in Computer Science, Data Science, or Information Technology.",
+        "cost": "$40k",
+        "call-to-action": "Does this sound like something that you'd be interested in?"
       },
       "career3": {
         "name": "Social Sciences",
-        "description": "Generally a social sciences degree would specialize in Psychology, Sociology, or Economics. Does this sound like something that you'd be interested in?",
-        "cost": "$40k"
+        "description": "Generally a social sciences degree would specialize in Psychology, Sociology, or Economics.",
+        "cost": "$40k",
+        "call-to-action": "Does this sound like something that you'd be interested in?"
       }
     },
     "publicUniversity": {
       "welcomeText": "Welcome to Public University! You're at a pivotal point in your journey where you need to choose wisely. Depending on your selection you'll leave college with more or less dept. Which career track would you like to pursue?",
       "career1": {
         "name": "Business",
-        "description": "Generally a business degree would specialize in Finance, Accounting, or Business Management. Does this sound like something that you'd be interested in?",
-        "cost": "$30k"
+        "description": "Generally a business degree would specialize in Finance, Accounting, or Business Management.",
+        "cost": "$30k",
+        "call-to-action": "Does this sound like something that you'd be interested in?"
       },
       "career2": {
         "name": "Technology",
-        "description": "Typically a Technology degree would specialize in Computer Science, Data Science, or Information Technology. Does this sound like something that you'd be interested in?",
-        "cost": "$30k"
+        "description": "Typically a Technology degree would specialize in Computer Science, Data Science, or Information Technology.",
+        "cost": "$30k",
+        "call-to-action": "Does this sound like something that you'd be interested in?"
       },
       "career3": {
         "name": "Social Sciences",
-        "description": "Generally a social sciences degree would specialize in Psychology, Sociology, or Economics. Does this sound like something that you'd be interested in?",
-        "cost": "$30k"
+        "description": "Generally a social sciences degree would specialize in Psychology, Sociology, or Economics.",
+        "cost": "$30k",
+        "call-to-action": "Does this sound like something that you'd be interested in?"
       }
     }
   }

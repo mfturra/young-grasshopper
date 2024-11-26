@@ -3,7 +3,7 @@ import * as Config from './config/config.js';
 import * as Scenes from './utils/scenes/scenes.js';
 import { switchScene } from './utils/scenes/sceneSwitcher.js';
 import mainScene from './utils/scenes/mainScene.js';
-src/utils/scenes/mainScene.js
+// src/utils/scenes/mainScene.js
 
 let entrydialogScript = {}
 
