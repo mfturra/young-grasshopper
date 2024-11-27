@@ -70,7 +70,7 @@
     "career1": {
       "name": "Business",
       "description": "Generally a business degree would specialize in Finance, Accounting, or Business Management.",
-      "cost": "$40k",
+      "cost": "$25k",
       "curriculum": {
         "coreCourses": [
               "Principles of Management",
@@ -91,7 +91,7 @@
     "career2": {
       "name": "Technology",
       "description": "Typically a Technology degree would specialize in Computer Science, Data Science, or Information Technology.",
-      "cost": "$40k",
+      "cost": "$25k",
       "curriculum": {
         "coreCourses": [
             "Introduction to Programming",
@@ -112,7 +112,7 @@
     "career3": {
       "name": "Social Sciences",
       "description": "Generally a social sciences degree would specialize in Psychology, Sociology, or Economics.",
-      "cost": "$40k",
+      "cost": "$25k",
       "curriculum": {
         "coreCourses": [
             "Introduction to Sociology",
