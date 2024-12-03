@@ -1,7 +1,7 @@
 {
   "privateUniversity": {
-    "welcomeText": "Welcome to Private University! You're at a pivotal point in your journey where you need to choose wisely. Depending on your selection you'll leave college with more or less dept. Which career track would you like to pursue?",
-    "career1": {
+    "welcomeText": "Welcome to Private University! You're at a pivotal point in your journey where you need to choose wisely. Depending on your selection you'll leave college with more or less dept. Which degree track would you like to pursue?",
+    "degree1": {
       "name": "Business",
       "description": "Generally a business degree would specialize in Finance, Accounting, or Business Management.",
       "cost": "$40k",
@@ -22,7 +22,7 @@
         ]
       }
     },
-    "career2": {
+    "degree2": {
       "name": "Technology",
       "description": "Typically a Technology degree would specialize in Computer Science, Data Science, or Information Technology.",
       "cost": "$40k",
@@ -43,7 +43,7 @@
         ]
       }
     },
-    "career3": {
+    "degree3": {
       "name": "Social Sciences",
       "description": "Generally a social sciences degree would specialize in Psychology, Sociology, or Economics.",
       "cost": "$40k",
@@ -66,8 +66,8 @@
     }
   },
   "publicUniversity": {
-    "welcomeText": "Welcome to Public University! You're at a pivotal point in your journey where you need to choose wisely. Depending on your selection you'll leave college with more or less dept. Which career track would you like to pursue?",
-    "career1": {
+    "welcomeText": "Welcome to Public University! You're at a pivotal point in your journey where you need to choose wisely. Depending on your selection you'll leave college with more or less dept. Which degree track would you like to pursue?",
+    "degree1": {
       "name": "Business",
       "description": "Generally a business degree would specialize in Finance, Accounting, or Business Management.",
       "cost": "$25k",
@@ -88,7 +88,7 @@
         ]
       }
     },
-    "career2": {
+    "degree2": {
       "name": "Technology",
       "description": "Typically a Technology degree would specialize in Computer Science, Data Science, or Information Technology.",
       "cost": "$25k",
@@ -109,7 +109,7 @@
         ]
       }
     },
-    "career3": {
+    "degree3": {
       "name": "Social Sciences",
       "description": "Generally a social sciences degree would specialize in Psychology, Sociology, or Economics.",
       "cost": "$25k",

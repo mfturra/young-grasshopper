@@ -14,26 +14,26 @@ document.addEventListener("DOMContentLoaded", function () {
             // Populate the welcome text with respective data from json file
             document.getElementById("welcomeText").innerText = universityData.welcomeText;
 
-            // Cycle through all available career tracks
+            // Cycle through all available degree tracks
             for (let i = 1; i <= 3; i++) {
-                // create var for career{i}
-                const career = universityData[`career${i}`];
+                // create var for degree{i}
+                const degree = universityData[`degree${i}`];
 
                 // Extract and input necessary elements where necessary in HTML file
-                if (career) {
-                    const careerElement = document.getElementById(`career${i}`);
-                    careerElement.querySelector(".career-name").innerText = career.name;
-                    careerElement.querySelector(".career-description").innerText = career.description;
-                    careerElement.querySelector(".career-cost").innerText = `Cost: ${career.cost}`;
+                if (degree) {
+                    const degreeElement = document.getElementById(`degree${i}`);
+                    degreeElement.querySelector(".degree-name").innerText = degree.name;
+                    degreeElement.querySelector(".degree-description").innerText = degree.description;
+                    degreeElement.querySelector(".degree-cost").innerText = `Cost: ${degree.cost}`;
                     
                     // Add event listener to the select button
-                    const button = careerElement.querySelector(".career-choice-btn");
+                    const button = degreeElement.querySelector(".degree-choice-btn");
                     button.addEventListener("click", function () {
-                        // Store selected career details in sessionStorage
-                        sessionStorage.setItem("selectedCareer", JSON.stringify(career));
+                        // Store selected degree details in sessionStorage
+                        sessionStorage.setItem("selectedDegree", JSON.stringify(degree));
 
-                        // Navigate to the careerSelected page
-                        window.location.href = "careerSelected.html";
+                        // Navigate to the degreeSelected page
+                        window.location.href = "degreeSelected.html";
                     });
                 }
             }

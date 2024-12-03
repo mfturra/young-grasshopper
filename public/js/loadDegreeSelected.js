@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const selectedCareer = JSON.parse(sessionStorage.getItem("selectedCareer"));
+    const selectedDegree = JSON.parse(sessionStorage.getItem("selectedDegree"));
 
-    if (selectedCareer) {
+    if (selectedDegree) {
 
         fetch('../../dialog_scripts/dialogV1.json')
         .then(response => response.json())
@@ -12,18 +12,18 @@ document.addEventListener("DOMContentLoaded", function () {
             // When privateUniversity or publicUniversity is selected, populate universityData with that json data
             const universityData = isPrivateUniversity ? data.privateUniversity : data.publicUniversity;
 
-            // Find the selected career details
-            const career = Object.values(universityData).find(c => c?.name?.toLowerCase() === selectedCareer?.name?.toLowerCase());
+            // Find the selected degree details
+            const degree = Object.values(universityData).find(c => c?.name?.toLowerCase() === selectedDegree?.name?.toLowerCase());
 
-            if (career && career.curriculum) {
-                document.getElementById("career-name").innerText = career.name;
-                document.getElementById("career-description").innerText = career.description;
-                document.getElementById("career-cost").innerText = career.cost;
+            if (degree && degree.curriculum) {
+                document.getElementById("degree-name").innerText = degree.name;
+                document.getElementById("degree-description").innerText = degree.description;
+                document.getElementById("degree-cost").innerText = degree.cost;
 
                 // Render core courses
                 const coreCoursesList = document.getElementById("core-courses");
-                if (career.curriculum.coreCourses) {
-                    career.curriculum.coreCourses.forEach(course => {
+                if (degree.curriculum.coreCourses) {
+                    degree.curriculum.coreCourses.forEach(course => {
                         const listItem = document.createElement("li");
                         listItem.innerText = course;
                         coreCoursesList.appendChild(listItem);
@@ -32,22 +32,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 // Render elective courses
                 const electivesList = document.getElementById("elective-courses");
-                if (career.curriculum.electives) {
-                    career.curriculum.electives.forEach(course => {
+                if (degree.curriculum.electives) {
+                    degree.curriculum.electives.forEach(course => {
                         const listItem = document.createElement("li");
                         listItem.innerText = course;
                         electivesList.appendChild(listItem);
                     });
                 }
             } else {
-                console.error("No curriculum found for the selected career.");
-                document.getElementById("selectedCareerDetails").innerText =
-                    "No curriculum data available for this career.";
+                console.error("No curriculum found for the selected degree.");
+                document.getElementById("selectedDegreeDetails").innerText =
+                    "No curriculum data available for this degree.";
             }
         })
         .catch(error => console.error("Error loading curriculum data:", error));
     } else {
-        // If no career was selected, display a message or redirect
-        document.getElementById("selectedCareerDetails").innerText = "No career selected. Please go back and select a career.";
+        // If no degree was selected, display a message or redirect
+        document.getElementById("selectedDegreeDetails").innerText = "No degree selected. Please go back and select a degree.";
     }
 });
