@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (selectedCareer) {
 
-        fetch('../dialog_scripts/entry_dialog.json')
+        fetch('../../dialog_scripts/dialogV1.json')
         .then(response => response.json())
         .then(data => {
             // Review html body tag for all classes containing private-university
@@ -51,18 +51,3 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("selectedCareerDetails").innerText = "No career selected. Please go back and select a career.";
     }
 });
-
-
-    //             if (career) {
-    //                 const careerElement = document.getElementById(`career${i}`);
-    //                 careerElement.querySelector(".career-name").innerText = career.name;
-    //                 careerElement.querySelector(".career-description").innerText = career.description;
-    //                 careerElement.querySelector(".career-cost").innerText = career.cost;
-    //                 careerElement.querySelector(".core-courses").innerText = career.curriculum.coreCourses;
-    //                 careerElement.querySelector(".elective-courses").innerText = career.curriculum.electives;
-    //             }
-    //         }
-    //     })
-    // } else {
-    //     // If no career was selected, display a message or redirect
-    //     document.getElementById("selectedCareerDetails").innerText = "No career selected. Please go back and select a career.";

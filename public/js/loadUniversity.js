@@ -1,7 +1,8 @@
 // wait to render page until after HTML page has loaded
 document.addEventListener("DOMContentLoaded", function () {
     // Fetch the JSON file using HTTP request
-    fetch('../dialog_scripts/entry_dialog.json')
+    fetch('../../dialog_scripts/dialogV1.json')
+    // fetch('../dialog_scripts/entry_dialog.json')
         .then(response => response.json()) // convert raw text response to .json format
         .then(data => {
             // Review html body tag for all classes containing private-university
