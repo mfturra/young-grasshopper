@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="grasshopper-style.css"> -->
+    <title>Grasshopper Island</title>
+</head>
+
+<body>
+    <!-- <script type="module" src="./public/js/basic.js"></script> -->
+    <div id="greetings">
+        <h2>Welcome to Grasshopper Island</h2>
+        <p>Select the university option that you'd like to explore</p>
+        <a href="{{ url_for('publicUniversity') }}">Public University</a>
+        <br>
+        <a href="{{ url_for('privateUniversity') }}">Private University</a>
+    </div>
+    <div id="publicUniversity">
+
+    </div>
+    <div id="privateUniversity">
+
+    </div>
+</body>
+
+</html>
