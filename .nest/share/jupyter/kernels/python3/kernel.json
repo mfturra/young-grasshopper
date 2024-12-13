@@ -1,0 +1,14 @@
+{
+ "argv": [
+  "/Users/matheusturra/Documents/dev-ops/young-grasshopper/.nest/bin/python",
+  "-m",
+  "ipykernel_launcher",
+  "-f",
+  "{connection_file}"
+ ],
+ "display_name": "Python 3 (.nest)",
+ "language": "python",
+ "metadata": {
+  "debugger": true
+ }
+}
