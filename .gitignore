@@ -25,6 +25,7 @@ share/python-wheels/
 .installed.cfg
 *.egg
 MANIFEST
+pip-wheel-metadata/
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
@@ -284,3 +285,51 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# Jupyter notebook 
+*.bundle.*
+lib/
+node_modules/
+*.egg-info/
+.ipynb_checkpoints
+*.tsbuildinfo
+
+# Mr Developer
+.mr.developer.cfg
+.project
+.pydevproject
+
+# OS X stuff
+*.DS_Store
+
+_temp_extension
+junit.xml
+[uU]ntitled*
+notebook/static/*
+!notebook/static/favicons
+notebook/labextension
+notebook/schemas
+docs/source/changelog.md
+docs/source/contributing.md
+
+# playwright
+ui-tests/test-results
+ui-tests/playwright-report
+
+# VSCode
+.vscode
+
+# RTC
+.jupyter_ystore.db
+
+# yarn >=2.x local files
+.yarn/*
+.pnp.*
+ui-tests/.yarn/*
+ui-tests/.pnp.*
+
+# generated html
+notebook/templates/*.html
+
+# database reqs
+database.ini

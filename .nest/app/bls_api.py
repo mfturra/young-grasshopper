@@ -2,7 +2,6 @@ from dotenv import load_dotenv
 import os
 import json
 import requests
-import prettytable
 import pandas as pd
 
 # Load env vars from .env file

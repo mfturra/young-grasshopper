@@ -1,6 +1,6 @@
 {
  "argv": [
-  "/Users/matheusturra/Documents/dev-ops/young-grasshopper/.nest/bin/python",
+  ".nest/bin/python3",
   "-m",
   "ipykernel_launcher",
   "-f",
