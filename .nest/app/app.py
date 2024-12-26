@@ -1,9 +1,12 @@
 import os
+import uuid
 import config
 import psycopg2
 from dotenv import load_dotenv
+from prelim_db import institutions, curriculums, students
 from configparser import ConfigParser
 from flask import Flask, render_template, request
+from flask_smorest import abort
 
 # def config(filename='database.ini', section='postgresql'):
 #     # create file parser
@@ -33,67 +36,129 @@ from flask import Flask, render_template, request
 # initialize app
 app = Flask(__name__)
 
-# sample university data
-island_locals = [
-    {
-        "local": "bank"
-    }
-]
-
 # route to main page
 @app.get('/')
 def home():
     return render_template('islandIndex.html')
 
+# get info on all institutions
+# future iteration: change route to '/'
 @app.get('/home')
-def get_locals():
-    return { "island_locals": island_locals }
+def get_all_institutions():
+    # future iteration: route user to islandIndex.html
+    return { "institutions": list(institutions.values()) }
 
-# route to private university workflow
+# get info on institution
+# future iteration: change route to '/'
+@app.get('/home/<string:institution_id>')
+def get_institution(institution_id):
+    try:
+        # future iteration: route user to webpage of welcome banner of institution
+        return institutions[institution_id]
+    except KeyError:
+        abort(404, message="Institution not found")
+
+## setup institution
+@app.post('/home')
+def create_institution():
+    inst_data = request.get_json()
+
+    # check if payload includes an institution_name
+    if "inst_name" not in inst_data:
+        abort(404, message="Ensure that 'instutition_name' is included in payload")
+    
+    # check if institution exists
+    for institution in institutions.values():
+        if inst_data["inst_name"] == institution["inst_name"]:
+            abort(400, message="Bad request. The institution that you requested already exists")
+        else:
+            # create institution
+            inst_id = uuid.uuid4().hex
+
+            new_inst = {**inst_data, "id": inst_id, "name": "inst_name"}
+            institutions[inst_id] = new_inst
+
+            # future iteration: route admin to webpage of new institution created
+            return new_inst, 201
+
+# create new curriculum at institution
+@app.post('/curriculum')
+def create_curriculum():
+    curriculum_data = request.get_json()
+    # check if all elements exist in JSON payload
+    if (
+        "curriculum_id" not in curriculum_data
+        or "curriculum_name" not in curriculum_data
+        or "semester_cost" not in curriculum_data
+        or "inst_id" not in curriculum_data
+    ):
+        abort(
+            400,
+            message = "Bad request. Ensure that the 'curriculum_id', 'inst_id', 'curriculum_name', 'semester_cost' is included in the JSON payload."
+        )
+    # iterature through curriculums and check for similar curriculum
+    for curriculum in curriculum.values():
+        if(
+            curriculum_data["curriculum_name"] == curriculum["curriculum_name"]
+            and curriculum_data["inst_id"] == curriculum["inst_id"]
+        ):
+            abort(404, message="Curriculum already exists")
+
+    else:
+        curriculum_id = uuid.uuid4().hex
+        curriculum = { **curriculum_data, "id": curriculum_id}
+        curriculums[curriculum_id] = curriculum
+
+        # future iteration: route admin to webpage of new curriculum added
+        return curriculum, 201
+    
+# get list of all curriculums to prospective students
+@app.get('/curriculum')
+def get_all_curriculums():
+
+    # future iteration: route user to webpage of all curriculums
+    return {curriculums: list(curriculums.items())}
+
+@app.get('/curriculum/<string:curriculum_id>')
+def get_curriculum_info(curriculum_id):
+    try:
+        return curriculums[curriculum_id]
+    except KeyError: 
+        abort(404, message="Curriculum not found")
+
+# route to user to public university main page
 @app.get('/public-university')
 def public_university():
     return render_template('universityMain/publicUniversity.html')
 
-@app.post('/public-university')
-def create_public_university():
-    request_data = request.get_json()
-    new_local = { "local": request_data['local'], "students": []}
-    island_locals.append(new_local)
-    return new_local, 201
-
-# route to public university workflow
+# route user to private university main page
 @app.get('/private-university')
 def private_university():
     return render_template('universityMain/privateUniversity.html')
 
-@app.post('/private-university')
-def create_private_university():
-    request_data = request.get_json()
-    new_local = { "local": request_data['local'], "students": []}
-    island_locals.append(new_local)
-    return new_local, 201
 
-# create new user for any university
-@app.post('/<string:university>/student-enrollment')
-def new_student_enrollment(university):
-    request_data = request.get_json()
-
-    for local in island_locals:
+# enroll new student at the respective institution
+@app.post('/<string:institution_id>/new-enrollment')
+def new_enrollment(institution_id):
+    for institution in institutions:
         # check if university exists
-        if local['local'] == university: 
-            new_student = { "name": request_data["name"], "email": request_data["email"]}
+        if institution[institution_id] != institution_id: 
+            abort(404, message="Institution not found")
+        else:
+            student_data = request.get_json()
+            student_id = uuid.uuid4().hex
+            new_student = { "id": student_id, "name": student_data["name"], "email": student_data["email"], "curriculum": student_data["curriculum"]}
             
             # store new student in the respective university
-            local["students"].append(new_student)
+            students[student_id] = new_student
 
             return new_student, 201
-    return {"message": "University not found"}, 404
+    abort(404, message="Institution not found")
 
-@app.get('/<string:university>/student-enrollment')
-def get_all_students(university):
-    # iterate through index and find matching local
-    for local in island_locals:
-        if local['local'] == university:
-            # once located, output results stored in data
-            return { "local": local["local"], "students": local["students"]}, 200 #, "students": students["pedro"]}
-    return {"message": "University not found"}, 404
+# identify all students that are enrolled at the respective university
+@app.get('/<string:institution_id>/enrolled')
+def get_all_students(institution_id):
+    for institution in institutions:
+        if institution['institution_id'] == institution_id:
+            return { "local": institution["institution_id"], "students": institution["students"]}, 200 #, "students": students["pedro"]}
+    abort(404, message="Institution not found")
