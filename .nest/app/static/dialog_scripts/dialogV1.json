@@ -3,113 +3,7 @@
     "welcomeIntro": "Welcome to the Island's Private University, where your journey to excellence begins!",
     "welcomePitch": "Here at the Island's Private University, we offer a tailored education experience designed to help you reach your fullest potential. Explore our small class sizes, personalized support, and scholarship opportunities as we guide you toward your goals.",
     "degreeIntro": "You're at a pivotal point in your journey where you need to choose wisely. Which degree would you like to pursue?",
-    "stemDegrees": {
-      "degree1": {
-        "name": "Computer Science",
-        "description": "Computer and information research scientists design innovative uses for new and existing technology. They study and solve complex problems in computing for business, science, medicine, and other fields.",
-        "yearlyCost": 40000,
-        "entryLevelEducation": "Masters",
-        "avgYearlySalary": 145080
-      },
-      "degree2": {
-        "name": "Electrical Engineering",
-        "description": "Electrical engineers design, develop, test, and supervise the manufacture of electrical equipment, such as electric motors, radar and navigation systems, communications systems, or power generation equipment. Electrical engineers also design the electrical systems of automobiles and aircraft.Electronics engineers design and develop electronic equipment, including broadcast and communications systems, such as portable music players and Global Positioning System (GPS) devices. Many also work in areas closely related to computer hardware.",
-        "yearlyCost": 40000,
-        "entryLevelEducation": "Bachelors",
-        "avgYearlySalary": 109010
-      },
-      "degree3": {
-        "name": "Mathematics",
-        "description": "Mathematicians and statisticians analyze data and apply computational techniques to solve problems. They present their findings from their analyses and discuss the data’s limitations in order to ensure accurate interpretation. They may present written reports, tables, and charts to team members, clients, and other users.",
-        "yearlyCost": 40000,
-        "avgYearlySalary": 104860 
-      },
-      "degree4": {
-        "name": "Biology",
-        "description": "Medical scientists form hypotheses and develop experiments. They study the causes of diseases and other health problems in a variety of ways by conducting research aimed at improving overall human health. They often use clinical trials and other investigative methods to reach their findings.",
-        "yearlyCost": 40000,
-        "entryLevelEducation": "Doctoral or professional degree",
-        "avgYearlySalary": 51430      
-      },
-      "degree5": {
-        "name": "Physics",
-        "description": "Physicists and astronomers study the interactions of matter and energy. Theoretical physicists and astronomers may study the nature of time or the origin of the universe. Some physicists design and perform experiments with sophisticated equipment such as particle accelerators, electron microscopes, and lasers.",
-        "yearlyCost": 40000,
-        "entryLevelEducation": "Doctoral or professional degree",
-        "avgYearlySalary": 149530
-      }
-    },
-    "businessDegrees": {
-      "degree6": {
-        "name": "Economics",
-        "description": "Economists conduct research, prepare reports, and evaluate issues related to monetary and fiscal policy. Economists analyze topics related to the production, distribution, and use (consumption) of goods and services. They work in or across a variety of fields, such as business, health, and the environment and may collect and analyze statistical data to make forecasts.",
-        "yearlyCost": 40000,
-        "entryLevelEducation": "Masters",
-        "avgYearlySalary": 115730
-      },
-      "degree7": {
-        "name": "Finance",
-        "description": "Financial analysts guide businesses and individuals in decisions about expending money for the purpose of generating profit. Financial analysts generally focus on trends affecting a specific geographical region, industry, or type of product and assess the performance of stocks, bonds, and other types of investments.",
-        "yearlyCost": 40000,
-        "entryLevelEducation": "Bachelor's",
-        "avgYearlySalary": 99890
-      },
-      "degree8": {
-        "name":"Marketing",
-        "description": "Market research analysts study consumer preferences, business conditions, and other factors to assess potential sales of a product or service. Analysts help determine a company’s position in the marketplace by researching their competitors and studying their marketing methods, prices, and sales.",
-        "yearlyCost": 40000,
-        "entryLevelEducation": "Bachelor's",
-        "avgYearlySalary": 74680
-      },
-      "degree9": {
-        "name": "Accounting",
-        "description": "Accountants and auditors prepare and examine financial records, identify potential areas of opportunity and risk, and provide solutions for businesses and individuals. They ensure that financial records are accurate, that financial and data risks are evaluated, and that taxes are paid properly. They also assess financial operations and work to help ensure that organizations run efficiently. ",
-        "yearlyCost": 40000,
-        "entryLevelEducation": "Bachelor's",
-        "avgYearlySalary": 79880
-      },
-      "degree10": {
-        "name": "Management",
-        "description": "Project management specialists coordinate the budget, schedule, and other details of a project. They lead and guide the work of technical staff. Project management specialists ensure that the plan estimates costs, identifies potential risks, and specifies a timeline for completion.",
-        "yearlyCost": 40000,
-        "entryLevelEducation": "Bachelor's",
-        "avgYearlySalary": 98580 
-      }
-    },
-    "humanityDegrees": {
-      "degree11":{
-        "name": "History",
-        "description": "Historians conduct research and analysis for governments, businesses, individuals, nonprofits, historical associations, and other organizations. Historians research, analyze, interpret, and write about the past by studying historical documents and sources.",
-        "yearlyCost": 40000,
-        "entryLevelEducation": "Masters",
-        "avgYearlySalary": 72890 
-      },
-      "degree12":{
-        "name": "English",
-        "description": "Writers and authors develop content for various types of media, including advertisements; blogs; books; magazines; and movie, play, and television scripts.",
-        "yearlyCost": 40000,
-        "entryLevelEducation": "Bachelor's",
-        "avgYearlySalary": 73690
-      },
-      "degree13":{
-        "name": "Philosophy",
-        "description": "",
-        "yearlyCost": 40000
-      },
-      "degree14":{
-        "name": "Psychology",
-        "description": "",
-        "yearlyCost": 40000
-      },
-      "degree15":{
-        "name": "Political Science",
-        "description": "",
-        "yearlyCost": 40000
-      }
-    }
-
-      }
-      "name": "Business",
+    "Business": {
       "description": "Generally a business degree would specialize in Finance, Accounting, or Business Management.",
       "yearlyCost": "$40k",
       "curriculum": {
@@ -129,8 +23,7 @@
         ]
       }
     },
-    "degree2": {
-      "name": "Technology",
+    "Technology": {
       "description": "Typically a Technology degree would specialize in Computer Science, Data Science, or Information Technology.",
       "yearlyCost": "$40k",
       "curriculum": {
@@ -150,8 +43,7 @@
         ]
       }
     },
-    "degree3": {
-      "name": "Social Sciences",
+    "Social Sciences": {
       "description": "Generally a social sciences degree would specialize in Psychology, Sociology, or Economics.",
       "yearlyCost": "$40k",
       "curriculum": {
@@ -169,17 +61,16 @@
             "Globalization and Society",
             "Criminology"
           ]
+        }
       }
-    }
-  },
+    },
   "publicUniversity": {
     "welcomeText": "Welcome the Island's Public University! You're at a pivotal point in your journey where you need to choose wisely. Depending on your selection you'll leave college with more or less dept. Which degree track would you like to pursue?",
     "welcomePitch": "At the Island's Public University, we provide diverse programs and resources to help you achieve your goals. Join our inclusive community to prepare for a bright and impactful future!",
     "degreeIntro": "You're at a pivotal point in your journey where you need to choose wisely. Which degree would you like to pursue?",
-    "degree1": {
-      "name": "Business",
+    "Business": {
       "description": "Generally a business degree would specialize in Finance, Accounting, or Business Management.",
-      "yearlyCost": "$25k",
+      "yearlyCost": "$40k",
       "curriculum": {
         "coreCourses": [
               "Principles of Management",
@@ -197,10 +88,9 @@
         ]
       }
     },
-    "degree2": {
-      "name": "Technology",
+    "Technology": {
       "description": "Typically a Technology degree would specialize in Computer Science, Data Science, or Information Technology.",
-      "yearlyCost": "$25k",
+      "yearlyCost": "$40k",
       "curriculum": {
         "coreCourses": [
             "Introduction to Programming",
@@ -218,10 +108,9 @@
         ]
       }
     },
-    "degree3": {
-      "name": "Social Sciences",
+    "Social Sciences": {
       "description": "Generally a social sciences degree would specialize in Psychology, Sociology, or Economics.",
-      "yearlyCost": "$25k",
+      "yearlyCost": "$40k",
       "curriculum": {
         "coreCourses": [
             "Introduction to Sociology",
@@ -237,7 +126,7 @@
             "Globalization and Society",
             "Criminology"
           ]
+        }
       }
-    }
   }
 }

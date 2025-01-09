@@ -1,51 +1,80 @@
 import os
 import uuid
 import config
+import secrets
 import psycopg2
 from dotenv import load_dotenv
 from prelim_db import institutions, curriculums, students
 from configparser import ConfigParser
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, flash
+from werkzeug.security import generate_password_hash, check_password_hash
 from flask_smorest import abort
-
-# def config(filename='database.ini', section='postgresql'):
-#     # create file parser
-#     parser = ConfigParser()
-
-#     # read config file
-#     parser.read(filename)
-
-#     # get section, default to postgresql
-#     db_params = {}
-#     if parser.has_section(section):
-#         params = parser.items(section)
-#         for param in params:
-#             db_params[param[0]] = param[1]
-#     else:
-#         raise Exception('Section {0} not found in {1} file'.format(section, filename))
-    
-#     return db_params
-
-# read config params
-# db_params = config()
-
-# # Use conn_string to connect to SQL DB
-# conn_string = f"postgresql+psycopg2://{db_params['user']}:{db_params['password']}@{db_params['host']}:{db_params['port']}/{db_params['database']}"
-# db_connection = psycopg2.connect(conn_string)
 
 # initialize app
 app = Flask(__name__)
 
-@app.get('/index')
-def user_main():
-    return render_template('user_login.html')
+# Load database.ini config
+config = ConfigParser()
+config.read('database.ini')
+
+app.secret_key = config['flask']['secret_key']
+
+# create students database
+students_db = []
+
+@app.route('/', methods=['GET', 'POST'])
+def home():
+    if request.method == 'POST':
+        command = request.form.get('command').strip().lower()
+        if command == 'create':
+            return redirect(url_for('create_account'))
+        elif command == 'login':
+            return redirect(url_for('student_login'))
+        else:
+            flash('Invalid command. Please type "create" or "login" to proceed.')
+
+    return render_template('home.html')
+
+
+@app.route('/create', methods=['GET', 'POST'])
+def create_account():
+    # check new account inputs
+    if request.method == 'POST':
+        first_name =    request.form.get('first_name')
+        last_name =     request.form.get('last_name')
+        email =         request.form.get('email')
+        password =      request.form.get('password')
+        
+        # password validation
+        if len(password) < 7:
+            flash('Password must be at least 7 characters long.')
+            return redirect(url_for('create_account'))
+        
+        # check for duplicate email in db
+        for student in students_db:
+            if student['email'] == email:
+                flash('An account with this email already exists.')
+                return redirect(url_for(create_account))
+
+        # hash password
+        hashed_password = generate_password_hash(password)
+
+        # store user info in db
+        students_db.append({
+            'user_id': uuid.uuid4().hex,
+            'first_name': first_name,
+            'last_name': last_name,
+            'email': email,
+            'password': hashed_password
+        })
+
+        flash('Account created successfully!')
+        return redirect(url_for('student_login'))
+
+    return render_template('create-account.html')
 
 @app.post('/login')
-def user_login():
-    user_data = request.form.to_dict()
-
-    if user_data['email'] == user_db['email']:
-        return 403, {'message': 'This email pertains to another user. Please create your account with another email.'}
+def student_login():
 
     user_data = {
         'first_name': user_data['first_name'],
@@ -57,49 +86,26 @@ def user_login():
     return redirect(url_for('home'))
     # return 
 
-# route to main page
-@app.get('/home')
+'''# route to main page
+@app.get('/home/<user_id>')
 def home():
+    def get_all_institutions():
+
     return render_template('islandIndex.html')
 
 # get info on all institutions
 # future iteration: change route to '/'
 @app.get('/')
-def get_all_institutions():
-    # future iteration: route user to islandIndex.html
-    return {"institutions": list(institutions.values())}
+
 
 # get info on institution
 @app.get('/<string:inst_id>')
 def get_institution(inst_id):
-    try:
-        # future iteration: route user to webpage of welcome banner of institution
-        return institutions[inst_id]
-    except KeyError:
-        return { "message":"Institution not found."}, 404
+    
 
 ## setup institution
 @app.post('/')
 def create_institution():
-    inst_data = request.get_json()
-
-    # check if payload includes an inst_name
-    if "inst_name" not in inst_data:
-        abort(404, message="Ensure that 'inst_name' is included in JSON payload.")
-    
-    # check if institution already exists
-    for institution in institutions.values():
-        if inst_data["inst_name"] == institution["inst_name"]:
-            return { "message":"Institution already exists."}, 403 #abort(400, message="Bad request. The institution that you requested already exists.")
-
-    # create institution
-    inst_id = uuid.uuid4().hex
-
-    new_inst = {**inst_data, "inst_id": inst_id, "name": "inst_name"}
-    institutions[inst_id] = new_inst
-
-    # future iteration: route admin to webpage of new institution created
-    return new_inst, 201
 
 # delete specific institution
 @app.delete('/<string:inst_id>')
@@ -220,4 +226,29 @@ def public_university():
 def private_university():
     return render_template('universityMain/privateUniversity.html')
 
+    
+# def config(filename='database.ini', section='postgresql'):
+#     # create file parser
+#     parser = ConfigParser()
 
+#     # read config file
+#     parser.read(filename)
+
+#     # get section, default to postgresql
+#     db_params = {}
+#     if parser.has_section(section):
+#         params = parser.items(section)
+#         for param in params:
+#             db_params[param[0]] = param[1]
+#     else:
+#         raise Exception('Section {0} not found in {1} file'.format(section, filename))
+    
+#     return db_params
+
+# read config params
+# db_params = config()
+
+# # Use conn_string to connect to SQL DB
+# conn_string = f"postgresql+psycopg2://{db_params['user']}:{db_params['password']}@{db_params['host']}:{db_params['port']}/{db_params['database']}"
+# db_connection = psycopg2.connect(conn_string)    
+    '''
