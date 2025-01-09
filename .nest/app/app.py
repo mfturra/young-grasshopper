@@ -6,7 +6,7 @@ import psycopg2
 from dotenv import load_dotenv
 from prelim_db import institutions, curriculums, students
 from configparser import ConfigParser
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash, session
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_smorest import abort
 
@@ -24,6 +24,18 @@ students_db = []
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
+    if 'student' in session:
+        student_email = session['student']
+
+        student = None
+        for s in students_db:
+            if s['email'] == student_email:
+                student = s
+                break
+        if student:
+            return render_template('island-index.html')
+    
+
     if request.method == 'POST':
         command = request.form.get('command').strip().lower()
         if command == 'create':
@@ -73,18 +85,44 @@ def create_account():
 
     return render_template('create-account.html')
 
-@app.post('/login')
+@app.route('/login', methods=['GET', 'POST'])
 def student_login():
+    if request.method == 'POST':
+        email = request.form.get('email')
+        password = request.form.get('password')
 
-    user_data = {
-        'first_name': user_data['first_name'],
-        'last_name': user_data['last_name'],
-        'email': user_data['email'],
-        'user_id': uuid.uuid4().hex
-    }
+        student = None
 
+        for s in students_db:
+            if s['email'] == email:
+                student = s
+                break
+        
+        if student and check_password_hash(student['password'], password):
+            session['student'] = student['email']
+            flash(f'Welcome back, {student['first_name']}!')
+            return redirect(url_for('home'))
+
+        flash('Invalid email or password.')
+        return redirect(url_for('student_login'))
+
+    return render_template('student-login.html')
+
+@app.route('/logout')
+def logout():
+    session.pop('student', None)
+    flash('You have been logged out.')
     return redirect(url_for('home'))
-    # return 
+
+# route to user to public university main page
+@app.get('/public-university')
+def public_university():
+    return render_template('universityMain/publicUniversity.html')
+
+# route user to private university main page
+@app.get('/private-university')
+def private_university():
+    return render_template('universityMain/privateUniversity.html')
 
 '''# route to main page
 @app.get('/home/<user_id>')

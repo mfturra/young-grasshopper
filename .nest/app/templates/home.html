@@ -23,8 +23,12 @@
     {% endwith %}
     
     <form method="POST">
-        <input type="text" name="command" placeholder="Type entry here" required>
-        <button type="submit">Enter</button>
+        <input type="text" name="command" placeholder="Enter command here" required>
+        <button type="submit">Submit</button>
     </form>
+
+    {% if 'student' in session %}
+        <p><a href="{ url_for('logout' )}">Logout</a></p>
+    {% endif %}
 </body>
 </html>
