@@ -11,9 +11,9 @@
     <p>Welcome Young Grasshopper!</p>
     <p>Please create an account to start your journey on Grasshopper Island!</p>
     
-    <form method="POST">
+    <form action="login" method="POST" id="action-form">
         <label for="first_name">First Name:</label>
-        <input type="text" name="first_name" required>
+        <input type="text" name="first_name" required autofocus>
 
         <label for="last_name">Last Name:</label>
         <input type="text" name="last_name" required>
@@ -23,8 +23,8 @@
 
         <label for="password">Password:</label>
         <input type="password" name="password" required>
-
-        <button type="submit">Create Account</button>
+        <p>To create your account type 'create'. To login, type 'login':</p>
+        <input type="text" name="command" placeholder="Enter command here" required>
     </form>
 
     {% with messages = get_flashed_messages() %}
@@ -36,6 +36,13 @@
             </ul>
         {% endif %}
     {% endwith %}
-
+    <script>
+        document.getElementById('action-form').addEventListener('keyup', function(event) {
+            if (event.key == 'Enter') {
+                event.preventDefault();
+                this.submit();
+            }
+        })
+    </script>
 </body>
 </html>

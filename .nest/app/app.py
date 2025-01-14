@@ -50,13 +50,23 @@ def home():
 
 @app.route('/create', methods=['GET', 'POST'])
 def create_account():
-    # check new account inputs
     if request.method == 'POST':
+        # acquire inputs from user
         first_name =    request.form.get('first_name')
         last_name =     request.form.get('last_name')
         email =         request.form.get('email')
         password =      request.form.get('password')
+        command = request.form.get('command').strip().lower()
         
+        # check user input for next step
+        if command == 'create':
+            flash('Account created successfully!')
+            return redirect(url_for('student_login'))
+        elif command == 'login':
+            return redirect(url_for('student_login'))
+        else:
+            flash('Invalid command. Please type "create" or "login" to proceed.')
+
         # password validation
         if len(password) < 7:
             flash('Password must be at least 7 characters long.')
@@ -81,7 +91,9 @@ def create_account():
         })
 
         flash('Account created successfully!')
-        return redirect(url_for('student_login'))
+        return redirect(url_for('home'))
+        
+        # return redirect(url_for('student_login'))
 
     return render_template('create-account.html')
 
@@ -90,18 +102,30 @@ def student_login():
     if request.method == 'POST':
         email = request.form.get('email')
         password = request.form.get('password')
+        command = request.form.get('command').strip().lower()
 
         student = None
 
+        # find student with respective email
         for s in students_db:
             if s['email'] == email:
                 student = s
                 break
         
+        # store student email and password in session
         if student and check_password_hash(student['password'], password):
+            # store student email in session
             session['student'] = student['email']
-            flash(f'Welcome back, {student['first_name']}!')
-            return redirect(url_for('home'))
+
+            # route student based on their input
+            if command == 'login':
+                flash(f'Welcome back, {student['first_name']}!')
+                return redirect(url_for('home'))
+            elif command == 'create':
+                return redirect(url_for('create'))
+            else:
+                flash('Invalid command. Please type "create" or "login" to proceed.')
+
 
         flash('Invalid email or password.')
         return redirect(url_for('student_login'))
@@ -110,9 +134,14 @@ def student_login():
 
 @app.route('/logout')
 def logout():
-    session.pop('student', None)
-    flash('You have been logged out.')
+    session.clear()
+    # flash('You have been logged out.')
     return redirect(url_for('home'))
+
+@app.route('/users', methods=['GET'])
+def get_all_users():
+    return {"users": students_db}, 200
+
 
 # route to user to public university main page
 @app.get('/public-university')

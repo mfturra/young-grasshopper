@@ -8,27 +8,36 @@
 <body>
     <h2>Grasshopper Island</h2>
     <p>Welcome Young Grasshopper!</p>
-    <p>Enter your login info to continue your journey through American University.</p>
     
     {% with messages = get_flashed_messages() %}
         {% if messages %}
-            <ul>
-                {% for message in messages %}
-                    <li>{{ message }}</li>
-                {% endfor %}
-            </ul>
+            {% for message in messages %}
+            <p>
+                {{ message }}
+            </p>
+            {% endfor %}
         {% endif %}
     {% endwith %}
+    <p>Enter your login info to continue your journey through American University.</p>
 
-    <form action="{{ url_for('student_login') }}" method="post">
+    <form action="/" method="post" id="action-form">
         <label for="email">Email</label>
         <input type="email" name="email" required>
         
         <label for="password">Password</label>
         <input type="password" name="password" required>
-
-        <button type="submit">Login</button>
+        <p>To login, type 'login'. If you don't have an account, create your account by typing 'create':</p>
+        <input type="text" name="command" placeholder="Enter command here" required>
     </form>
-    <p>To login, type 'login':</p>
+
+    <script>
+        document.getElementById('action-form').addEventListener('keyup', function(event) {
+            if (event.key == 'Enter') {
+                event.preventDefault();
+                this.submit();
+            }
+        })
+    </script>
+    
 </body>
 </html>
