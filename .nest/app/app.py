@@ -35,7 +35,6 @@ def home():
         if student:
             return render_template('island-index.html')
     
-
     if request.method == 'POST':
         command = request.form.get('command').strip().lower()
         if command == 'create':
@@ -56,27 +55,18 @@ def create_account():
         last_name =     request.form.get('last_name')
         email =         request.form.get('email')
         password =      request.form.get('password')
-        command = request.form.get('command').strip().lower()
-        
-        # check user input for next step
-        if command == 'create':
-            flash('Account created successfully!')
-            return redirect(url_for('student_login'))
-        elif command == 'login':
-            return redirect(url_for('student_login'))
-        else:
-            flash('Invalid command. Please type "create" or "login" to proceed.')
+        command =       request.form.get('command').strip().lower()
 
         # password validation
         if len(password) < 7:
             flash('Password must be at least 7 characters long.')
-            return redirect(url_for('create_account'))
+            return render_template('create-account.html', email=email)
         
         # check for duplicate email in db
         for student in students_db:
             if student['email'] == email:
                 flash('An account with this email already exists.')
-                return redirect(url_for(create_account))
+                return render_template('create-account.html', email=email)
 
         # hash password
         hashed_password = generate_password_hash(password)
@@ -90,11 +80,17 @@ def create_account():
             'password': hashed_password
         })
 
-        flash('Account created successfully!')
-        return redirect(url_for('home'))
-        
-        # return redirect(url_for('student_login'))
+        flash('Account created successfully! You can now log in.')
 
+        # check user input for next step
+        if command == 'create':
+            return redirect(url_for('student_login'))
+        elif command == 'login':
+            return redirect(url_for('student_login'))
+        else:
+            flash('Invalid command. Please type "create" or "login" to proceed.')
+            return redirect(url_for('create_account'))
+        
     return render_template('create-account.html')
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -116,19 +112,19 @@ def student_login():
         if student and check_password_hash(student['password'], password):
             # store student email in session
             session['student'] = student['email']
-
-            # route student based on their input
-            if command == 'login':
-                flash(f'Welcome back, {student['first_name']}!')
-                return redirect(url_for('home'))
-            elif command == 'create':
-                return redirect(url_for('create'))
-            else:
-                flash('Invalid command. Please type "create" or "login" to proceed.')
-
+            flash(f"Welcome back, {student['first_name']}!")
+            return redirect(url_for('home'))
 
         flash('Invalid email or password.')
-        return redirect(url_for('student_login'))
+
+        # route student based on their input
+        if command == 'create':
+            # flash("It looks like you don't have an account. Let's create one!")
+            return redirect(url_for('create_account'))
+        elif command == 'login':
+            return redirect(url_for('student-login'))
+        else:
+            flash('Invalid command. Please type "create" or "login" to proceed.')
 
     return render_template('student-login.html')
 

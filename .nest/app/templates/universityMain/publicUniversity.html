@@ -29,5 +29,8 @@
         <button class="degree-choice-btn" data-degree="degree3">Select Degree</button>
     </div>
     <p><a href="{{ url_for('home') }}">Back to the field</a></p>
+    {% if 'student' in session %}
+        <p><a href="{ url_for('logout' )}">Logout</a></p>
+    {% endif %}
 </body>
 </html>
