@@ -11,7 +11,8 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_smorest import abort
 
 # initialize app
-app = Flask(__name__)
+app = Flask(__name__) 
+# flask --app app-v1 run
 
 # Load database.ini config
 config = ConfigParser()
@@ -64,10 +65,23 @@ def delete_institution(inst_id):
     except KeyError:
         abort(404, message="Institution was not found.")
 
-@app.put('/institutions')
-def update_inst():
+@app.put('/institutions/<string:inst_id>')
+def update_inst(inst_id):
+    inst_data = request.get_json()
+    if (
+        'inst_type' not in inst_data
+        or 'inst_name' not in inst_data
+        or "inst_cost" not in inst_data
+        or "welcome_text" not in inst_data
+    ):
+        abort(
+            404,
+            message="Bad request. Ensure that 'inst_type', 'inst_name', 'inst_cost', and 'welcome_text' are included in the payload."
+        )
     try:
-        pass
+        inst = institutions[inst_id]
+        inst |= inst_data # merge dictionary
+        return inst, 201
     except KeyError:
         abort(404, message="Institution was not found.")
 
@@ -82,6 +96,13 @@ def get_institution(inst_id):
 @app.get('/degrees')
 def get_all_degrees():
     return { "degrees": list(degrees.items())}
+
+@app.get('/degrees/<string:degree_id>')
+def get_one_degree(degree_id):
+    try:
+        return degrees[degree_id]
+    except KeyError:
+        abort(404, "Degree was not found")
 
 @app.post('/degrees')
 def create_degree():
@@ -125,21 +146,41 @@ def delete_degree(degree_id):
     except KeyError:
         abort(404, message='Degree was not found')
         
-@app.get('/degrees/<string:degree_id>')
-def get_one_degree(degree_id):
+@app.put('/degrees/<string:degree_id>')
+def update_degree(degree_id):
+    degree_data = request.get_json()
+
+    # check payload for all required items
+    if (
+        "degree_track" not in degree_data
+        or "degree_name" not in degree_data
+        or "degree_description" not in degree_data
+        or "inst_id" not in degree_data
+        or "inst_cost" not in degree_data
+    ):
+        abort(
+            400,
+            message="Ensure that 'degree_track', 'degree_name', 'degree_description', 'inst_id', and 'inst_cost' is in your JSON payload."
+        )
+    
     try:
-        return degrees[degree_id]
+        degree = degrees[degree_id]
+        degree |= degree_data
+        return degree, 201 
     except KeyError:
-        abort(404, "Degree was not found")
+        abort(
+            400,
+            message="Degree of interest was not found."
+        )
 
 
 # get list of all curriculums to prospective students
-@app.get('/curriculum')
+@app.get('/curriculums')
 def get_all_curriculums():
     return {"curriculums": list(curriculums.items())}
 
 # get list of only one curriculum
-@app.get('/curriculum/<string:curriculum_id>')
+@app.get('/curriculums/<string:curriculum_id>')
 def get_curriculum_info(curriculum_id):
     try:
         return curriculums[curriculum_id]
@@ -147,19 +188,23 @@ def get_curriculum_info(curriculum_id):
         abort(404, message="Curriculum not found.")
 
 # create new curriculum at institution
-@app.post('/curriculum')
+@app.post('/curriculums')
 def create_curriculum():
     curriculum_data = request.get_json()
     
     # check if all elements exist in JSON payload
     if (
         "curriculum_name" not in curriculum_data
-        or "semester_cost" not in curriculum_data
+        or "curriculum_desc" not in curriculum_data
+        or "curriculum_difficulty" not in curriculum_data
+        or "credit_hours" not in curriculum_data
+        or "course_type" not in curriculum_data
+        or "curriculum_id" not in curriculum_data
         or "inst_id" not in curriculum_data
     ):
         abort(
             400,
-            message = "Bad request. Ensure that the 'curriculum_id', 'inst_id', 'curriculum_name', 'semester_cost' is included in the JSON payload."
+            message = "Bad request. Ensure that the 'curriculum_name', 'curriculum_desc', 'curriculum_difficulty', 'credit_hours', 'course_type', 'curriculum_id', and 'inst_id' is included in the JSON payload."
         )
 
     if curriculum_data["inst_id"] not in institutions:
@@ -181,7 +226,7 @@ def create_curriculum():
     return curriculum, 201
 
 # delete curriculum
-@app.delete('/curriculum/<string:curriculum_id>')
+@app.delete('/curriculums/<string:curriculum_id>')
 def delete_curriculum(curriculum_id):
     try:
         del curriculums[curriculum_id]
@@ -189,13 +234,24 @@ def delete_curriculum(curriculum_id):
     except KeyError:
         abort(404, message="Curriculum not found.")
 
-@app.put('/curriculum/<string:curriculum_id>')
+@app.put('/curriculums/<string:curriculum_id>')
 def update_curriculum(curriculum_id):
     curriculum_data = request.get_json()
 
     # check to see if "curriculum_name" and "semester_cost" was included in JSON payload
-    if "curriculum_name" not in curriculum_data and "semester_cost" not in curriculum_data:
-        return {"message": "Curriculum not included in data set."}
+    if (
+        "curriculum_name" not in curriculum_data
+        or "curriculum_desc" not in curriculum_data
+        or "curriculum_difficulty" not in curriculum_data
+        or "credit_hours" not in curriculum_data
+        or "course_type" not in curriculum_data
+        or "curriculum_id" not in curriculum_data
+        or "inst_id" not in curriculum_data
+    ):
+        abort(
+            400,
+            message = "Bad request. Ensure that the 'curriculum_name', 'curriculum_desc', 'curriculum_difficulty', 'credit_hours', 'course_type', 'curriculum_id', and 'inst_id' is included in the JSON payload."
+            )
     try:
         curriculum = curriculums[curriculum_id]
         curriculum |= curriculum_data
@@ -204,31 +260,31 @@ def update_curriculum(curriculum_id):
     except KeyError:
         return {"message":"Curriculum was not found."}
 
-# enroll new student at the respective institution
-@app.post('/<string:institution_id>/new-enrollment')
-def new_enrollment(institution_id):
-    for institution in institutions:
-        # check if university exists
-        if institution[institution_id] != institution_id: 
-            abort(404, message="Institution not found")
-        else:
-            student_data = request.get_json()
-            student_id = uuid.uuid4().hex
-            new_student = { "id": student_id, "name": student_data["name"], "email": student_data["email"], "curriculum": student_data["curriculum"]}
+# # enroll new student at the respective institution
+# @app.post('/<string:institution_id>/new-enrollment')
+# def new_enrollment(institution_id):
+#     for institution in institutions:
+#         # check if university exists
+#         if institution[institution_id] != institution_id: 
+#             abort(404, message="Institution not found")
+#         else:
+#             student_data = request.get_json()
+#             student_id = uuid.uuid4().hex
+#             new_student = { "id": student_id, "name": student_data["name"], "email": student_data["email"], "curriculum": student_data["curriculum"]}
             
-            # store new student in the respective university
-            students[student_id] = new_student
+#             # store new student in the respective university
+#             students[student_id] = new_student
 
-            return new_student, 201
-    abort(404, message="Institution not found")
+#             return new_student, 201
+#     abort(404, message="Institution not found")
 
-# identify all students that are enrolled at the respective university
-@app.get('/<string:institution_id>/enrolled')
-def get_all_students(institution_id):
-    for institution in institutions:
-        if institution['institution_id'] == institution_id:
-            return { "local": institution["institution_id"], "students": institution["students"]}, 200 #, "students": students["pedro"]}
-    abort(404, message="Institution not found")
+# # identify all students that are enrolled at the respective university
+# @app.get('/<string:institution_id>/enrolled')
+# def get_all_students(institution_id):
+#     for institution in institutions:
+#         if institution['institution_id'] == institution_id:
+#             return { "local": institution["institution_id"], "students": institution["students"]}, 200 #, "students": students["pedro"]}
+#     abort(404, message="Institution not found")
 
 @app.route('/logout')
 def logout():
