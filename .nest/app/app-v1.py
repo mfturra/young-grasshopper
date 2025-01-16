@@ -19,171 +19,123 @@ config.read('database.ini')
 
 app.secret_key = config['flask']['secret_key']
 
-# create students database
-students_db = []
-
-@app.route('/', methods=['GET', 'POST'])
-def home():
-    if 'student' in session:
-        student_email = session['student']
-
-        student = None
-        for s in students_db:
-            if s['email'] == student_email:
-                student = s
-                break
-        if student:
-            return render_template('island-index.html')
-    
-    if request.method == 'POST':
-        command = request.form.get('command').strip().lower()
-        if command == 'create':
-            return redirect(url_for('create_account'))
-        elif command == 'login':
-            return redirect(url_for('student_login'))
-        else:
-            flash('Invalid command. Please type "create" or "login" to proceed.')
-
-    return render_template('home.html')
-
-
-@app.route('/create', methods=['GET', 'POST'])
-def create_account():
-    if request.method == 'POST':
-        # acquire inputs from user
-        first_name =    request.form.get('first_name')
-        last_name =     request.form.get('last_name')
-        email =         request.form.get('email')
-        password =      request.form.get('password')
-        command =       request.form.get('command').strip().lower()
-
-        # password validation
-        if len(password) < 7:
-            flash('Password must be at least 7 characters long.')
-            return render_template('create-account.html', email=email)
-        
-        # check for duplicate email in db
-        for student in students_db:
-            if student['email'] == email:
-                flash('An account with this email already exists.')
-                return render_template('create-account.html', email=email)
-
-        # hash password
-        hashed_password = generate_password_hash(password)
-
-        # store user info in db
-        students_db.append({
-            'user_id': uuid.uuid4().hex,
-            'first_name': first_name,
-            'last_name': last_name,
-            'email': email,
-            'password': hashed_password
-        })
-
-        flash('Account created successfully! You can now log in.')
-
-        # check user input for next step
-        if command == 'create':
-            return redirect(url_for('student_login'))
-        elif command == 'login':
-            return redirect(url_for('student_login'))
-        else:
-            flash('Invalid command. Please type "create" or "login" to proceed.')
-            return redirect(url_for('create_account'))
-        
-    return render_template('create-account.html')
-
-@app.route('/login', methods=['GET', 'POST'])
-def student_login():
-    if request.method == 'POST':
-        email = request.form.get('email')
-        password = request.form.get('password')
-        command = request.form.get('command').strip().lower()
-
-        student = None
-
-        # find student with respective email
-        for s in students_db:
-            if s['email'] == email:
-                student = s
-                break
-        
-        # store student email and password in session
-        if student and check_password_hash(student['password'], password):
-            # store student email in session
-            session['student'] = student['email']
-            flash(f"Welcome back, {student['first_name']}!")
-            return redirect(url_for('home'))
-
-        flash('Invalid email or password.')
-
-        # route student based on their input
-        if command == 'create':
-            # flash("It looks like you don't have an account. Let's create one!")
-            return redirect(url_for('create_account'))
-        elif command == 'login':
-            return redirect(url_for('student-login'))
-        else:
-            flash('Invalid command. Please type "create" or "login" to proceed.')
-
-    return render_template('student-login.html')
-
-@app.route('/logout')
-def logout():
-    session.clear()
-    # flash('You have been logged out.')
-    return redirect(url_for('home'))
-
-@app.route('/users', methods=['GET'])
-def get_all_users():
-    return {"users": students_db}, 200
-
-
-# route to user to public university main page
-@app.get('/public-university')
-def public_university():
-    return render_template('universityMain/publicUniversity.html')
-
-# route user to private university main page
-@app.get('/private-university')
-def private_university():
-    return render_template('universityMain/privateUniversity.html')
-
-'''# route to main page
-@app.get('/home/<user_id>')
-def home():
-    def get_all_institutions():
-
-    return render_template('islandIndex.html')
-
 # get info on all institutions
-# future iteration: change route to '/'
-@app.get('/')
-
-
-# get info on institution
-@app.get('/<string:inst_id>')
-def get_institution(inst_id):
-    
+@app.get('/institutions')
+def inst_home():
+    return { "institutions": list(institutions.values())}
 
 ## setup institution
-@app.post('/')
+@app.post('/institutions')
 def create_institution():
+    inst_data = request.get_json()
+
+    # check if all elements are included in json payload
+    if (
+        "inst_type" not in inst_data
+        or "inst_name" not in inst_data
+        or "inst_cost" not in inst_data
+        or "welcome_text" not in inst_data
+    ):
+        abort(
+            400,
+            message="Bad request. Ensure that 'inst_type', 'inst_name', 'inst_cost', and 'welcome_text' are included in the payload."
+        )
+    for inst in institutions.values():
+        if (
+            inst_data["inst_type"] == inst["inst_type"]
+            and inst_data["inst_name"] == inst["inst_name"]
+            and inst_data["inst_cost"] == inst["inst_cost"]
+        ):
+            abort(
+                404,
+                message="Institution already exists.")
+
+    inst_id = uuid.uuid4().hex
+    inst = {**inst_data, "id": inst_id}
+    institutions[inst_id] = inst
+    return inst, 201
 
 # delete specific institution
-@app.delete('/<string:inst_id>')
+@app.delete('/institutions/<string:inst_id>')
 def delete_institution(inst_id):
     try:
         del institutions[inst_id]
         return {"message": "Institution successfully deleted."}
     except KeyError:
-        return {"message": "Institution not found."}
+        abort(404, message="Institution was not found.")
+
+@app.put('/institutions')
+def update_inst():
+    try:
+        pass
+    except KeyError:
+        abort(404, message="Institution was not found.")
+
+# get info on single institution
+@app.get('/institutions/<string:inst_id>')
+def get_institution(inst_id):
+    try:
+        return institutions[inst_id]
+    except KeyError:
+        abort(404, message="Institution was not found.")
+
+@app.get('/degrees')
+def get_all_degrees():
+    return { "degrees": list(degrees.items())}
+
+@app.post('/degrees')
+def create_degree():
+    degree_data = request.get_json()
+
+    # check payload for all required items
+    if (
+        "degree_track" not in degree_data
+        or "degree_name" not in degree_data
+        or "degree_description" not in degree_data
+        or "inst_id" not in degree_data
+        or "inst_cost" not in degree_data
+    ):
+        abort(
+            400,
+            message="Ensure that 'degree_track', 'degree_name', 'degree_description', 'inst_id', and 'inst_cost' is in your JSON payload."
+        )
+    
+    # check for duplicate degree entries
+    for degree in degrees.values():
+        if (
+            degree_data["degree_name"] == degree["degree_name"]
+            and degree_data["degree_track"] == degree["degree_track"]
+            and degree_data["inst_id"] == degree["inst_id"]
+        ):
+            abort(
+                404,
+                message="Degree has already been created."
+                )
+            
+    degree_id = uuid.uuid4().hex
+    degree = {**degree_data, "id": degree_id}
+    degrees[degree_id] = degree
+    return degree, 201
+
+@app.delete('/degrees/<string:degree_id>')
+def delete_degree(degree_id):
+    try:
+        del degrees[degree_id]
+        return {"message": "Degree was successfully deleted."}
+    except KeyError:
+        abort(404, message='Degree was not found')
+        
+@app.get('/degrees/<string:degree_id>')
+def get_one_degree(degree_id):
+    try:
+        return degrees[degree_id]
+    except KeyError:
+        abort(404, "Degree was not found")
+
 
 # get list of all curriculums to prospective students
 @app.get('/curriculum')
 def get_all_curriculums():
-
-    # future iteration: route user to webpage of all curriculums
     return {"curriculums": list(curriculums.items())}
 
 # get list of only one curriculum
@@ -278,17 +230,11 @@ def get_all_students(institution_id):
             return { "local": institution["institution_id"], "students": institution["students"]}, 200 #, "students": students["pedro"]}
     abort(404, message="Institution not found")
 
-
-# route to user to public university main page
-@app.get('/public-university')
-def public_university():
-    return render_template('universityMain/publicUniversity.html')
-
-# route user to private university main page
-@app.get('/private-university')
-def private_university():
-    return render_template('universityMain/privateUniversity.html')
-
+@app.route('/logout')
+def logout():
+    session.clear()
+    # flash('You have been logged out.')
+    return redirect(url_for('home'))
     
 # def config(filename='database.ini', section='postgresql'):
 #     # create file parser
@@ -313,5 +259,4 @@ def private_university():
 
 # # Use conn_string to connect to SQL DB
 # conn_string = f"postgresql+psycopg2://{db_params['user']}:{db_params['password']}@{db_params['host']}:{db_params['port']}/{db_params['database']}"
-# db_connection = psycopg2.connect(conn_string)    
-    '''
+# db_connection = psycopg2.connect(conn_string)

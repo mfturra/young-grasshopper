@@ -3,10 +3,10 @@ institutions = {
 
     }
 
-curriculums = {
+degrees = {
 
 }
 
-students = {
+curriculums = {
     
 }
