@@ -10,6 +10,7 @@ blp = Blueprint("degrees", __name__, description="Operations on degrees")
 
 @blp.route('/degrees/<string:degree_id>')
 class Degree(MethodView):
+    @blp.response(200, DegreeSchema)
     def get(self, degree_id):
         try:
             return degrees[degree_id]
@@ -22,7 +23,11 @@ class Degree(MethodView):
         except KeyError:
             abort(404, message="Degree was not found.")
 
+    # check if payload includes all elements
     @blp.arguments(DegreeUpdateSchema)
+    
+    # config success response type
+    @blp.response(200, DegreeUpdateSchema)
     def put(self, degree_data, degree_id):
         try:
             degree = degrees[degree_id]
@@ -33,12 +38,16 @@ class Degree(MethodView):
 
 @blp.route("/degrees")
 class DegreeList(MethodView):
+    # config success response type
+    @blp.response(200, DegreeSchema)
     def get(self):
-        return {"degrees": list(degrees.values())}
+        return degrees.values()
     
-    # check payload for all required items
+    # check if payload includes all elements
     @blp.arguments(DegreeSchema)
     
+    # config success response type
+    @blp.response(201, DegreeSchema)
     def post(self, degree_data):        
         # check for duplicate degree entries
         for degree in degrees.values():

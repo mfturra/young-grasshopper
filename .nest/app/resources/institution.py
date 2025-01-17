@@ -10,6 +10,8 @@ blp = Blueprint("institutions", __name__, description="Operations on institution
 
 @blp.route("/institutions/<string:inst_id>")
 class Institution(MethodView):
+    # config success response type
+    @blp.response(200, InstitutionSchema)
     def get(self, inst_id):
         try:
             # future iteration: route user to webpage of welcome banner of institution
@@ -23,8 +25,14 @@ class Institution(MethodView):
             return {"message": "Institution successfully deleted."}
         except KeyError:
             return {"message": "Institution not found."}
-        
-    blp.arguments(InstitutionUpdateSchema)
+    
+    
+
+    # check if payload includes all elements
+    @blp.arguments(InstitutionUpdateSchema)
+    
+    # config success response type
+    @blp.response(200, InstitutionUpdateSchema)
     def put(self, inst_data, inst_id):
         try:
             inst = institutions[inst_id]
@@ -35,13 +43,16 @@ class Institution(MethodView):
         
 @blp.route("/institutions")
 class InstitutionList(MethodView):
+    @blp.response(200, InstitutionSchema(many=True))
     def get(self):
-        return {"institutions": list(institutions.values())}
+        return institutions.values()
     
+    # check if payload includes all elements
     @blp.arguments(InstitutionSchema)
-    def post(self, inst_data):
 
-        # check if payload includes an inst_name
+    # config success response type
+    @blp.response(201, InstitutionSchema)
+    def post(self, inst_data):
         for inst in institutions.values():
             if (
                 inst_data["inst_type"] == inst["inst_type"]

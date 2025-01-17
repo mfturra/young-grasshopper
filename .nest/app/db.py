@@ -1,12 +1,3 @@
-# sample university data
-institutions = {
+from flask_sqlalchemy import SQLAlchemy
 
-    }
-
-degrees = {
-
-}
-
-curriculums = {
-    
-}
+db = SQLAlchemy()
