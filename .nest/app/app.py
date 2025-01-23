@@ -4,7 +4,7 @@ import config
 import secrets
 import psycopg2
 from dotenv import load_dotenv
-from prelim_db import institutions, degrees, curriculums
+from db import institutions, degrees, curriculums
 from configparser import ConfigParser
 from flask import Flask, render_template, request, redirect, url_for, flash, session
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -44,7 +44,13 @@ def home():
         else:
             flash('Invalid command. Please type "create" or "login" to proceed.')
 
-    return render_template('home.html')
+    return render_template('home-template.html',
+                            page_title = "Grasshopper Island",
+                            game_location = "Unknown, Massachusetts",
+                            introduction = "Welcome Young Grasshopper! Grasshopper Island is a text-based game designed to simulate attending a four-year university without the expenses associated with it.  Here you'll be able to explore how small decisions about your degrees, loans types, and employment opportunities can compound to make you better or worse suited to pay off your student loan.",
+                            sub_title = "Create Your Account",
+                            call_to_action = "Please create an account or login to start your journey on Grasshopper Island!",
+                            action_step = "To create your account type 'create'. To login, type 'login':")
 
 
 @app.route('/create', methods=['GET', 'POST'])
@@ -60,13 +66,13 @@ def create_account():
         # password validation
         if len(password) < 7:
             flash('Password must be at least 7 characters long.')
-            return render_template('create-account.html', email=email)
+            return render_template('create-account-template.html', email=email)
         
         # check for duplicate email in db
         for student in students_db:
             if student['email'] == email:
                 flash('An account with this email already exists.')
-                return render_template('create-account.html', email=email)
+                return render_template('create-account-template.html', email=email)
 
         # hash password
         hashed_password = generate_password_hash(password)
@@ -91,7 +97,14 @@ def create_account():
             flash('Invalid command. Please type "create" or "login" to proceed.')
             return redirect(url_for('create_account'))
         
-    return render_template('create-account.html')
+    return render_template(
+        'create-account-template.html',
+        page_title = "Grasshopper Island",
+        main_title = "Grasshopper Island",
+        sub_title = "Create Your Account",
+        call_to_action = "Please create an account to start your journey on Grasshopper Island!",
+        action_step = "To create your account type 'create'. To login, type 'login':"
+        )
 
 @app.route('/login', methods=['GET', 'POST'])
 def student_login():
@@ -122,11 +135,19 @@ def student_login():
             # flash("It looks like you don't have an account. Let's create one!")
             return redirect(url_for('create_account'))
         elif command == 'login':
-            return redirect(url_for('student-login'))
+            return redirect(url_for('student_login'))
         else:
             flash('Invalid command. Please type "create" or "login" to proceed.')
 
-    return render_template('student-login.html')
+    return render_template(
+        'student-login-template.html',
+        page_title = "Login",
+        main_title = "Grasshopper Island",
+        greeting = "Welcome Young Grasshopper!",
+        sub_title = "Create Your Account",
+        call_to_action = "Enter your login info to continue your journey through American University.",
+        login_action_step = "To login, type 'login'. If you don't have an account, create your account type 'create':"
+        )
 
 @app.route('/logout')
 def logout():

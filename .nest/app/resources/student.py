@@ -3,7 +3,7 @@ from flask import render_template, request
 from flask.views import MethodView
 from flask_smorest import Blueprint, abort 
 
-from prelim_db import students
+from db import students
 
 blp = Blueprint("Students", __name__, description="Operations on students")
 

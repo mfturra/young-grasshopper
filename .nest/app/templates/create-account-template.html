@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{{ page_title }}</title>
+    </head>
+    <body>
+        <h2>{{ main_title }}</h2>
+        <h3>{{ sub_title }}</h3>
+        <p>{{ action_step }}</p>
+    
+        <form action="/create" method="POST" id="action-form">
+            <label for="first_name">First Name:</label>
+            <input type="text" name="first_name" required autofocus>
+    
+            <label for="last_name">Last Name:</label>
+            <input type="text" name="last_name" required>
+    
+            <label for="email">Email:</label>
+            <input type="email" name="email" required>
+    
+            <label for="password">Password:</label>
+            <input type="password" name="password" required>
+            <p>To create your account type 'create'. To login, type 'login':</p>
+            <input type="text" name="command" placeholder="Enter command here" required>
+        </form>
+        
+        <script>
+            document.getElementById('action-form').addEventListener('keyup', function(event) {
+                if (event.key == 'Enter') {
+                    event.preventDefault();
+                    this.submit();
+                }
+            })
+        </script>
+    </body>
+</html>

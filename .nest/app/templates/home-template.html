@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grasshopper Island</title>
+    <title>{{ page_title }}</title>
 </head>
 <body>
-    <h2>Grasshopper Island</h2>
-    <h3>Location: Unknown, Massachusetts</h3>
-    <p>Welcome Young Grasshopper! Grasshopper Island is a text-based game designed to simulate attending a four-year university without the expenses associated with it.  Here you'll be able to explore how small decisions about your degrees, loans types, and employment opportunities can compound to make you better or worse suited to pay off your student loan.</p>
-    <p>Please create an account or login to start your journey on Grasshopper Island!</p>
-    <p>To create your account type 'create'. To login, type 'login':</p>
+    <h2>{{ page_title }}</h2>
+    <h3>{{ game_location }}</h3>
+    <p>{{ introduction }}</p>
+    <p>{{ call_to_action }}</p>
+    <p>{{ action_step }}</p>
     
     {% with messages = get_flashed_messages() %}
         {% if messages %}

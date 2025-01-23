@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>{{ page_title }}</title>
 </head>
 <body>
-    <h2>Grasshopper Island</h2>
-    <p>Welcome Young Grasshopper!</p>
+    <h2>{{ main_title }}</h2>
+    <p>{{ greeting }}</p>
     
     {% with messages = get_flashed_messages() %}
         {% if messages %}
@@ -18,7 +18,7 @@
             {% endfor %}
         {% endif %}
     {% endwith %}
-    <p>Enter your login info to continue your journey through American University.</p>
+    <p>{{ call_to_action }}</p>
 
     <form action="/login" method="post" id="action-form">
         <label for="email">Email</label>
@@ -26,7 +26,7 @@
         
         <label for="password">Password</label>
         <input type="password" name="password" required>
-        <p>To login, type 'login'. If you don't have an account, create your account by typing 'create':</p>
+        <p>{{ login_action_step }}</p>
         <input type="text" name="command" placeholder="Enter command here" required>
     </form>
 
