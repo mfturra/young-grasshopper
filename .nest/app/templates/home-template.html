@@ -12,7 +12,7 @@
     <p>{{ call_to_action }}</p>
     <p>{{ action_step }}</p>
     
-    {% with messages = get_flashed_messages() %}
+    <!-- {% with messages = get_flashed_messages() %}
         {% if messages %}
             <ul>
                 {% for message in messages %}
@@ -20,7 +20,7 @@
                 {% endfor %}
             </ul>
         {% endif %}
-    {% endwith %}
+    {% endwith %} -->
     
     <form action="/" method="POST" id="action-form">
         <input type="text" name="command" placeholder="Enter command here" required autofocus>

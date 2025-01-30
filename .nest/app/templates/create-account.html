@@ -3,13 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grasshopper Island</title>
+    <title>{{ page_title }}</title>
 </head>
 <body>
-    <h2>Grasshopper Island</h2>
-    <h3>Create Your Account</h3>
-    <p>Welcome Young Grasshopper!</p>
-    <p>Please create an account to start your journey on Grasshopper Island!</p>
+    <h2>{{ main_title }}</h2>
+    <h3>{{ sub_title }}</h3>
+    <p>{{ call_to_action}}</p>
     
     <form action="/create" method="POST" id="action-form">
         <label for="first_name">First Name:</label>
@@ -23,11 +22,11 @@
 
         <label for="password">Password:</label>
         <input type="password" name="password" required>
-        <p>To create your account type 'create'. To login, type 'login':</p>
+        <p>{{ action_step }}</p>
         <input type="text" name="command" placeholder="Enter command here" required>
     </form>
 
-    {% with messages = get_flashed_messages() %}
+    <!-- {% with messages = get_flashed_messages() %}
         {% if messages %}
             <ul>
                 {% for message in messages %}
@@ -35,7 +34,7 @@
                 {% endfor %}
             </ul>
         {% endif %}
-    {% endwith %}
+    {% endwith %} -->
     <script>
         document.getElementById('action-form').addEventListener('keyup', function(event) {
             if (event.key == 'Enter') {

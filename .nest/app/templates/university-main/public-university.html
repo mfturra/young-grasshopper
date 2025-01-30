@@ -5,11 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- <script src="./public/js/loadUniversity.js"></script> -->
     <script src="../../js/loadUniversity.js" defer></script>
-    <title>Public University</title>
+    <title>{{ uni_type }}</title>
 </head>
 <body class="public-university">
-    <h1>Public University</h1>
-    <p id="welcomeText"></p>
+    <h1>{{ uni_type }}</h1>
+    <p>{{ public_intro }}</p>
+    <p>{{ general_tracks_intro }}</p>
+
     <div id="degree1">
         <h2 class="degree-name"></h2>
         <p class="degree-description"></p>

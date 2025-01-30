@@ -3,21 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" href="grasshopper-style.css"> -->
-    <title>{{ page_title }}</title>
+    <!-- <script src="../../js/loadUniversity.js" defer></script> -->
+    <title>{{ uni_type }}</title>
 </head>
-
 <body>
-    <!-- <script type="module" src="./public/js/basic.js"></script> -->
-    <h2>{{ introduction }}</h2>
-    <p>{{ edu_exploration }}</p>
-    <p>{{ edu_options }}</p>
+    <h1>{{ uni_type }}</h1>
+    <p>{{ public_intro }}</p>
+    <p>{{ general_tracks_intro }}</p>
+    <p>To return back to the island home type 'home':</p>
+    <tr>
+        <th>{{ business_tracks }}</th>
+        <th>{{ social_sciences_tracks }}</th>
+        <th>{{ stem_tracks }}</th>
+    </tr>
+    <p>{{ track_query }}</p>
+
     
     {% if 'student' in session %}
         <p>{{ logout_option }}</p>
     {% endif %}
 
-    <form action="/island-home" method="POST" id="action-form">
+    <form action="/university-type" method="POST" id="action-form">
         <input type="text" name="command" placeholder="Enter command here" required autofocus>
     </form>
 
@@ -30,5 +36,4 @@
         })
     </script>
 </body>
-
 </html>

@@ -33,7 +33,7 @@ def home():
                 student = s
                 break
         if student:
-            return render_template('island-index.html')
+            return redirect(url_for('island_home'))
     
     if request.method == 'POST':
         command = request.form.get('command').strip().lower()
@@ -62,17 +62,18 @@ def create_account():
         email =         request.form.get('email')
         password =      request.form.get('password')
         command =       request.form.get('command').strip().lower()
+        
 
         # password validation
         if len(password) < 7:
             flash('Password must be at least 7 characters long.')
-            return render_template('create-account-template.html', email=email)
+            return render_template('create-account.html', email=email)
         
         # check for duplicate email in db
         for student in students_db:
             if student['email'] == email:
                 flash('An account with this email already exists.')
-                return render_template('create-account-template.html', email=email)
+                return render_template('create-account.html', email=email)
 
         # hash password
         hashed_password = generate_password_hash(password)
@@ -92,26 +93,25 @@ def create_account():
         if command == 'create':
             return redirect(url_for('student_login'))
         elif command == 'login':
-            return redirect(url_for('student_login'))
+            return redirect(url_for('home'))
         else:
             flash('Invalid command. Please type "create" or "login" to proceed.')
             return redirect(url_for('create_account'))
         
     return render_template(
-        'create-account-template.html',
+        'create-account.html',
         page_title = "Grasshopper Island",
         main_title = "Grasshopper Island",
         sub_title = "Create Your Account",
         call_to_action = "Please create an account to start your journey on Grasshopper Island!",
-        action_step = "To create your account type 'create'. To login, type 'login':"
-        )
+        action_step = "To create your account type 'create'. To login, type 'login':")
 
 @app.route('/login', methods=['GET', 'POST'])
 def student_login():
     if request.method == 'POST':
-        email = request.form.get('email')
-        password = request.form.get('password')
-        command = request.form.get('command').strip().lower()
+        email =     request.form.get('email')
+        password =  request.form.get('password')
+        command =   request.form.get('command').strip().lower()
 
         student = None
 
@@ -146,8 +146,25 @@ def student_login():
         greeting = "Welcome Young Grasshopper!",
         sub_title = "Create Your Account",
         call_to_action = "Enter your login info to continue your journey through American University.",
-        login_action_step = "To login, type 'login'. If you don't have an account, create your account type 'create':"
-        )
+        login_action_step = "To login, type 'login'. If you don't have an account, create your account type 'create':")
+
+@app.route('/island-home', methods=['GET', 'POST'])
+def matrix_home():
+    if request.method == 'POST':
+        command = request.form.get('command').strip().lower()
+        if command == 'public' or 'public university':
+            return redirect(url_for('university_template'))
+        elif command == 'private' or 'private_university':
+            return redirect(url_for('university_template'))
+        elif command == 'logout':
+            return redirect(url_for('logout'))
+    
+    return render_template('island-index.html',
+                    page_title = "Grasshopper Island",
+                    introduction = "Welcome Young Grasshopper!",
+                    edu_exploration = "Enter the university option that you'd like to explore.",
+                    edu_options = "Your available options are: 'Public University' or 'Private University'.",
+                    logout_option = "To logout, type 'logout'.")
 
 @app.route('/logout')
 def logout():
@@ -161,14 +178,37 @@ def get_all_users():
 
 
 # route to user to public university main page
-@app.get('/public-university')
-def public_university():
-    return render_template('universityMain/publicUniversity.html')
+@app.route('/university-type', methods=['GET', 'POST'])
+def university_template():
+    if request.method == 'POST':
+        command = request.form.get('command').strip().lower()
+        if command == 'business' or 'bus':
+            return redirect(url_for('degree_tracks'))
+        elif command == 'stem' or 'science' or 'technology' or 'engineering' or 'math' or 'mathematics':
+            return redirect(url_for('degree_tracks'))
+        elif command == 'social sciences' or 'humanities':
+            return redirect(url_for('degree_tracks'))
+
+
+    return render_template('university-main/university-template.html',
+                           uni_type="Public University",
+                           uni_intro="Here at the Island's Public University, we provide diverse programs and resources to help you achieve your goals. Join our inclusive community to prepare for a bright and impactful future!",
+                           general_tracks_intro="We have three career tracks available for you:",
+                           business_tracks="Business tracks specialize in Accounting, Economics, Finance, Marketing, Business Management.",
+                           social_sciences_tracks="Social Sciences tracks specialize English, History, Philosophy, Political Science, and Psychology.",
+                           stem_tracks="STEM tracks specialize Biology, Computer Science, Electrical Engineering, Mathematics, and Physics.",
+                           track_query="Which career track would you like to learn more about?",
+                           logout_option = "To logout, type 'logout'.")
 
 # route user to private university main page
 @app.get('/private-university')
 def private_university():
-    return render_template('universityMain/privateUniversity.html')
+    return render_template('universityMain/private-university.html')
+
+@app.route('/degree-tracks')
+def degree_tracks():
+    return render_template('university-main/degree-tracks.html')
+
 
 '''# route to main page
 @app.get('/home/<user_id>')
