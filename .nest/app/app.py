@@ -33,7 +33,7 @@ def home():
                 student = s
                 break
         if student:
-            return redirect(url_for('island_home'))
+            return redirect(url_for('matrix_home'))
     
     if request.method == 'POST':
         command = request.form.get('command').strip().lower()
@@ -158,6 +158,9 @@ def matrix_home():
             return redirect(url_for('university_template'))
         elif command == 'logout':
             return redirect(url_for('logout'))
+        else:
+            flash('Invalid command. Please type "public", "private", or "logout" to proceed.')
+            return redirect(url_for('matrix_home'))
     
     return render_template('island-index.html',
                     page_title = "Grasshopper Island",
