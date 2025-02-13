@@ -1,9 +1,19 @@
-# young-grasshopper
-Due to the yearly increasing costs associated with pursuing a higher education, along with little comprehensive content around the costs of college or university the following webpages were created. HTML, CSS, and Javascript were used to build local webpages to provide High School students with informational content around the hidden costs associated with going to university in the U.S. A detailed workflow was also outlined on the second webpage to provide high school students with a deeper understanding of how much a specific occupation could earn them based on the closest Metropolitan estimates from the U.S. Bureau of Labor Statistics website.
+# 🦗 young-grasshopper v2 (Current)
+### 🛠️ Tools
+Python, Insomnia REST, JavaScript, HTML, and CSS
+### 📚 Python & JavaScript Libraries
+Flask, Werkzeug (Security), Flask-Smorest, Swagger UI, Psycopg2, SQLAlchemy, Pandas, BeautifulSoup, PixiJS
+### 💽 Data Platform & Data Types
+[U.S. Bureau of Labor Statistics](https://www.bls.gov/) | JSON, PostgreSQL Schemas & Tables
 
-Full webpage is accessible by clicking [this link](https://mfturra.github.io/young-grasshopper/).
+### 📋 Briefing
+_young-grasshopper v1_ was not user friendly and prospective students didn't use it. As a result, I decided to gamify it by building a text-based game, inspired by Oregon Trail, that would simulate going to university in the United States. Storyboarded in **Miro**, the game would have a public & private university options; three career tracks and fifteen degrees for each based off Massachusetts top university programs. Built with players and admins in mind, users would be able to _attend_ four years of university and receive a scorecard on acquired debt and estimated years to pay off debt based on their interest rate. Meanwhile, admins would be able to add degrees, courses, and mini-games to simulate working part-time & full-time while going to university.
 
-## Features Built into Workflow
-1. Dynamic calculators were created to estimate the costs of college/university tuition, the total cost of a bank loan based on the estimated interest, and the amount of earnings the high school student could earn if they worked throughout a portion of their college education.
-2. Occupation projected income workflow was created using the U.S. Bureau of Labor Statistics website to provide students with clarity on how much their earnings could be, along with the projected market growth for that position in the next few years.
-3. Button's were created to hide and reveal relevant content based on the users interests.
+# 👨🏻‍🎓 young-grasshopper v1
+### 🔧 Tools
+JavaScript, HTML, and CSS
+### 💽 Data Platform
+U.S. Bureau of Labor Statistics
+
+### 📋 Briefing
+The yearly costs associated with pursuing a higher education seem to increase every year by a rate that surpasses even the rate of inflation. Yet, prospective students are provided with little insight into the financial debt that their degree choices make on them post-graduation. As a result, a single-page web app was built to set expectations for students on what they would be making post-graduation and how much they could save by working while going to school. Users were also taught how to research their expected salary using the U.S. Bureau of Labor Statistics website.
