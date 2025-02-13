@@ -1,4 +1,5 @@
 # 🦗 young-grasshopper v2 (Current)
+![Young Grasshopper Home Page](https://github.com/mfturra/young-grasshopper/blob/main/.nest/app/static/assets/home-screen.png)
 ### 🛠️ Tools
 Python, Insomnia REST, JavaScript, HTML, and CSS
 ### 📚 Python & JavaScript Libraries
