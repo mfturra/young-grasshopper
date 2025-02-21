@@ -1,7 +1,7 @@
 from db import db
 
 class DegreeModel(db.Model):
-    __tablename__ = "Degrees"
+    __tablename__ = "degrees"
 
     # "unique=True" = Not duplicates
     id =                        db.Column(db.Integer, primary_key=True)
